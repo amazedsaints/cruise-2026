@@ -6,11 +6,10 @@ const cruiseData = {
   title: "Setting Sail 2026",
   subtitle: "A Trip to Remember",
   ship: "Carnival Conquest",
-  shipImage: "https://www.carnival.com/content/dam/carnival/ships/carnival-conquest/carnival-conquest-exterior-1.jpg",
+  shipImage: "https://commons.wikimedia.org/wiki/Special:FilePath/Carnival_Conquest_(ship,_2002)_docked_in_Celebration_Key_(February_2026).jpg",
   departure: "June 8, 2026",
   departureISO: "2026-06-08T11:00:00",
   returnDate: "June 12, 2026",
-  heroEmoji: "⚓",
 
   // ── Staterooms ───────────────────────────────────────────
   staterooms: [
@@ -65,10 +64,9 @@ const cruiseData = {
           { name: "South Beach", desc: "World-famous beach with white sand, turquoise water, and the iconic Art Deco Historic District." },
           { name: "Wynwood Walls", desc: "An outdoor museum with world-class murals and street art — a must-see cultural experience." },
           { name: "Little Havana", desc: "Soak in Cuban culture, music, and authentic food on Calle Ocho." },
-          { name: "Bayside Marketplace", desc: "Waterfront dining and shopping right near the cruise terminal." },
-          { name: "American Airlines Arena", desc: "Catch a game or concert if timing works out." }
+          { name: "Bayside Marketplace", desc: "Waterfront dining and shopping right near the cruise terminal." }
         ],
-        tips: "The cruise terminal is at PortMiami. Parking is available on-site. Arrive early — the 11:00 AM window is your assigned slot and boarding goes smoothly when everyone arrives together.",
+        tips: "The cruise terminal is at PortMiami. Arrive early — the 11:00 AM window is your assigned slot and boarding goes smoothly when everyone arrives together.",
         weather: "🌡 June average: 89°F / 32°C · Sunny with occasional afternoon showers"
       }
     },
@@ -91,7 +89,7 @@ const cruiseData = {
           { name: "Guy's Burger Joint", desc: "Celebrity chef Guy Fieri's signature burgers — free and absolutely legendary." },
           { name: "BlueIguana Cantina", desc: "Fresh Mexican fare with burritos and tacos, included with your cruise." }
         ],
-        tips: "Sea days fill up fast — book spa appointments and specialty dining as early as possible via the Carnival HUB app. The lido deck pool gets crowded by 10 AM.",
+        tips: "Sea days fill up fast — book specialty dining early via the Carnival HUB app. The lido deck pool gets crowded by 10 AM.",
         weather: "🌡 Atlantic Ocean: 82°F / 28°C · Partly cloudy, gentle sea breeze"
       }
     },
@@ -101,20 +99,19 @@ const cruiseData = {
       port: "RelaxAway, Half Moon Cay™",
       label: "Private Island · Bahamas",
       icon: "🏝️",
-      description: "Named Best Private Island for 20+ straight years, Half Moon Cay is expanding in 2026 as RelaxAway. Pristine beaches, turquoise waters, new cabanas, bars, and lunch spots await.",
-      highlights: ["White sand beach", "Kayaking & stingray lagoon", "Horseback riding", "Beachside massages", "Rental cabanas & villas"],
+      description: "Named Best Private Island for 20+ straight years, Half Moon Cay is expanding in 2026 as RelaxAway. Pristine beaches, turquoise waters, new complimentary bars and lunch spots await.",
+      highlights: ["White sand beach", "Swim in turquoise waters", "Complimentary island lunch", "Nature trails", "New island bars"],
       details: {
-        about: "Half Moon Cay — now rebranding as RelaxAway — is a 2,400-acre private island in the Bahamas owned by Holland America Line and available to Carnival guests. With over 2 miles of pristine white sand beach and crystal-clear turquoise water, it has won 'Best Private Island' for more than 20 consecutive years.",
+        about: "Half Moon Cay — rebranding as RelaxAway in 2026 — is a 2,400-acre private island in the Bahamas. With over 2 miles of pristine white sand beach and crystal-clear turquoise water, it has won 'Best Private Island' for more than 20 consecutive years. In 2026 the island is expanding with new complimentary dining spots, scenic paths, and island-themed bars.",
         thingsToDo: [
-          { name: "Beach Lounging", desc: "Miles of powdery white sand beach — find your spot, order a drink, and unwind." },
-          { name: "Stingray Encounter", desc: "Wade into the shallow lagoon and interact with Southern stingrays — a truly magical experience." },
-          { name: "Kayaking & Paddleboarding", desc: "Explore the calm, protected lagoon waters at your own pace." },
-          { name: "Horseback Riding on the Beach", desc: "One of the island's signature experiences — ride along the shoreline and into the ocean." },
-          { name: "Parasailing", desc: "Soar above the island for breathtaking aerial views of the turquoise waters." },
-          { name: "Beachside Massage", desc: "Indulge in a relaxing massage right on the sand." },
-          { name: "Private Cabanas & Villas", desc: "Rent a premium beachfront cabana or villa for extra privacy and amenities." }
+          { name: "Beach Lounging", desc: "Miles of powdery white sand beach — find your spot, enjoy the sun, and unwind completely." },
+          { name: "Swimming & Snorkelling", desc: "The warm, clear turquoise water is perfect for swimming and exploring the reef just offshore." },
+          { name: "Nature Trail Walk", desc: "Stroll the scenic nature path through the island's lush landscape and coastal views." },
+          { name: "Island-Themed Bars", desc: "New in 2026 — sip tropical cocktails at the brand-new island bars right on the beachfront." },
+          { name: "Complimentary Lunch Buffet", desc: "Enjoy a free island buffet lunch with fresh food served right on the island." },
+          { name: "Clamshell Hideaway", desc: "Cozy up in a shady beachside clamshell — perfect for a quiet afternoon with your group." }
         ],
-        tips: "The island provides a complimentary buffet lunch. Get off the ship early to claim the best beach spots — the most secluded areas are a short walk from the main beach. The lagoon water is incredibly clear and warm.",
+        tips: "Get off the ship early to claim the best beach spots. The most secluded areas are a short walk from the main beach. The lagoon water is incredibly clear and warm — bring snorkel gear if you have it.",
         weather: "🌡 Bahamas in June: 88°F / 31°C · Sunny skies, calm turquoise water"
       }
     },
@@ -124,25 +121,25 @@ const cruiseData = {
       port: "Celebration Key™",
       label: "Grand Bahama Island",
       icon: "🎉",
-      description: "Carnival's brand-new exclusive destination on the south side of Grand Bahama Island. A mile-long white sand beach, the largest freshwater lagoons in the Caribbean, and five unique portals to explore.",
+      description: "Carnival's brand-new exclusive destination on Grand Bahama Island. A mile-long white sand beach, the largest freshwater lagoons in the Caribbean, and unique portals for everyone to enjoy.",
       highlights: [
-        "Paradise Plaza™ — welcome portal, live music",
-        "Starfish Lagoon™ — waterslides, splash pad (families)",
-        "Calypso Lagoon™ — swim-up bar, DJ island (adults)",
-        "Pearl Cove Beach Club™ — adults-only infinity pool",
-        "Lokono Cove™ — local art, culture & music"
+        "Paradise Plaza™ — live music & welcome area",
+        "Starfish Lagoon™ — waterslides & sports (families)",
+        "Calypso Lagoon™ — swim-up bar & DJ (adults)",
+        "Lokono Cove™ — Bahamian art & culture",
+        "Mile-long white sand beach"
       ],
       details: {
-        about: "Celebration Key is Carnival's newest and most ambitious private destination, opening in 2025 on the south side of Grand Bahama Island. Designed exclusively for Carnival guests, it features a mile-long white sand beach, the largest freshwater lagoons in the Caribbean, and five themed 'portals' catering to every type of traveler.",
+        about: "Celebration Key is Carnival's newest exclusive destination, opening in 2025 on the south side of Grand Bahama Island. Designed for Carnival guests, it features a mile-long white sand beach, the largest freshwater lagoons in the Caribbean, and themed portals for families, adults, and culture lovers alike.",
         thingsToDo: [
-          { name: "Paradise Plaza™", desc: "The first portal you'll see — welcoming you ashore with guest services, live local music, and photo opportunities." },
-          { name: "Starfish Lagoon™ (Families)", desc: "Flash Flamingo & Mach III Marlin waterslides, Guppy Grotto splash pad, plus basketball, volleyball, and pickleball courts." },
-          { name: "Calypso Lagoon™ (Adults)", desc: "Swim-up bars, swings bars, a DJ island, and a lively social vibe for adults who want fun without the kids." },
-          { name: "Pearl Cove Beach Club™ (Adults Only)", desc: "Premium adults-only experience with an infinity pool, swim-up bar, elevated dining, and attentive service poolside and beachside." },
-          { name: "Lokono Cove™", desc: "Shop goods from local Bahamian artisans and enjoy showcases of Bahamian art, music, history, and culture." },
-          { name: "Freshwater Lagoons", desc: "The largest freshwater lagoons in the Caribbean — perfect for swimming, floating, and water sports." }
+          { name: "Paradise Plaza™", desc: "The welcoming gateway to the island — live local music, guest information, and great photo opportunities." },
+          { name: "Starfish Lagoon™ (Families)", desc: "Flash Flamingo & Mach III Marlin waterslides, Guppy Grotto splash pad, plus basketball, volleyball, and pickleball courts — all included." },
+          { name: "Calypso Lagoon™ (Adults)", desc: "Swim-up bars, swings bars, a DJ island, and a lively social vibe for adults. The lagoon and atmosphere are free to enjoy." },
+          { name: "Lokono Cove™", desc: "Browse goods from local Bahamian artisans and enjoy showcases of authentic Bahamian art, music, history, and culture." },
+          { name: "Freshwater Lagoons", desc: "The largest freshwater lagoons in the Caribbean — swim, float, and enjoy the unique crystal-clear water." },
+          { name: "White Sand Beach", desc: "A full mile of gorgeous beach to explore, relax on, and enjoy at no cost." }
         ],
-        tips: "This destination opened in 2025, so everything is brand new. Pearl Cove Beach Club may require advance reservation — check the Carnival HUB app before your cruise. Lokono Cove is a great spot to pick up authentic Bahamian souvenirs.",
+        tips: "Everything is brand new at this destination — arrive early to explore all five portals. Lokono Cove is a great spot to pick up authentic Bahamian souvenirs to remember the trip.",
         weather: "🌡 Grand Bahama in June: 87°F / 31°C · Warm and sunny, light tropical breeze"
       }
     },
@@ -155,15 +152,15 @@ const cruiseData = {
       description: "We're back in Miami! Disembarkation begins early morning. Enjoy a final breakfast on board, collect your luggage, and relive the memories until next time.",
       highlights: ["Final breakfast on board", "Luggage collection", "Disembarkation by group", "Safe travels home!"],
       details: {
-        about: "All good things must come to an end — but what a trip it's been! Disembarkation is organized by group number. Your luggage will be placed outside your stateroom door the night before, so pack everything except your essentials.",
+        about: "All good things must come to an end — but what a trip! Disembarkation is organized by group number. Your luggage will be placed outside your stateroom door the night before, so pack everything except overnight essentials.",
         thingsToDo: [
-          { name: "Final Breakfast", desc: "Enjoy one last meal on board — the Lido buffet opens early on disembarkation day." },
+          { name: "Final Breakfast on Board", desc: "Enjoy one last meal — the Lido buffet opens early on disembarkation day." },
           { name: "Pack the Night Before", desc: "Place luggage outside your cabin door by midnight on Day 4. Keep a small bag for overnight essentials." },
           { name: "Check Your Folio", desc: "Review your onboard charges via the Carnival HUB app or stateroom TV before disembarkation." },
-          { name: "Wait for Your Group Number", desc: "Disembarkation is called by group — listen for announcements and don't rush the gangway." },
+          { name: "Wait for Your Group Number", desc: "Disembarkation is called by group — listen for announcements. Don't rush the gangway." },
           { name: "Collect Luggage in Terminal", desc: "Luggage is organized by color-coded tags in the terminal. Have your ID and travel docs ready." }
         ],
-        tips: "If you have a late flight, consider booking a Miami day tour or heading to South Beach to kill time. Luggage storage is available near the terminal. The earliest groups typically disembark around 7:30–8:00 AM.",
+        tips: "If you have a late flight, consider heading to South Beach for a few hours — it's only 20 minutes from the port. The earliest groups typically disembark around 7:30–8:00 AM.",
         weather: "🌡 Miami in June: 89°F / 32°C · Warm and sunny"
       }
     }

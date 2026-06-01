@@ -26,234 +26,247 @@
 
     /* ── Ship Banner ───────────────────────────────────── */
     .ship-banner {
-      position: relative;
-      height: 340px;
-      overflow: hidden;
-      background: var(--navy);
+      position: relative; height: 380px; overflow: hidden; background: var(--navy);
     }
     .ship-banner img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 60%;
-      opacity: .55;
+      object-fit: cover; object-position: center 55%;
+      opacity: .5; display: block;
+    }
+    .ship-banner-fallback {
+      display: none; width: 100%; height: 100%;
+      background: linear-gradient(160deg, #0a1f38 0%, #1a5276 50%, #0d6b8e 100%);
+      position: absolute; inset: 0;
     }
     .ship-banner-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(13,43,78,0.3) 0%, rgba(13,43,78,0.75) 100%);
+      background: linear-gradient(to bottom, rgba(10,30,60,0.25) 0%, rgba(10,30,60,0.78) 100%);
       display: flex; flex-direction: column;
       align-items: center; justify-content: flex-end;
-      padding-bottom: 40px;
-      text-align: center;
-      color: white;
+      padding-bottom: 48px; text-align: center; color: white;
     }
     .ship-name-tag {
-      background: var(--gold);
-      color: var(--navy);
-      font-size: .75rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 100px;
-      margin-bottom: 10px;
+      background: var(--gold); color: var(--navy);
+      font-size: .72rem; font-weight: 900;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 5px 18px; border-radius: 100px; margin-bottom: 12px;
     }
-    .ship-banner-overlay h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; letter-spacing: -1px; }
-    .ship-banner-overlay .subtitle { font-size: 1rem; opacity: .85; margin-top: 6px; }
+    .ship-banner-overlay h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900; letter-spacing: -1px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .ship-banner-overlay .subtitle { font-size: 1rem; opacity: .82; margin-top: 6px; }
     .ship-banner-overlay .dates {
-      margin-top: 14px;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 100px;
-      padding: 7px 22px;
-      font-size: .9rem;
+      margin-top: 16px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 100px; padding: 8px 24px; font-size: .9rem;
     }
 
     /* ── Countdown ─────────────────────────────────────── */
     .countdown-bar {
-      background: var(--navy);
-      color: white;
-      text-align: center;
-      padding: 20px 16px 24px;
+      background: linear-gradient(135deg, #08192e 0%, var(--navy) 100%);
+      color: white; text-align: center; padding: 22px 16px 26px;
     }
-    .countdown-label { font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; opacity: .6; margin-bottom: 10px; }
-    .countdown-units { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .countdown-label { font-size: .75rem; letter-spacing: 2.5px; text-transform: uppercase; opacity: .55; margin-bottom: 12px; }
+    .countdown-units { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
     .countdown-unit { display: flex; flex-direction: column; align-items: center; }
     .countdown-num {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 10px;
-      padding: 10px 18px;
-      font-size: 2rem;
-      font-weight: 900;
-      line-height: 1;
-      min-width: 64px;
-      font-variant-numeric: tabular-nums;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px; padding: 10px 16px;
+      font-size: 2.2rem; font-weight: 900; line-height: 1;
+      min-width: 68px; font-variant-numeric: tabular-nums;
+      letter-spacing: -1px;
     }
-    .countdown-unit span { font-size: .7rem; letter-spacing: 1px; text-transform: uppercase; opacity: .55; margin-top: 5px; }
+    .countdown-unit span { font-size: .68rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: .5; margin-top: 6px; }
     .countdown-sailed { font-size: 1.2rem; font-weight: 700; color: var(--gold2); padding: 12px 0; }
 
     /* ── Nav ───────────────────────────────────────────── */
     nav {
-      background: var(--navy2);
-      position: sticky; top: 0; z-index: 100;
-      display: flex; justify-content: center; gap: 4px;
-      padding: 0 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      background: var(--navy2); position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 2px;
+      padding: 0 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.35);
     }
     nav a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      padding: 13px 18px;
-      font-size: .88rem;
-      font-weight: 600;
+      color: rgba(255,255,255,0.68); text-decoration: none;
+      padding: 13px 16px; font-size: .86rem; font-weight: 600;
       border-bottom: 3px solid transparent;
       transition: color .2s, border-color .2s;
     }
     nav a:hover { color: white; border-bottom-color: var(--gold2); }
 
-    /* ── Sections ──────────────────────────────────────── */
-    section { padding: 56px 24px; max-width: 900px; margin: 0 auto; }
-    .section-title { font-size: 1.7rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-    .section-subtitle { color: var(--muted); margin-bottom: 10px; font-size: .95rem; }
+    /* ── Section Layout ────────────────────────────────── */
+    .section-wrap { padding: 56px 24px; max-width: 920px; margin: 0 auto; }
+    .section-title { font-size: 1.65rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .section-subtitle { color: var(--muted); margin-bottom: 10px; font-size: .93rem; }
     .divider { width: 48px; height: 4px; background: var(--gold); border-radius: 4px; margin-bottom: 28px; }
 
     /* ── Day Cards ─────────────────────────────────────── */
-    .timeline { display: flex; flex-direction: column; gap: 16px; }
+    .timeline { display: flex; flex-direction: column; gap: 14px; }
     .day-card {
-      background: white;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      cursor: pointer;
-      transition: box-shadow .2s;
+      background: white; border-radius: var(--radius);
+      box-shadow: var(--shadow); border: 1px solid var(--border);
+      overflow: hidden; cursor: pointer;
+      transition: box-shadow .2s, transform .15s;
     }
-    .day-card:hover { box-shadow: 0 6px 28px rgba(13,43,78,0.15); }
+    .day-card:hover { box-shadow: 0 8px 32px rgba(13,43,78,0.16); transform: translateY(-1px); }
     .day-card-header { display: flex; }
     .day-badge {
       background: linear-gradient(180deg, var(--navy) 0%, var(--blue) 100%);
-      color: white;
-      min-width: 88px;
+      color: white; min-width: 86px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 22px 10px;
-      text-align: center; flex-shrink: 0;
+      padding: 20px 10px; text-align: center; flex-shrink: 0;
     }
-    .day-badge .icon { font-size: 1.8rem; margin-bottom: 6px; }
-    .day-badge .day-num { font-size: .65rem; text-transform: uppercase; letter-spacing: 1px; opacity: .65; }
-    .day-badge .day-n { font-size: 1.8rem; font-weight: 900; line-height: 1; }
-    .day-summary { padding: 20px 24px; flex: 1; }
-    .day-summary .port-name { font-size: 1.15rem; font-weight: 800; color: var(--navy); }
+    .day-badge .icon { font-size: 1.7rem; margin-bottom: 5px; }
+    .day-badge .day-lbl { font-size: .62rem; text-transform: uppercase; letter-spacing: 1px; opacity: .6; }
+    .day-badge .day-n { font-size: 1.9rem; font-weight: 900; line-height: 1; }
+    .day-summary { padding: 18px 22px; flex: 1; }
+    .day-summary .port-name { font-size: 1.12rem; font-weight: 800; color: var(--navy); }
     .day-label-chip {
-      display: inline-block;
-      background: #e8f4fd; color: var(--blue);
-      font-size: .75rem; font-weight: 700;
-      padding: 3px 10px; border-radius: 100px;
-      margin: 4px 0 8px; letter-spacing: .3px;
+      display: inline-block; background: #e8f4fd; color: var(--blue);
+      font-size: .73rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 100px; margin: 4px 0 8px;
     }
-    .day-date { font-size: .83rem; color: var(--muted); margin-bottom: 10px; }
-    .day-desc { font-size: .93rem; color: #444; margin-bottom: 12px; line-height: 1.6; }
-    .highlights { display: flex; flex-wrap: wrap; gap: 7px; }
+    .day-date { font-size: .82rem; color: var(--muted); margin-bottom: 9px; }
+    .day-desc { font-size: .92rem; color: #3d4f60; margin-bottom: 12px; line-height: 1.62; }
+    .highlights { display: flex; flex-wrap: wrap; gap: 6px; }
     .highlight-chip {
       background: var(--offwhite); border: 1px solid var(--border);
-      color: var(--navy2); font-size: .78rem;
+      color: var(--navy2); font-size: .77rem;
       padding: 4px 11px; border-radius: 100px; font-weight: 600;
     }
     .expand-hint {
-      display: flex; align-items: center; gap: 6px;
-      font-size: .8rem; color: var(--gold); font-weight: 700;
-      margin-top: 12px; letter-spacing: .2px;
+      display: flex; align-items: center; gap: 5px;
+      font-size: .78rem; color: var(--gold); font-weight: 700;
+      margin-top: 11px;
     }
     .expand-arrow { transition: transform .3s; display: inline-block; }
     .day-card.open .expand-arrow { transform: rotate(180deg); }
 
     /* ── Expanded Detail ───────────────────────────────── */
     .day-details {
-      display: none;
-      border-top: 1px solid var(--border);
-      padding: 28px 24px 24px;
-      background: #fafdff;
+      display: none; border-top: 1px solid var(--border);
+      padding: 26px 22px 22px; background: #f8fbff;
     }
     .day-card.open .day-details { display: block; }
-    .detail-about {
-      font-size: .95rem; color: #3a4a5c; line-height: 1.7;
-      margin-bottom: 20px;
-    }
-    .detail-section-title {
-      font-size: .8rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 1.5px;
-      color: var(--navy); margin-bottom: 12px;
-    }
-    .things-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .detail-about { font-size: .94rem; color: #3a4a5c; line-height: 1.72; margin-bottom: 20px; }
+    .detail-sec { font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--navy); margin-bottom: 11px; }
+    .things-grid { display: flex; flex-direction: column; gap: 9px; margin-bottom: 18px; }
     .thing-item {
-      display: flex; gap: 12px;
-      background: white; border: 1px solid var(--border);
-      border-radius: 10px; padding: 13px 16px;
+      display: flex; gap: 12px; background: white;
+      border: 1px solid var(--border); border-radius: 10px; padding: 12px 15px;
     }
-    .thing-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--gold); flex-shrink: 0; margin-top: 6px;
-    }
-    .thing-name { font-weight: 700; font-size: .9rem; color: var(--navy); }
-    .thing-desc { font-size: .85rem; color: var(--muted); margin-top: 2px; }
+    .thing-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
+    .thing-name { font-weight: 700; font-size: .88rem; color: var(--navy); }
+    .thing-desc { font-size: .83rem; color: var(--muted); margin-top: 2px; }
     .detail-tip {
-      background: #fff8e6; border: 1px solid #f5d080;
-      border-radius: 10px; padding: 13px 16px;
-      font-size: .88rem; color: #7a5c00; margin-bottom: 14px;
+      background: #fffbea; border: 1px solid #f5d97a;
+      border-radius: 10px; padding: 12px 16px;
+      font-size: .86rem; color: #7a5c00; margin-bottom: 12px;
     }
     .detail-tip strong { color: #5a4200; }
     .detail-weather {
-      font-size: .85rem; color: var(--muted);
+      font-size: .84rem; color: var(--muted);
       background: #f0f7ff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 14px;
+      border-radius: 8px; padding: 9px 14px;
     }
 
     /* ── Staterooms ────────────────────────────────────── */
-    .stateroom-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-    .stateroom-box {
-      background: white; border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    .stateroom-header {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
-      color: white; padding: 16px 20px;
-    }
+    .stateroom-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+    .stateroom-box { background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .stateroom-header { padding: 16px 20px; color: white; }
     .stateroom-header .sr-num { font-size: 1rem; font-weight: 800; }
-    .stateroom-header .sr-code { font-size: .8rem; opacity: .7; margin-top: 2px; }
+    .stateroom-header .sr-code { font-size: .79rem; opacity: .7; margin-top: 1px; }
     .stateroom-header .sr-arrival {
       display: inline-flex; align-items: center; gap: 5px;
       background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 100px; padding: 4px 12px;
-      font-size: .75rem; margin-top: 10px;
+      border-radius: 100px; padding: 4px 12px; font-size: .73rem; margin-top: 9px;
     }
-    .stateroom-passengers { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
-    .passenger-row { display: flex; align-items: center; gap: 12px; }
+    .stateroom-passengers { padding: 12px 16px; display: flex; flex-direction: column; gap: 9px; }
+    .passenger-row { display: flex; align-items: center; gap: 11px; }
     .passenger-avatar {
-      width: 38px; height: 38px;
-      background: linear-gradient(135deg, var(--navy), var(--teal));
+      width: 36px; height: 36px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: white; font-weight: 800; font-size: .85rem; flex-shrink: 0;
+      color: white; font-weight: 800; font-size: .82rem; flex-shrink: 0;
     }
-    .passenger-name { font-weight: 600; font-size: .9rem; color: var(--navy); }
+    .passenger-name { font-weight: 600; font-size: .88rem; color: var(--navy); }
+
+    /* ── Notes Section ─────────────────────────────────── */
+    #notes-section { background: white; border-top: 3px solid var(--gold); }
+    .notes-wrap { max-width: 920px; margin: 0 auto; padding: 48px 24px; }
+    .notes-picker {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 28px; flex-wrap: wrap;
+    }
+    .notes-picker label { font-weight: 700; color: var(--navy); font-size: .95rem; white-space: nowrap; }
+    .notes-picker select {
+      flex: 1; min-width: 200px; max-width: 320px;
+      padding: 10px 14px; border-radius: 8px;
+      border: 1px solid var(--border); font-size: .95rem;
+      color: var(--navy); background: var(--offwhite);
+      outline: none; cursor: pointer;
+    }
+    .notes-picker select:focus { border-color: var(--blue); }
+    .notes-prompt {
+      text-align: center; padding: 48px 24px;
+      color: var(--muted); font-size: .95rem;
+    }
+    .notes-prompt .notes-icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+    /* Day Tabs */
+    .notes-tabs { display: none; }
+    .notes-tabs.visible { display: block; }
+    .tab-list {
+      display: flex; gap: 4px; flex-wrap: wrap;
+      border-bottom: 2px solid var(--border); margin-bottom: 22px;
+    }
+    .tab-btn {
+      padding: 10px 16px; font-size: .85rem; font-weight: 700;
+      color: var(--muted); background: none; border: none;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      cursor: pointer; border-radius: 6px 6px 0 0;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .tab-btn:hover { color: var(--navy); background: var(--offwhite); }
+    .tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); background: var(--offwhite); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .tab-port { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .tab-date { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
+    .note-textarea {
+      width: 100%; min-height: 140px;
+      padding: 14px 16px; border-radius: 10px;
+      border: 1px solid var(--border); font-size: .93rem;
+      font-family: inherit; color: var(--text);
+      resize: vertical; outline: none; background: var(--offwhite);
+      transition: border-color .2s;
+    }
+    .note-textarea:focus { border-color: var(--blue); background: white; }
+    .note-save-status {
+      font-size: .78rem; color: var(--teal); font-weight: 600;
+      margin-top: 7px; min-height: 1em; transition: opacity .3s;
+    }
 
     /* ── Footer ────────────────────────────────────────── */
     footer {
       background: var(--navy); color: rgba(255,255,255,0.5);
-      text-align: center; padding: 32px 24px; font-size: .85rem; margin-top: 20px;
+      text-align: center; padding: 30px 24px; font-size: .84rem;
     }
     footer strong { color: rgba(255,255,255,0.85); }
 
     /* ── Responsive ────────────────────────────────────── */
     @media (max-width: 600px) {
       .day-card-header { flex-direction: column; }
-      .day-badge { flex-direction: row; gap: 14px; padding: 14px 18px; min-width: unset; }
-      .day-badge .icon { margin-bottom: 0; }
-      nav a { padding: 11px 10px; font-size: .8rem; }
-      .countdown-num { font-size: 1.5rem; min-width: 50px; padding: 8px 12px; }
-      section { padding: 36px 16px; }
-      .ship-banner { height: 260px; }
+      .day-badge { flex-direction: row; gap: 14px; padding: 14px 18px; min-width: unset; justify-content: flex-start; }
+      .day-badge .icon { margin-bottom: 0; font-size: 1.4rem; }
+      nav a { padding: 11px 10px; font-size: .78rem; }
+      .section-wrap { padding: 36px 16px; }
+      .ship-banner { height: 280px; }
+      .countdown-num { font-size: 1.6rem; min-width: 54px; }
     }
   </style>
 </head>
@@ -261,7 +274,10 @@
 
 <!-- Ship Banner -->
 <header class="ship-banner">
-  <img id="ship-img" src="" alt="Carnival Conquest" onerror="this.style.display='none'" />
+  <div class="ship-banner-fallback" id="img-fallback"></div>
+  <img id="ship-img" src="" alt="Carnival Conquest"
+    onload="document.getElementById('img-fallback').style.display='none'"
+    onerror="this.style.display='none';document.getElementById('img-fallback').style.display='block'" />
   <div class="ship-banner-overlay">
     <div class="ship-name-tag" id="ship-name-tag"></div>
     <h1 id="hero-title"></h1>
@@ -286,33 +302,61 @@
 <nav>
   <a href="#itinerary">📅 Itinerary</a>
   <a href="#who-coming">👥 Who's Coming</a>
+  <a href="#my-notes">📝 My Notes</a>
 </nav>
 
 <!-- Itinerary -->
 <section id="itinerary">
-  <div class="section-title">Your Itinerary</div>
-  <div class="section-subtitle" id="itinerary-sub"></div>
-  <div class="divider"></div>
-  <div class="timeline" id="timeline"></div>
+  <div class="section-wrap">
+    <div class="section-title">Your Itinerary</div>
+    <div class="section-subtitle" id="itinerary-sub"></div>
+    <div class="divider"></div>
+    <div class="timeline" id="timeline"></div>
+  </div>
 </section>
 
 <!-- Who's Coming -->
-<section id="who-coming">
-  <div class="section-title">Who's Coming</div>
-  <p class="section-subtitle">All 12 guests, grouped by stateroom. Arrival appointment: <strong>11:00 – 11:30 AM</strong> on June 8.</p>
-  <div class="divider"></div>
-  <div class="stateroom-grid" id="stateroom-grid"></div>
+<section id="who-coming" style="background:white; border-top:1px solid var(--border);">
+  <div class="section-wrap">
+    <div class="section-title">Who's Coming</div>
+    <p class="section-subtitle">All 12 guests grouped by stateroom · Arrival appointment: <strong>11:00 – 11:30 AM</strong>, June 8</p>
+    <div class="divider"></div>
+    <div class="stateroom-grid" id="stateroom-grid"></div>
+  </div>
+</section>
+
+<!-- My Notes -->
+<section id="my-notes" style="padding:0">
+  <div class="notes-wrap">
+    <div class="section-title">📝 My Notes</div>
+    <p class="section-subtitle">Select your name to add personal notes for each day of the trip. Your notes are saved privately on this device.</p>
+    <div class="divider"></div>
+    <div class="notes-picker">
+      <label for="name-select">I am:</label>
+      <select id="name-select">
+        <option value="">— Select your name —</option>
+      </select>
+    </div>
+    <div class="notes-prompt" id="notes-prompt">
+      <div class="notes-icon">✍️</div>
+      <div>Select your name above to start adding notes to your itinerary.</div>
+    </div>
+    <div class="notes-tabs" id="notes-tabs">
+      <div class="tab-list" id="tab-list"></div>
+      <div id="tab-panels"></div>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
 <footer>
   <p><strong id="footer-title"></strong></p>
-  <p style="margin-top:6px" id="footer-ship"></p>
+  <p style="margin-top:5px" id="footer-ship"></p>
 </footer>
 
 <script src="data.js"></script>
 <script>
-  // ── Populate static content ─────────────────────────────
+  // ── Static content ──────────────────────────────────────
   document.title = cruiseData.title + " · " + cruiseData.ship;
   document.getElementById("ship-img").src = cruiseData.shipImage;
   document.getElementById("ship-name-tag").textContent = "⚓ " + cruiseData.ship;
@@ -325,26 +369,18 @@
 
   // ── Countdown ───────────────────────────────────────────
   function updateCountdown() {
-    const target = new Date(cruiseData.departureISO).getTime();
-    const now = Date.now();
-    const diff = target - now;
+    const diff = new Date(cruiseData.departureISO).getTime() - Date.now();
     if (diff <= 0) {
       document.getElementById("countdown-units").style.display = "none";
-      const sailed = document.getElementById("countdown-sailed");
-      sailed.style.display = "block";
-      sailed.textContent = diff > -5 * 24 * 3600 * 1000
-        ? "🚢 We're sailing! Bon voyage!"
-        : "🏠 What a trip — welcome home!";
+      const el = document.getElementById("countdown-sailed");
+      el.style.display = "block";
+      el.textContent = diff > -5 * 86400000 ? "🚢 We're sailing! Bon voyage!" : "🏠 What a trip — welcome home!";
       return;
     }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById("cd-days").textContent  = String(d).padStart(2, "0");
-    document.getElementById("cd-hours").textContent = String(h).padStart(2, "0");
-    document.getElementById("cd-mins").textContent  = String(m).padStart(2, "0");
-    document.getElementById("cd-secs").textContent  = String(s).padStart(2, "0");
+    document.getElementById("cd-days").textContent  = String(Math.floor(diff / 86400000)).padStart(2,"0");
+    document.getElementById("cd-hours").textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,"0");
+    document.getElementById("cd-mins").textContent  = String(Math.floor(diff % 3600000 / 60000)).padStart(2,"0");
+    document.getElementById("cd-secs").textContent  = String(Math.floor(diff % 60000 / 1000)).padStart(2,"0");
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
@@ -354,19 +390,17 @@
   cruiseData.days.forEach(day => {
     const card = document.createElement("div");
     card.className = "day-card";
-
     const chips = day.highlights.map(h => `<span class="highlight-chip">${h}</span>`).join("");
     const things = day.details.thingsToDo.map(t => `
       <div class="thing-item">
         <div class="thing-dot"></div>
         <div><div class="thing-name">${t.name}</div><div class="thing-desc">${t.desc}</div></div>
       </div>`).join("");
-
     card.innerHTML = `
       <div class="day-card-header">
         <div class="day-badge">
           <div class="icon">${day.icon}</div>
-          <div class="day-num">Day</div>
+          <div class="day-lbl">Day</div>
           <div class="day-n">${day.day}</div>
         </div>
         <div class="day-summary">
@@ -375,38 +409,49 @@
           <div class="day-date">📅 ${day.date}</div>
           <div class="day-desc">${day.description}</div>
           <div class="highlights">${chips}</div>
-          <div class="expand-hint">Click to explore <span class="expand-arrow">▼</span></div>
+          <div class="expand-hint">Tap to explore this destination <span class="expand-arrow">▼</span></div>
         </div>
       </div>
       <div class="day-details">
         <div class="detail-about">${day.details.about}</div>
-        <div class="detail-section-title">🗺 Things To Do</div>
+        <div class="detail-sec">🗺 Things To Do</div>
         <div class="things-grid">${things}</div>
         <div class="detail-tip"><strong>💡 Tip:</strong> ${day.details.tips}</div>
         <div class="detail-weather">${day.details.weather}</div>
       </div>`;
-
     card.addEventListener("click", () => card.classList.toggle("open"));
     timeline.appendChild(card);
   });
 
   // ── Staterooms ──────────────────────────────────────────
+  const srGradients = [
+    "linear-gradient(135deg,#0d2b4e,#1a5276)",
+    "linear-gradient(135deg,#163a63,#1f6f9f)",
+    "linear-gradient(135deg,#0e3a52,#1a7a8a)"
+  ];
+  const avatarColors = [
+    ["#1abc9c","#16a085"],["#e67e22","#d35400"],
+    ["#9b59b6","#8e44ad"],["#e74c3c","#c0392b"],
+    ["#2ecc71","#27ae60"],["#3498db","#2980b9"],
+    ["#f39c12","#d68910"],["#1abc9c","#16a085"],
+    ["#e91e63","#c2185b"],["#00bcd4","#0097a7"],
+    ["#ff5722","#e64a19"],["#607d8b","#455a64"]
+  ];
+  let avatarIdx = 0;
   const grid = document.getElementById("stateroom-grid");
   cruiseData.staterooms.forEach((sr, i) => {
-    const colors = ["#0d2b4e", "#163a63", "#1a5276"];
     const box = document.createElement("div");
     box.className = "stateroom-box";
-
     const passengers = sr.passengers.map(name => {
-      const initials = name.split(" ").map(w => w[0]).join("").toUpperCase().slice(0, 2);
+      const initials = name.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
+      const [c1, c2] = avatarColors[avatarIdx++ % avatarColors.length];
       return `<div class="passenger-row">
-        <div class="passenger-avatar">${initials}</div>
+        <div class="passenger-avatar" style="background:linear-gradient(135deg,${c1},${c2})">${initials}</div>
         <div class="passenger-name">${name}</div>
       </div>`;
     }).join("");
-
     box.innerHTML = `
-      <div class="stateroom-header" style="background: linear-gradient(135deg, ${colors[i]} 0%, #1a5276 100%)">
+      <div class="stateroom-header" style="${srGradients[i]}">
         <div class="sr-num">${sr.number}</div>
         <div class="sr-code">${sr.code}</div>
         <div class="sr-arrival">⏰ ${sr.arrival}</div>
@@ -414,6 +459,77 @@
       <div class="stateroom-passengers">${passengers}</div>`;
     grid.appendChild(box);
   });
+
+  // ── Notes ───────────────────────────────────────────────
+  const allPassengers = cruiseData.staterooms.flatMap(sr => sr.passengers);
+  const nameSelect   = document.getElementById("name-select");
+  const notesPrompt  = document.getElementById("notes-prompt");
+  const notesTabs    = document.getElementById("notes-tabs");
+  const tabList      = document.getElementById("tab-list");
+  const tabPanels    = document.getElementById("tab-panels");
+
+  allPassengers.forEach(name => {
+    const opt = document.createElement("option");
+    opt.value = name; opt.textContent = name;
+    nameSelect.appendChild(opt);
+  });
+
+  // Restore last selected name
+  const savedName = localStorage.getItem("cruise_selected_name");
+  if (savedName && allPassengers.includes(savedName)) {
+    nameSelect.value = savedName;
+    showNotes(savedName);
+  }
+
+  nameSelect.addEventListener("change", () => {
+    const name = nameSelect.value;
+    localStorage.setItem("cruise_selected_name", name);
+    if (name) showNotes(name); else { notesPrompt.style.display="block"; notesTabs.classList.remove("visible"); }
+  });
+
+  let activeTab = 0;
+
+  function showNotes(personName) {
+    notesPrompt.style.display = "none";
+    notesTabs.classList.add("visible");
+    tabList.innerHTML = "";
+    tabPanels.innerHTML = "";
+
+    cruiseData.days.forEach((day, idx) => {
+      // Tab button
+      const btn = document.createElement("button");
+      btn.className = "tab-btn" + (idx === activeTab ? " active" : "");
+      btn.textContent = `Day ${day.day} ${day.icon}`;
+      btn.addEventListener("click", () => switchTab(idx));
+      tabList.appendChild(btn);
+
+      // Tab panel
+      const key = `notes__${personName}__day${day.day}`;
+      const saved = localStorage.getItem(key) || "";
+      const panel = document.createElement("div");
+      panel.className = "tab-panel" + (idx === activeTab ? " active" : "");
+      panel.dataset.idx = idx;
+      panel.innerHTML = `
+        <div class="tab-port">${day.port}</div>
+        <div class="tab-date">${day.date}</div>
+        <textarea class="note-textarea" placeholder="Write your notes, plans, or reminders for this day...">${saved}</textarea>
+        <div class="note-save-status" id="status-${idx}"></div>`;
+      const ta = panel.querySelector("textarea");
+      ta.addEventListener("input", () => {
+        localStorage.setItem(key, ta.value);
+        const st = document.getElementById(`status-${idx}`);
+        st.textContent = "✓ Saved";
+        setTimeout(() => st.textContent = "", 1500);
+      });
+      tabPanels.appendChild(panel);
+    });
+  }
+
+  function switchTab(idx) {
+    activeTab = idx;
+    document.querySelectorAll(".tab-btn").forEach((b,i) => b.classList.toggle("active", i===idx));
+    document.querySelectorAll(".tab-panel").forEach((p,i) => p.classList.toggle("active", i===idx));
+  }
 </script>
 </body>
 </html>
