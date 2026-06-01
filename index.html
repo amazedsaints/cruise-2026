@@ -27,248 +27,181 @@
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--offwhite); color: var(--text); line-height: 1.6; }
 
     /* ── Ship Banner ───────────────────────────────────── */
-    .ship-banner {
-      position: relative; height: 380px; overflow: hidden; background: var(--navy);
-    }
-    .ship-banner img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 55%;
-      opacity: .5; display: block;
-    }
-    .ship-banner-fallback {
-      display: none; width: 100%; height: 100%;
-      background: linear-gradient(160deg, #0a1f38 0%, #1a5276 50%, #0d6b8e 100%);
-      position: absolute; inset: 0;
-    }
+    .ship-banner { position: relative; height: 380px; overflow: hidden; background: var(--navy); }
+    .ship-banner img { width:100%; height:100%; object-fit:cover; object-position:center 55%; opacity:.5; display:block; }
+    .ship-banner-fallback { display:none; width:100%; height:100%; background:linear-gradient(160deg,#0a1f38 0%,#1a5276 50%,#0d6b8e 100%); position:absolute; inset:0; }
     .ship-banner-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(10,30,60,0.25) 0%, rgba(10,30,60,0.78) 100%);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: flex-end;
-      padding-bottom: 48px; text-align: center; color: white;
+      position:absolute; inset:0;
+      background:linear-gradient(to bottom,rgba(10,30,60,0.25) 0%,rgba(10,30,60,0.78) 100%);
+      display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+      padding-bottom:48px; text-align:center; color:white;
     }
-    .ship-name-tag {
-      background: var(--gold); color: var(--navy);
-      font-size: .72rem; font-weight: 900;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      padding: 5px 18px; border-radius: 100px; margin-bottom: 12px;
-    }
-    .ship-banner-overlay h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 900; letter-spacing: -1px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    }
-    .ship-banner-overlay .subtitle { font-size: 1rem; opacity: .82; margin-top: 6px; }
-    .ship-banner-overlay .dates {
-      margin-top: 16px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.28);
-      border-radius: 100px; padding: 8px 24px; font-size: .9rem;
-    }
+    .ship-name-tag { background:var(--gold); color:var(--navy); font-size:.72rem; font-weight:900; letter-spacing:2.5px; text-transform:uppercase; padding:5px 18px; border-radius:100px; margin-bottom:12px; }
+    .ship-banner-overlay h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:900; letter-spacing:-1px; text-shadow:0 2px 12px rgba(0,0,0,0.4); }
+    .ship-banner-overlay .subtitle { font-size:1rem; opacity:.82; margin-top:6px; }
+    .ship-banner-overlay .dates { margin-top:16px; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28); border-radius:100px; padding:8px 24px; font-size:.9rem; }
 
     /* ── Countdown ─────────────────────────────────────── */
-    .countdown-bar {
-      background: linear-gradient(135deg, #08192e 0%, var(--navy) 100%);
-      color: white; text-align: center; padding: 22px 16px 26px;
+    .countdown-bar { background:linear-gradient(135deg,#08192e 0%,var(--navy) 100%); color:white; text-align:center; padding:22px 16px 26px; }
+    .countdown-label { font-size:.75rem; letter-spacing:2.5px; text-transform:uppercase; opacity:.55; margin-bottom:12px; }
+    .countdown-units { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .countdown-unit { display:flex; flex-direction:column; align-items:center; }
+    .countdown-num { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:10px 16px; font-size:2.2rem; font-weight:900; line-height:1; min-width:68px; font-variant-numeric:tabular-nums; letter-spacing:-1px; }
+    .countdown-unit span { font-size:.68rem; letter-spacing:1.5px; text-transform:uppercase; opacity:.5; margin-top:6px; }
+    .countdown-sailed { font-size:1.2rem; font-weight:700; color:var(--gold2); padding:12px 0; }
+
+    /* ── Weather Strip ─────────────────────────────────── */
+    #weather-strip { background:linear-gradient(135deg,#0a2540 0%,#0e3d6e 100%); border-bottom:1px solid rgba(255,255,255,0.08); }
+    .weather-strip-inner { max-width:920px; margin:0 auto; padding:24px 24px 28px; }
+    .weather-strip-title { font-size:.72rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:16px; }
+    .weather-cards { display:flex; gap:10px; overflow-x:auto; padding-bottom:4px; }
+    .weather-cards::-webkit-scrollbar { height:3px; }
+    .weather-cards::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.2); border-radius:3px; }
+    .weather-card {
+      flex:0 0 auto; min-width:130px;
+      background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12);
+      border-radius:12px; padding:14px 14px 12px;
+      text-align:center; color:white;
+      transition:background .2s, transform .15s;
+      cursor:default;
     }
-    .countdown-label { font-size: .75rem; letter-spacing: 2.5px; text-transform: uppercase; opacity: .55; margin-bottom: 12px; }
-    .countdown-units { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
-    .countdown-unit { display: flex; flex-direction: column; align-items: center; }
-    .countdown-num {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 10px; padding: 10px 16px;
-      font-size: 2.2rem; font-weight: 900; line-height: 1;
-      min-width: 68px; font-variant-numeric: tabular-nums;
-      letter-spacing: -1px;
-    }
-    .countdown-unit span { font-size: .68rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: .5; margin-top: 6px; }
-    .countdown-sailed { font-size: 1.2rem; font-weight: 700; color: var(--gold2); padding: 12px 0; }
+    .weather-card:hover { background:rgba(255,255,255,0.13); transform:translateY(-2px); }
+    .weather-card .wc-day { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; opacity:.55; margin-bottom:5px; }
+    .weather-card .wc-port { font-size:.78rem; font-weight:700; opacity:.85; margin-bottom:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px; }
+    .weather-card .wc-icon { font-size:2rem; margin-bottom:6px; display:block; }
+    .weather-card .wc-desc { font-size:.75rem; opacity:.7; margin-bottom:6px; }
+    .weather-card .wc-temps { font-size:.88rem; font-weight:800; }
+    .weather-card .wc-temps .hi { color:#f9ca74; }
+    .weather-card .wc-temps .lo { color:rgba(255,255,255,0.5); margin-left:5px; }
+    .rain-bar-wrap { margin-top:8px; }
+    .rain-bar-label { font-size:.65rem; opacity:.5; margin-bottom:3px; }
+    .rain-bar { height:4px; border-radius:4px; background:rgba(255,255,255,0.1); overflow:hidden; }
+    .rain-bar-fill { height:100%; border-radius:4px; transition:width .6s ease; }
+    .rain-pct { font-size:.68rem; margin-top:3px; font-weight:700; }
+    .weather-loading { color:rgba(255,255,255,0.4); font-size:.88rem; padding:20px 0; text-align:center; }
 
     /* ── Nav ───────────────────────────────────────────── */
-    nav {
-      background: var(--navy2); position: sticky; top: 0; z-index: 100;
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 2px;
-      padding: 0 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.35);
-    }
-    nav a {
-      color: rgba(255,255,255,0.68); text-decoration: none;
-      padding: 13px 16px; font-size: .86rem; font-weight: 600;
-      border-bottom: 3px solid transparent;
-      transition: color .2s, border-color .2s;
-    }
-    nav a:hover { color: white; border-bottom-color: var(--gold2); }
+    nav { background:var(--navy2); position:sticky; top:0; z-index:200; display:flex; justify-content:center; flex-wrap:wrap; gap:2px; padding:0 12px; box-shadow:0 2px 16px rgba(0,0,0,0.35); }
+    nav a { color:rgba(255,255,255,0.68); text-decoration:none; padding:13px 14px; font-size:.86rem; font-weight:600; border-bottom:3px solid transparent; transition:color .2s,border-color .2s; white-space:nowrap; }
+    nav a:hover { color:white; border-bottom-color:var(--gold2); }
 
-    /* ── Section Layout ────────────────────────────────── */
-    .section-wrap { padding: 56px 24px; max-width: 920px; margin: 0 auto; }
-    .section-title { font-size: 1.65rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-    .section-subtitle { color: var(--muted); margin-bottom: 10px; font-size: .93rem; }
-    .divider { width: 48px; height: 4px; background: var(--gold); border-radius: 4px; margin-bottom: 28px; }
+    /* ── Section ───────────────────────────────────────── */
+    .section-wrap { padding:52px 24px; max-width:920px; margin:0 auto; }
+    .section-title { font-size:1.65rem; font-weight:800; color:var(--navy); margin-bottom:6px; }
+    .section-subtitle { color:var(--muted); margin-bottom:10px; font-size:.93rem; }
+    .divider { width:48px; height:4px; background:var(--gold); border-radius:4px; margin-bottom:28px; }
+
+    /* ── Map ───────────────────────────────────────────── */
+    #map-section { background:var(--navy); padding:0; }
+    .map-header { max-width:920px; margin:0 auto; padding:36px 24px 18px; }
+    .map-header .section-title { color:white; }
+    .map-header .section-subtitle { color:rgba(255,255,255,0.55); }
+    #cruise-map { height:440px; width:100%; }
+    .map-legend { max-width:920px; margin:0 auto; padding:14px 24px 28px; display:flex; flex-wrap:wrap; gap:10px; }
+    .legend-item { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:100px; padding:6px 14px; color:rgba(255,255,255,0.75); font-size:.78rem; font-weight:600; }
+
+    /* Leaflet popup override */
+    .leaflet-popup-content-wrapper { border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+    .leaflet-popup-content { margin:12px 14px; }
+
+    /* Pulsing marker animation */
+    @keyframes pulse {
+      0%   { box-shadow:0 0 0 0 rgba(240,192,64,0.7); }
+      70%  { box-shadow:0 0 0 10px rgba(240,192,64,0); }
+      100% { box-shadow:0 0 0 0 rgba(240,192,64,0); }
+    }
+    .marker-pulse { animation:pulse 2s infinite; }
 
     /* ── Day Cards ─────────────────────────────────────── */
-    .timeline { display: flex; flex-direction: column; gap: 14px; }
-    .day-card {
-      background: white; border-radius: var(--radius);
-      box-shadow: var(--shadow); border: 1px solid var(--border);
-      overflow: hidden; cursor: pointer;
-      transition: box-shadow .2s, transform .15s;
-    }
-    .day-card:hover { box-shadow: 0 8px 32px rgba(13,43,78,0.16); transform: translateY(-1px); }
-    .day-card-header { display: flex; }
-    .day-badge {
-      background: linear-gradient(180deg, var(--navy) 0%, var(--blue) 100%);
-      color: white; min-width: 86px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 20px 10px; text-align: center; flex-shrink: 0;
-    }
-    .day-badge .icon { font-size: 1.7rem; margin-bottom: 5px; }
-    .day-badge .day-lbl { font-size: .62rem; text-transform: uppercase; letter-spacing: 1px; opacity: .6; }
-    .day-badge .day-n { font-size: 1.9rem; font-weight: 900; line-height: 1; }
-    .day-summary { padding: 18px 22px; flex: 1; }
-    .day-summary .port-name { font-size: 1.12rem; font-weight: 800; color: var(--navy); }
-    .day-label-chip {
-      display: inline-block; background: #e8f4fd; color: var(--blue);
-      font-size: .73rem; font-weight: 700;
-      padding: 3px 10px; border-radius: 100px; margin: 4px 0 8px;
-    }
-    .day-date { font-size: .82rem; color: var(--muted); margin-bottom: 9px; }
-    .day-desc { font-size: .92rem; color: #3d4f60; margin-bottom: 12px; line-height: 1.62; }
-    .highlights { display: flex; flex-wrap: wrap; gap: 6px; }
-    .highlight-chip {
-      background: var(--offwhite); border: 1px solid var(--border);
-      color: var(--navy2); font-size: .77rem;
-      padding: 4px 11px; border-radius: 100px; font-weight: 600;
-    }
-    .expand-hint {
-      display: flex; align-items: center; gap: 5px;
-      font-size: .78rem; color: var(--gold); font-weight: 700;
-      margin-top: 11px;
-    }
-    .expand-arrow { transition: transform .3s; display: inline-block; }
-    .day-card.open .expand-arrow { transform: rotate(180deg); }
+    .timeline { display:flex; flex-direction:column; gap:14px; }
+    .day-card { background:white; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:box-shadow .2s,transform .15s; }
+    .day-card:hover { box-shadow:0 8px 32px rgba(13,43,78,0.16); transform:translateY(-1px); }
+    .day-card-header { display:flex; }
+    .day-badge { background:linear-gradient(180deg,var(--navy) 0%,var(--blue) 100%); color:white; min-width:86px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 10px; text-align:center; flex-shrink:0; }
+    .day-badge .icon { font-size:1.7rem; margin-bottom:5px; }
+    .day-badge .day-lbl { font-size:.62rem; text-transform:uppercase; letter-spacing:1px; opacity:.6; }
+    .day-badge .day-n { font-size:1.9rem; font-weight:900; line-height:1; }
+    .day-summary { padding:18px 20px; flex:1; min-width:0; }
+    .day-top-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    .day-port-name { font-size:1.1rem; font-weight:800; color:var(--navy); }
+    .day-weather-pill { display:flex; align-items:center; gap:5px; background:var(--offwhite); border:1px solid var(--border); border-radius:100px; padding:4px 10px; font-size:.78rem; white-space:nowrap; flex-shrink:0; }
+    .day-weather-pill .pw-icon { font-size:1rem; }
+    .day-weather-pill .pw-temp { font-weight:700; color:var(--navy); }
+    .day-weather-pill .pw-rain { color:var(--muted); margin-left:2px; }
+    .day-label-chip { display:inline-block; background:#e8f4fd; color:var(--blue); font-size:.73rem; font-weight:700; padding:3px 10px; border-radius:100px; margin:4px 0 8px; }
+    .day-date { font-size:.82rem; color:var(--muted); margin-bottom:9px; }
+    .day-desc { font-size:.92rem; color:#3d4f60; margin-bottom:12px; line-height:1.62; }
+    .highlights { display:flex; flex-wrap:wrap; gap:6px; }
+    .highlight-chip { background:var(--offwhite); border:1px solid var(--border); color:var(--navy2); font-size:.77rem; padding:4px 11px; border-radius:100px; font-weight:600; }
+    .expand-hint { display:flex; align-items:center; gap:5px; font-size:.78rem; color:var(--gold); font-weight:700; margin-top:11px; }
+    .expand-arrow { transition:transform .3s; display:inline-block; }
+    .day-card.open .expand-arrow { transform:rotate(180deg); }
 
     /* ── Expanded Detail ───────────────────────────────── */
-    .day-details {
-      display: none; border-top: 1px solid var(--border);
-      padding: 26px 22px 22px; background: #f8fbff;
-    }
-    .day-card.open .day-details { display: block; }
-    .detail-about { font-size: .94rem; color: #3a4a5c; line-height: 1.72; margin-bottom: 20px; }
-    .detail-sec { font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--navy); margin-bottom: 11px; }
-    .things-grid { display: flex; flex-direction: column; gap: 9px; margin-bottom: 18px; }
-    .thing-item {
-      display: flex; gap: 12px; background: white;
-      border: 1px solid var(--border); border-radius: 10px; padding: 12px 15px;
-    }
-    .thing-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
-    .thing-name { font-weight: 700; font-size: .88rem; color: var(--navy); }
-    .thing-desc { font-size: .83rem; color: var(--muted); margin-top: 2px; }
-    .detail-tip {
-      background: #fffbea; border: 1px solid #f5d97a;
-      border-radius: 10px; padding: 12px 16px;
-      font-size: .86rem; color: #7a5c00; margin-bottom: 12px;
-    }
-    .detail-tip strong { color: #5a4200; }
-    .detail-weather {
-      font-size: .84rem; color: var(--muted);
-      background: #f0f7ff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 9px 14px;
-    }
+    .day-details { display:none; border-top:1px solid var(--border); padding:26px 22px 22px; background:#f8fbff; }
+    .day-card.open .day-details { display:block; }
+    .detail-about { font-size:.94rem; color:#3a4a5c; line-height:1.72; margin-bottom:20px; }
+    .detail-weather-box { display:flex; gap:12px; flex-wrap:wrap; background:white; border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:18px; align-items:center; }
+    .dwb-icon { font-size:2.2rem; }
+    .dwb-info .dwb-desc { font-weight:700; color:var(--navy); font-size:.95rem; }
+    .dwb-info .dwb-temps { font-size:.88rem; color:var(--muted); margin-top:2px; }
+    .dwb-info .dwb-rain { font-size:.85rem; margin-top:4px; }
+    .detail-sec { font-size:.76rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:var(--navy); margin-bottom:11px; }
+    .things-grid { display:flex; flex-direction:column; gap:9px; margin-bottom:18px; }
+    .thing-item { display:flex; gap:12px; background:white; border:1px solid var(--border); border-radius:10px; padding:12px 15px; }
+    .thing-dot { width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:6px; }
+    .thing-name { font-weight:700; font-size:.88rem; color:var(--navy); }
+    .thing-desc { font-size:.83rem; color:var(--muted); margin-top:2px; }
+    .detail-tip { background:#fffbea; border:1px solid #f5d97a; border-radius:10px; padding:12px 16px; font-size:.86rem; color:#7a5c00; margin-bottom:12px; }
+    .detail-tip strong { color:#5a4200; }
 
     /* ── Staterooms ────────────────────────────────────── */
-    .stateroom-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
-    .stateroom-box { background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-    .stateroom-header { padding: 16px 20px; color: white; }
-    .stateroom-header .sr-num { font-size: 1rem; font-weight: 800; }
-    .stateroom-header .sr-code { font-size: .79rem; opacity: .7; margin-top: 1px; }
-    .stateroom-header .sr-arrival {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 100px; padding: 4px 12px; font-size: .73rem; margin-top: 9px;
-    }
-    .stateroom-passengers { padding: 12px 16px; display: flex; flex-direction: column; gap: 9px; }
-    .passenger-row { display: flex; align-items: center; gap: 11px; }
-    .passenger-avatar {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-weight: 800; font-size: .82rem; flex-shrink: 0;
-    }
-    .passenger-name { font-weight: 600; font-size: .88rem; color: var(--navy); }
+    .stateroom-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+    .stateroom-box { background:white; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
+    .stateroom-header { padding:16px 20px; color:white; }
+    .stateroom-header .sr-num { font-size:1rem; font-weight:800; }
+    .stateroom-header .sr-code { font-size:.79rem; opacity:.7; margin-top:1px; }
+    .stateroom-header .sr-arrival { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); border-radius:100px; padding:4px 12px; font-size:.73rem; margin-top:9px; }
+    .stateroom-passengers { padding:12px 16px; display:flex; flex-direction:column; gap:9px; }
+    .passenger-row { display:flex; align-items:center; gap:11px; }
+    .passenger-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:.82rem; flex-shrink:0; }
+    .passenger-name { font-weight:600; font-size:.88rem; color:var(--navy); }
 
-    /* ── Notes Section ─────────────────────────────────── */
-    #notes-section { background: white; border-top: 3px solid var(--gold); }
-    .notes-wrap { max-width: 920px; margin: 0 auto; padding: 48px 24px; }
-    .notes-picker {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 28px; flex-wrap: wrap;
-    }
-    .notes-picker label { font-weight: 700; color: var(--navy); font-size: .95rem; white-space: nowrap; }
-    .notes-picker select {
-      flex: 1; min-width: 200px; max-width: 320px;
-      padding: 10px 14px; border-radius: 8px;
-      border: 1px solid var(--border); font-size: .95rem;
-      color: var(--navy); background: var(--offwhite);
-      outline: none; cursor: pointer;
-    }
-    .notes-picker select:focus { border-color: var(--blue); }
-    .notes-prompt {
-      text-align: center; padding: 48px 24px;
-      color: var(--muted); font-size: .95rem;
-    }
-    .notes-prompt .notes-icon { font-size: 2.5rem; margin-bottom: 10px; }
-
-    /* Day Tabs */
-    .notes-tabs { display: none; }
-    .notes-tabs.visible { display: block; }
-    .tab-list {
-      display: flex; gap: 4px; flex-wrap: wrap;
-      border-bottom: 2px solid var(--border); margin-bottom: 22px;
-    }
-    .tab-btn {
-      padding: 10px 16px; font-size: .85rem; font-weight: 700;
-      color: var(--muted); background: none; border: none;
-      border-bottom: 3px solid transparent; margin-bottom: -2px;
-      cursor: pointer; border-radius: 6px 6px 0 0;
-      transition: color .2s, border-color .2s, background .2s;
-    }
-    .tab-btn:hover { color: var(--navy); background: var(--offwhite); }
-    .tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); background: var(--offwhite); }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-    .tab-port { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
-    .tab-date { font-size: .82rem; color: var(--muted); margin-bottom: 14px; }
-    .note-textarea {
-      width: 100%; min-height: 140px;
-      padding: 14px 16px; border-radius: 10px;
-      border: 1px solid var(--border); font-size: .93rem;
-      font-family: inherit; color: var(--text);
-      resize: vertical; outline: none; background: var(--offwhite);
-      transition: border-color .2s;
-    }
-    .note-textarea:focus { border-color: var(--blue); background: white; }
-    .note-save-status {
-      font-size: .78rem; color: var(--teal); font-weight: 600;
-      margin-top: 7px; min-height: 1em; transition: opacity .3s;
-    }
+    /* ── Notes ─────────────────────────────────────────── */
+    .notes-picker { display:flex; align-items:center; gap:14px; margin-bottom:28px; flex-wrap:wrap; }
+    .notes-picker label { font-weight:700; color:var(--navy); font-size:.95rem; white-space:nowrap; }
+    .notes-picker select { flex:1; min-width:200px; max-width:320px; padding:10px 14px; border-radius:8px; border:1px solid var(--border); font-size:.95rem; color:var(--navy); background:var(--offwhite); outline:none; cursor:pointer; }
+    .notes-picker select:focus { border-color:var(--blue); }
+    .notes-prompt { text-align:center; padding:48px 24px; color:var(--muted); font-size:.95rem; }
+    .notes-prompt .notes-icon { font-size:2.5rem; margin-bottom:10px; }
+    .notes-tabs { display:none; }
+    .notes-tabs.visible { display:block; }
+    .tab-list { display:flex; gap:4px; flex-wrap:wrap; border-bottom:2px solid var(--border); margin-bottom:22px; }
+    .tab-btn { padding:10px 14px; font-size:.84rem; font-weight:700; color:var(--muted); background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; cursor:pointer; border-radius:6px 6px 0 0; transition:color .2s,border-color .2s,background .2s; }
+    .tab-btn:hover { color:var(--navy); background:var(--offwhite); }
+    .tab-btn.active { color:var(--navy); border-bottom-color:var(--gold); background:var(--offwhite); }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+    .tab-port { font-size:1rem; font-weight:800; color:var(--navy); margin-bottom:4px; }
+    .tab-date { font-size:.82rem; color:var(--muted); margin-bottom:14px; }
+    .note-textarea { width:100%; min-height:140px; padding:14px 16px; border-radius:10px; border:1px solid var(--border); font-size:.93rem; font-family:inherit; color:var(--text); resize:vertical; outline:none; background:var(--offwhite); transition:border-color .2s; }
+    .note-textarea:focus { border-color:var(--blue); background:white; }
+    .note-save-status { font-size:.78rem; color:var(--teal); font-weight:600; margin-top:7px; min-height:1em; }
 
     /* ── Footer ────────────────────────────────────────── */
-    footer {
-      background: var(--navy); color: rgba(255,255,255,0.5);
-      text-align: center; padding: 30px 24px; font-size: .84rem;
-    }
-    footer strong { color: rgba(255,255,255,0.85); }
+    footer { background:var(--navy); color:rgba(255,255,255,0.5); text-align:center; padding:30px 24px; font-size:.84rem; }
+    footer strong { color:rgba(255,255,255,0.85); }
 
     /* ── Responsive ────────────────────────────────────── */
-    @media (max-width: 600px) {
-      .day-card-header { flex-direction: column; }
-      .day-badge { flex-direction: row; gap: 14px; padding: 14px 18px; min-width: unset; justify-content: flex-start; }
-      .day-badge .icon { margin-bottom: 0; font-size: 1.4rem; }
-      nav a { padding: 11px 10px; font-size: .78rem; }
-      .section-wrap { padding: 36px 16px; }
-      .ship-banner { height: 280px; }
-      .countdown-num { font-size: 1.6rem; min-width: 54px; }
+    @media (max-width:600px) {
+      .day-card-header { flex-direction:column; }
+      .day-badge { flex-direction:row; gap:14px; padding:14px 18px; min-width:unset; justify-content:flex-start; }
+      .day-badge .icon { margin-bottom:0; font-size:1.4rem; }
+      nav a { padding:11px 10px; font-size:.78rem; }
+      .section-wrap { padding:36px 16px; }
+      .ship-banner { height:280px; }
+      .countdown-num { font-size:1.6rem; min-width:54px; }
+      .day-weather-pill { display:none; }
     }
   </style>
 </head>
@@ -300,15 +233,26 @@
   <div class="countdown-sailed" id="countdown-sailed" style="display:none"></div>
 </div>
 
+<!-- Weather Strip -->
+<div id="weather-strip">
+  <div class="weather-strip-inner">
+    <div class="weather-strip-title">🌤 5-Day Weather Forecast</div>
+    <div class="weather-cards" id="weather-cards">
+      <div class="weather-loading">Fetching live forecast…</div>
+    </div>
+  </div>
+</div>
+
 <!-- Nav -->
 <nav>
   <a href="#itinerary">📅 Itinerary</a>
+  <a href="#map-section">🗺 Route Map</a>
   <a href="#who-coming">👥 Who's Coming</a>
   <a href="#my-notes">📝 My Notes</a>
 </nav>
 
 <!-- Itinerary -->
-<section id="itinerary">
+<section id="itinerary" style="padding:0;">
   <div class="section-wrap">
     <div class="section-title">Your Itinerary</div>
     <div class="section-subtitle" id="itinerary-sub"></div>
@@ -318,44 +262,39 @@
 </section>
 
 <!-- Route Map -->
-<section id="route-map" style="background:var(--navy); padding:0;">
-  <div class="section-wrap" style="padding-bottom:0;">
+<section id="map-section" style="padding:0;">
+  <div class="map-header">
     <div class="section-title" style="color:white;">🗺 Cruise Route</div>
-    <p class="section-subtitle" style="color:rgba(255,255,255,0.6); margin-bottom:10px;">Your path across the Caribbean — click any stop for details.</p>
+    <p class="section-subtitle" style="color:rgba(255,255,255,0.55);">Click any stop on the map to jump to that day's details.</p>
     <div class="divider"></div>
   </div>
-  <div id="cruise-map" style="height:420px; width:100%;"></div>
-  <div class="section-wrap" style="padding-top:0; padding-bottom:0;">
-    <div style="display:flex; flex-wrap:wrap; gap:10px; padding:18px 0 32px;">
-    </div>
-  </div>
+  <div id="cruise-map"></div>
+  <div class="map-legend" id="map-legend"></div>
 </section>
 
 <!-- Who's Coming -->
-<section id="who-coming" style="background:white; border-top:1px solid var(--border);">
+<section id="who-coming" style="background:white; border-top:1px solid var(--border); padding:0;">
   <div class="section-wrap">
     <div class="section-title">Who's Coming</div>
-    <p class="section-subtitle">All 12 guests grouped by stateroom · Arrival appointment: <strong>11:00 – 11:30 AM</strong>, June 8</p>
+    <p class="section-subtitle">All 12 guests grouped by stateroom · Arrival: <strong>11:00 – 11:30 AM</strong>, June 8</p>
     <div class="divider"></div>
     <div class="stateroom-grid" id="stateroom-grid"></div>
   </div>
 </section>
 
 <!-- My Notes -->
-<section id="my-notes" style="padding:0">
-  <div class="notes-wrap">
+<section id="my-notes" style="background:var(--offwhite); border-top:3px solid var(--gold); padding:0;">
+  <div class="section-wrap">
     <div class="section-title">📝 My Notes</div>
-    <p class="section-subtitle">Select your name to add personal notes for each day of the trip. Your notes are saved privately on this device.</p>
+    <p class="section-subtitle">Pick your name to add personal notes for each day. Saved privately on this device.</p>
     <div class="divider"></div>
     <div class="notes-picker">
       <label for="name-select">I am:</label>
-      <select id="name-select">
-        <option value="">— Select your name —</option>
-      </select>
+      <select id="name-select"><option value="">— Select your name —</option></select>
     </div>
     <div class="notes-prompt" id="notes-prompt">
       <div class="notes-icon">✍️</div>
-      <div>Select your name above to start adding notes to your itinerary.</div>
+      <div>Select your name above to start adding notes.</div>
     </div>
     <div class="notes-tabs" id="notes-tabs">
       <div class="tab-list" id="tab-list"></div>
@@ -372,46 +311,171 @@
 
 <script src="data.js"></script>
 <script>
-  // ── Static content ──────────────────────────────────────
-  document.title = cruiseData.title + " · " + cruiseData.ship;
-  document.getElementById("ship-img").src = cruiseData.shipImage;
-  document.getElementById("ship-name-tag").textContent = "⚓ " + cruiseData.ship;
-  document.getElementById("hero-title").textContent = cruiseData.title;
-  document.getElementById("hero-subtitle").textContent = cruiseData.subtitle;
-  document.getElementById("hero-dates").textContent = "📅 " + cruiseData.departure + " → " + cruiseData.returnDate;
-  document.getElementById("itinerary-sub").textContent = cruiseData.ship + " · " + cruiseData.departure + " – " + cruiseData.returnDate;
-  document.getElementById("footer-title").textContent = cruiseData.title;
-  document.getElementById("footer-ship").textContent = cruiseData.ship + " · " + cruiseData.departure + " – " + cruiseData.returnDate;
+// ── Weather helpers ─────────────────────────────────────
+const WMO = {
+  0:  { icon:"☀️",  desc:"Clear sky" },
+  1:  { icon:"🌤",  desc:"Mainly clear" },
+  2:  { icon:"⛅",  desc:"Partly cloudy" },
+  3:  { icon:"☁️",  desc:"Overcast" },
+  45: { icon:"🌫",  desc:"Foggy" },
+  48: { icon:"🌫",  desc:"Icy fog" },
+  51: { icon:"🌦",  desc:"Light drizzle" },
+  53: { icon:"🌦",  desc:"Drizzle" },
+  55: { icon:"🌧",  desc:"Heavy drizzle" },
+  61: { icon:"🌧",  desc:"Light rain" },
+  63: { icon:"🌧",  desc:"Rain" },
+  65: { icon:"🌧",  desc:"Heavy rain" },
+  80: { icon:"🌦",  desc:"Light showers" },
+  81: { icon:"🌦",  desc:"Showers" },
+  82: { icon:"⛈",  desc:"Heavy showers" },
+  95: { icon:"⛈",  desc:"Thunderstorm" },
+  96: { icon:"⛈",  desc:"Thunderstorm" },
+  99: { icon:"⛈",  desc:"Thunderstorm" },
+};
+function wmoInfo(code) {
+  if (WMO[code]) return WMO[code];
+  // find nearest lower key
+  const keys = Object.keys(WMO).map(Number).sort((a,b)=>b-a);
+  for (const k of keys) if (code >= k) return WMO[k];
+  return { icon:"🌡", desc:"Unknown" };
+}
+function rainColor(pct) {
+  if (pct <= 20) return "#2ecc71";
+  if (pct <= 50) return "#f0c040";
+  return "#e74c3c";
+}
 
-  // ── Countdown ───────────────────────────────────────────
-  function updateCountdown() {
-    const diff = new Date(cruiseData.departureISO).getTime() - Date.now();
-    if (diff <= 0) {
-      document.getElementById("countdown-units").style.display = "none";
-      const el = document.getElementById("countdown-sailed");
-      el.style.display = "block";
-      el.textContent = diff > -5 * 86400000 ? "🚢 We're sailing! Bon voyage!" : "🏠 What a trip — welcome home!";
-      return;
-    }
-    document.getElementById("cd-days").textContent  = String(Math.floor(diff / 86400000)).padStart(2,"0");
-    document.getElementById("cd-hours").textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,"0");
-    document.getElementById("cd-mins").textContent  = String(Math.floor(diff % 3600000 / 60000)).padStart(2,"0");
-    document.getElementById("cd-secs").textContent  = String(Math.floor(diff % 60000 / 1000)).padStart(2,"0");
+// Weather data store keyed by day index
+const weatherData = {};
+
+// Fetch weather for a single stop
+async function fetchWeather(dayIdx, lat, lon, date) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+    `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
+    `&timezone=America%2FNew_York&start_date=${date}&end_date=${date}&temperature_unit=fahrenheit`;
+  const res = await fetch(url);
+  const j   = await res.json();
+  return {
+    code: j.daily.weather_code[0],
+    hi:   Math.round(j.daily.temperature_2m_max[0]),
+    lo:   Math.round(j.daily.temperature_2m_min[0]),
+    rain: j.daily.precipitation_probability_max[0] ?? 0,
+  };
+}
+
+// ── Route stops ─────────────────────────────────────────
+const stops = [
+  { day:1, label:"Day 1", port:"Miami, FL",        date:"2026-06-08", lat:25.7617, lon:-80.1918, icon:"🚢" },
+  { day:2, label:"Day 2", port:"At Sea",            date:"2026-06-09", lat:24.00,   lon:-78.60,   icon:"🌊" },
+  { day:3, label:"Day 3", port:"Half Moon Cay",     date:"2026-06-10", lat:24.7744, lon:-77.3294,  icon:"🏝️" },
+  { day:4, label:"Day 4", port:"Celebration Key",   date:"2026-06-11", lat:26.27,   lon:-78.90,   icon:"🎉" },
+  { day:5, label:"Day 5", port:"Miami, FL",         date:"2026-06-12", lat:25.7817, lon:-80.2018,  icon:"🏠" },
+];
+
+// ── Static content ──────────────────────────────────────
+document.title = cruiseData.title + " · " + cruiseData.ship;
+document.getElementById("ship-img").src = cruiseData.shipImage;
+document.getElementById("ship-name-tag").textContent = "⚓ " + cruiseData.ship;
+document.getElementById("hero-title").textContent = cruiseData.title;
+document.getElementById("hero-subtitle").textContent = cruiseData.subtitle;
+document.getElementById("hero-dates").textContent = "📅 " + cruiseData.departure + " → " + cruiseData.returnDate;
+document.getElementById("itinerary-sub").textContent = cruiseData.ship + " · " + cruiseData.departure + " – " + cruiseData.returnDate;
+document.getElementById("footer-title").textContent = cruiseData.title;
+document.getElementById("footer-ship").textContent = cruiseData.ship + " · " + cruiseData.departure + " – " + cruiseData.returnDate;
+
+// ── Countdown ───────────────────────────────────────────
+function updateCountdown() {
+  const diff = new Date(cruiseData.departureISO).getTime() - Date.now();
+  if (diff <= 0) {
+    document.getElementById("countdown-units").style.display = "none";
+    const el = document.getElementById("countdown-sailed");
+    el.style.display = "block";
+    el.textContent = diff > -5*86400000 ? "🚢 We're sailing! Bon voyage!" : "🏠 What a trip — welcome home!";
+    return;
   }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  document.getElementById("cd-days").textContent  = String(Math.floor(diff/86400000)).padStart(2,"0");
+  document.getElementById("cd-hours").textContent = String(Math.floor(diff%86400000/3600000)).padStart(2,"0");
+  document.getElementById("cd-mins").textContent  = String(Math.floor(diff%3600000/60000)).padStart(2,"0");
+  document.getElementById("cd-secs").textContent  = String(Math.floor(diff%60000/1000)).padStart(2,"0");
+}
+updateCountdown(); setInterval(updateCountdown, 1000);
 
-  // ── Timeline ────────────────────────────────────────────
+// ── Fetch all weather then render everything ────────────
+(async () => {
+  try {
+    await Promise.all(stops.map(async (s, i) => {
+      weatherData[i] = await fetchWeather(i, s.lat, s.lon, s.date);
+    }));
+  } catch(e) {
+    console.warn("Weather fetch failed:", e);
+  }
+  renderWeatherStrip();
+  renderTimeline();
+  renderMap();
+})();
+
+// ── Weather Strip ───────────────────────────────────────
+function renderWeatherStrip() {
+  const container = document.getElementById("weather-cards");
+  if (!Object.keys(weatherData).length) {
+    container.innerHTML = `<div class="weather-loading">Weather unavailable — check closer to departure.</div>`;
+    return;
+  }
+  container.innerHTML = stops.map((s, i) => {
+    const w = weatherData[i];
+    if (!w) return "";
+    const info = wmoInfo(w.code);
+    const rc = rainColor(w.rain);
+    return `<div class="weather-card">
+      <div class="wc-day">${s.label}</div>
+      <div class="wc-port" title="${s.port}">${s.port}</div>
+      <span class="wc-icon">${info.icon}</span>
+      <div class="wc-desc">${info.desc}</div>
+      <div class="wc-temps"><span class="hi">${w.hi}°F</span><span class="lo">/ ${w.lo}°F</span></div>
+      <div class="rain-bar-wrap">
+        <div class="rain-bar-label">Rain chance</div>
+        <div class="rain-bar"><div class="rain-bar-fill" style="width:${w.rain}%;background:${rc}"></div></div>
+        <div class="rain-pct" style="color:${rc}">${w.rain}%</div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ── Timeline ────────────────────────────────────────────
+function renderTimeline() {
   const timeline = document.getElementById("timeline");
-  cruiseData.days.forEach(day => {
+  timeline.innerHTML = "";
+  cruiseData.days.forEach((day, idx) => {
     const card = document.createElement("div");
     card.className = "day-card";
-    const chips = day.highlights.map(h => `<span class="highlight-chip">${h}</span>`).join("");
-    const things = day.details.thingsToDo.map(t => `
+    card.id = `day-card-${day.day}`;
+
+    const w = weatherData[idx];
+    const info = w ? wmoInfo(w.code) : null;
+    const weatherPill = info ? `
+      <div class="day-weather-pill">
+        <span class="pw-icon">${info.icon}</span>
+        <span class="pw-temp">${w.hi}°F</span>
+        <span class="pw-rain">· ${w.rain}% rain</span>
+      </div>` : "";
+
+    const detailWeather = info ? `
+      <div class="detail-weather-box">
+        <div class="dwb-icon">${info.icon}</div>
+        <div class="dwb-info">
+          <div class="dwb-desc">${info.desc}</div>
+          <div class="dwb-temps">High ${w.hi}°F · Low ${w.lo}°F</div>
+          <div class="dwb-rain" style="color:${rainColor(w.rain)}">🌧 Rain probability: ${w.rain}%</div>
+        </div>
+      </div>` : `<div class="detail-tip">Weather data unavailable — check closer to departure.</div>`;
+
+    const chips  = day.highlights.map(h=>`<span class="highlight-chip">${h}</span>`).join("");
+    const things = day.details.thingsToDo.map(t=>`
       <div class="thing-item">
         <div class="thing-dot"></div>
         <div><div class="thing-name">${t.name}</div><div class="thing-desc">${t.desc}</div></div>
       </div>`).join("");
+
     card.innerHTML = `
       <div class="day-card-header">
         <div class="day-badge">
@@ -420,178 +484,196 @@
           <div class="day-n">${day.day}</div>
         </div>
         <div class="day-summary">
-          <div class="port-name">${day.port}</div>
+          <div class="day-top-row">
+            <div class="day-port-name">${day.port}</div>
+            ${weatherPill}
+          </div>
           <span class="day-label-chip">${day.label}</span>
           <div class="day-date">📅 ${day.date}</div>
           <div class="day-desc">${day.description}</div>
           <div class="highlights">${chips}</div>
-          <div class="expand-hint">Tap to explore this destination <span class="expand-arrow">▼</span></div>
+          <div class="expand-hint">Tap to explore <span class="expand-arrow">▼</span></div>
         </div>
       </div>
       <div class="day-details">
         <div class="detail-about">${day.details.about}</div>
-        <div class="detail-sec">🗺 Things To Do</div>
+        <div class="detail-sec">🌤 Weather Forecast</div>
+        ${detailWeather}
+        <div class="detail-sec" style="margin-top:16px;">🗺 Things To Do</div>
         <div class="things-grid">${things}</div>
         <div class="detail-tip"><strong>💡 Tip:</strong> ${day.details.tips}</div>
-        <div class="detail-weather">${day.details.weather}</div>
       </div>`;
     card.addEventListener("click", () => card.classList.toggle("open"));
     timeline.appendChild(card);
   });
+}
 
-  // ── Staterooms ──────────────────────────────────────────
-  const srGradients = [
-    "linear-gradient(135deg,#0d2b4e,#1a5276)",
-    "linear-gradient(135deg,#163a63,#1f6f9f)",
-    "linear-gradient(135deg,#0e3a52,#1a7a8a)"
-  ];
-  const avatarColors = [
-    ["#1abc9c","#16a085"],["#e67e22","#d35400"],
-    ["#9b59b6","#8e44ad"],["#e74c3c","#c0392b"],
-    ["#2ecc71","#27ae60"],["#3498db","#2980b9"],
-    ["#f39c12","#d68910"],["#1abc9c","#16a085"],
-    ["#e91e63","#c2185b"],["#00bcd4","#0097a7"],
-    ["#ff5722","#e64a19"],["#607d8b","#455a64"]
-  ];
-  let avatarIdx = 0;
-  const grid = document.getElementById("stateroom-grid");
-  cruiseData.staterooms.forEach((sr, i) => {
-    const box = document.createElement("div");
-    box.className = "stateroom-box";
-    const passengers = sr.passengers.map(name => {
-      const initials = name.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
-      const [c1, c2] = avatarColors[avatarIdx++ % avatarColors.length];
-      return `<div class="passenger-row">
-        <div class="passenger-avatar" style="background:linear-gradient(135deg,${c1},${c2})">${initials}</div>
-        <div class="passenger-name">${name}</div>
-      </div>`;
-    }).join("");
-    box.innerHTML = `
-      <div class="stateroom-header" style="background:${srGradients[i]}">
-        <div class="sr-num">${sr.number}</div>
-        <div class="sr-code">${sr.code}</div>
-        <div class="sr-arrival">⏰ ${sr.arrival}</div>
-      </div>
-      <div class="stateroom-passengers">${passengers}</div>`;
-    grid.appendChild(box);
-  });
+// ── Map ─────────────────────────────────────────────────
+function renderMap() {
+  const map = L.map("cruise-map", { zoomControl:true, scrollWheelZoom:false })
+    .setView([25.5, -78.8], 6);
 
-  // ── Notes ───────────────────────────────────────────────
-  const allPassengers = cruiseData.staterooms.flatMap(sr => sr.passengers);
-  const nameSelect   = document.getElementById("name-select");
-  const notesPrompt  = document.getElementById("notes-prompt");
-  const notesTabs    = document.getElementById("notes-tabs");
-  const tabList      = document.getElementById("tab-list");
-  const tabPanels    = document.getElementById("tab-panels");
+  // Ocean tile layer — genuine blue ocean
+  L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
+    { attribution:"Tiles &copy; Esri", maxZoom:13 }
+  ).addTo(map);
 
-  allPassengers.forEach(name => {
-    const opt = document.createElement("option");
-    opt.value = name; opt.textContent = name;
-    nameSelect.appendChild(opt);
-  });
+  // Reference layer for place labels
+  L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}",
+    { attribution:"", maxZoom:13, opacity:0.7 }
+  ).addTo(map);
 
-  // Restore last selected name
-  const savedName = localStorage.getItem("cruise_selected_name");
-  if (savedName && allPassengers.includes(savedName)) {
-    nameSelect.value = savedName;
-    showNotes(savedName);
-  }
+  // Animated dashed route line
+  const coords = stops.map(s => [s.lat, s.lon]);
+  L.polyline(coords, { color:"#f0c040", weight:3.5, opacity:.9, dashArray:"10 7" }).addTo(map);
 
-  nameSelect.addEventListener("change", () => {
-    const name = nameSelect.value;
-    localStorage.setItem("cruise_selected_name", name);
-    if (name) showNotes(name); else { notesPrompt.style.display="block"; notesTabs.classList.remove("visible"); }
-  });
+  // Markers
+  stops.forEach((s, i) => {
+    const w = weatherData[i];
+    const info = w ? wmoInfo(w.code) : null;
+    const isAtSea = s.day === 2;
 
-  let activeTab = 0;
-
-  function showNotes(personName) {
-    notesPrompt.style.display = "none";
-    notesTabs.classList.add("visible");
-    tabList.innerHTML = "";
-    tabPanels.innerHTML = "";
-
-    cruiseData.days.forEach((day, idx) => {
-      // Tab button
-      const btn = document.createElement("button");
-      btn.className = "tab-btn" + (idx === activeTab ? " active" : "");
-      btn.textContent = `Day ${day.day} ${day.icon}`;
-      btn.addEventListener("click", () => switchTab(idx));
-      tabList.appendChild(btn);
-
-      // Tab panel
-      const key = `notes__${personName}__day${day.day}`;
-      const saved = localStorage.getItem(key) || "";
-      const panel = document.createElement("div");
-      panel.className = "tab-panel" + (idx === activeTab ? " active" : "");
-      panel.dataset.idx = idx;
-      panel.innerHTML = `
-        <div class="tab-port">${day.port}</div>
-        <div class="tab-date">${day.date}</div>
-        <textarea class="note-textarea" placeholder="Write your notes, plans, or reminders for this day...">${saved}</textarea>
-        <div class="note-save-status" id="status-${idx}"></div>`;
-      const ta = panel.querySelector("textarea");
-      ta.addEventListener("input", () => {
-        localStorage.setItem(key, ta.value);
-        const st = document.getElementById(`status-${idx}`);
-        st.textContent = "✓ Saved";
-        setTimeout(() => st.textContent = "", 1500);
-      });
-      tabPanels.appendChild(panel);
-    });
-  }
-
-  // ── Route Map ───────────────────────────────────────────
-  const stops = [
-    { name: "Miami, Florida",            label: "Day 1 · Embarkation",              lat: 25.7617, lng: -80.1918, icon: "🚢", day: 1 },
-    { name: "At Sea",                    label: "Day 2 · Fun Day at Sea",            lat: 24.00,  lng: -78.60,  icon: "🌊", day: 2 },
-    { name: "Half Moon Cay™",            label: "Day 3 · RelaxAway, Bahamas",        lat: 24.7744, lng: -77.3294, icon: "🏝️", day: 3 },
-    { name: "Celebration Key™",          label: "Day 4 · Grand Bahama Island",       lat: 26.27,  lng: -78.90,  icon: "🎉", day: 4 },
-    { name: "Miami, Florida",            label: "Day 5 · Return Home",              lat: 25.7817, lng: -80.2018, icon: "🏠", day: 5 },
-  ];
-
-  const map = L.map("cruise-map", { zoomControl: true, scrollWheelZoom: false })
-    .setView([25.2, -78.8], 6);
-
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
-    maxZoom: 18
-  }).addTo(map);
-
-  // Draw route line
-  const coords = stops.map(s => [s.lat, s.lng]);
-  L.polyline(coords, {
-    color: "#f0c040", weight: 3, opacity: 0.85,
-    dashArray: "8, 6"
-  }).addTo(map);
-
-  // Add markers
-  stops.forEach((stop, i) => {
-    const isAtSea = stop.day === 2;
-    const html = `<div style="
+    const markerHtml = `<div style="
       background:${isAtSea ? "#1a5276" : "#0d2b4e"};
       border:2.5px solid #f0c040;
-      border-radius:50%;
-      width:36px; height:36px;
+      border-radius:50%; width:40px; height:40px;
       display:flex; align-items:center; justify-content:center;
-      font-size:16px; box-shadow:0 2px 8px rgba(0,0,0,0.5);
-      cursor:pointer;">${stop.icon}</div>`;
-    const icon = L.divIcon({ html, className: "", iconSize: [36,36], iconAnchor: [18,18] });
-    const marker = L.marker([stop.lat, stop.lng], { icon }).addTo(map);
+      font-size:18px; box-shadow:0 3px 12px rgba(0,0,0,0.5);
+      cursor:pointer; transition:transform .2s;
+      ${!isAtSea ? 'animation:pulse 2.5s infinite;' : ''}"
+    >${s.icon}</div>`;
+
+    const icon   = L.divIcon({ html:markerHtml, className:"", iconSize:[40,40], iconAnchor:[20,20] });
+    const marker = L.marker([s.lat, s.lon], { icon }).addTo(map);
+
+    const weatherRow = info
+      ? `<div style="margin-top:6px;font-size:.8rem;color:#566573;">${info.icon} ${info.desc} · ${w.hi}°F · 🌧 ${w.rain}%</div>`
+      : "";
     marker.bindPopup(`
-      <div style="font-family:'Segoe UI',sans-serif; min-width:160px;">
-        <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#d4a017;margin-bottom:3px;">Day ${stop.day}</div>
-        <div style="font-size:1rem;font-weight:800;color:#0d2b4e;">${stop.name}</div>
-        <div style="font-size:.82rem;color:#566573;margin-top:2px;">${stop.label}</div>
-      </div>`, { maxWidth: 220 });
-    if (!isAtSea) marker.openPopup();
+      <div style="font-family:'Segoe UI',sans-serif;min-width:170px;padding:2px 0;">
+        <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#d4a017;">${s.label}</div>
+        <div style="font-size:1rem;font-weight:800;color:#0d2b4e;margin-top:2px;">${s.port}</div>
+        ${weatherRow}
+        ${!isAtSea ? `<div style="margin-top:8px;"><a href="#day-card-${s.day}" style="font-size:.78rem;color:#1a5276;font-weight:700;">View details ↓</a></div>` : ""}
+      </div>`, { maxWidth:220, className:"" });
+
+    if (!isAtSea) {
+      marker.on("popupopen", () => {
+        const link = document.querySelector(`.leaflet-popup a[href="#day-card-${s.day}"]`);
+        if (link) link.addEventListener("click", e => {
+          e.preventDefault();
+          map.closePopup();
+          document.getElementById(`day-card-${s.day}`)?.scrollIntoView({ behavior:"smooth", block:"start" });
+        });
+      });
+    }
   });
 
-  function switchTab(idx) {
-    activeTab = idx;
-    document.querySelectorAll(".tab-btn").forEach((b,i) => b.classList.toggle("active", i===idx));
-    document.querySelectorAll(".tab-panel").forEach((p,i) => p.classList.toggle("active", i===idx));
-  }
+  // Legend
+  const legend = document.getElementById("map-legend");
+  stops.forEach(s => {
+    const item = document.createElement("div");
+    item.className = "legend-item";
+    item.innerHTML = `${s.icon} <span>${s.label} — ${s.port}</span>`;
+    legend.appendChild(item);
+  });
+}
+
+// ── Staterooms ──────────────────────────────────────────
+const srGradients = [
+  "linear-gradient(135deg,#0d2b4e,#1a5276)",
+  "linear-gradient(135deg,#163a63,#1f6f9f)",
+  "linear-gradient(135deg,#0e3a52,#1a7a8a)"
+];
+const avatarColors = [
+  ["#1abc9c","#16a085"],["#e67e22","#d35400"],["#9b59b6","#8e44ad"],["#e74c3c","#c0392b"],
+  ["#2ecc71","#27ae60"],["#3498db","#2980b9"],["#f39c12","#d68910"],["#1abc9c","#16a085"],
+  ["#e91e63","#c2185b"],["#00bcd4","#0097a7"],["#ff5722","#e64a19"],["#607d8b","#455a64"]
+];
+let avatarIdx = 0;
+const grid = document.getElementById("stateroom-grid");
+cruiseData.staterooms.forEach((sr, i) => {
+  const box = document.createElement("div");
+  box.className = "stateroom-box";
+  const passengers = sr.passengers.map(name => {
+    const initials = name.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
+    const [c1,c2] = avatarColors[avatarIdx++ % avatarColors.length];
+    return `<div class="passenger-row">
+      <div class="passenger-avatar" style="background:linear-gradient(135deg,${c1},${c2})">${initials}</div>
+      <div class="passenger-name">${name}</div>
+    </div>`;
+  }).join("");
+  box.innerHTML = `
+    <div class="stateroom-header" style="background:${srGradients[i]}">
+      <div class="sr-num">${sr.number}</div>
+      <div class="sr-code">${sr.code}</div>
+      <div class="sr-arrival">⏰ ${sr.arrival}</div>
+    </div>
+    <div class="stateroom-passengers">${passengers}</div>`;
+  grid.appendChild(box);
+});
+
+// ── Notes ───────────────────────────────────────────────
+const allPassengers = cruiseData.staterooms.flatMap(sr => sr.passengers);
+const nameSelect    = document.getElementById("name-select");
+const notesPrompt   = document.getElementById("notes-prompt");
+const notesTabs     = document.getElementById("notes-tabs");
+const tabList       = document.getElementById("tab-list");
+const tabPanels     = document.getElementById("tab-panels");
+
+allPassengers.forEach(name => {
+  const opt = document.createElement("option");
+  opt.value = name; opt.textContent = name;
+  nameSelect.appendChild(opt);
+});
+
+const savedName = localStorage.getItem("cruise_selected_name");
+if (savedName && allPassengers.includes(savedName)) { nameSelect.value = savedName; showNotes(savedName); }
+
+nameSelect.addEventListener("change", () => {
+  const name = nameSelect.value;
+  localStorage.setItem("cruise_selected_name", name);
+  if (name) showNotes(name);
+  else { notesPrompt.style.display="block"; notesTabs.classList.remove("visible"); }
+});
+
+let activeTab = 0;
+function showNotes(personName) {
+  notesPrompt.style.display = "none";
+  notesTabs.classList.add("visible");
+  tabList.innerHTML = ""; tabPanels.innerHTML = "";
+  cruiseData.days.forEach((day, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "tab-btn" + (idx===activeTab?" active":"");
+    btn.textContent = `Day ${day.day} ${day.icon}`;
+    btn.addEventListener("click", () => switchTab(idx));
+    tabList.appendChild(btn);
+    const key   = `notes__${personName}__day${day.day}`;
+    const saved = localStorage.getItem(key) || "";
+    const panel = document.createElement("div");
+    panel.className = "tab-panel" + (idx===activeTab?" active":"");
+    panel.innerHTML = `
+      <div class="tab-port">${day.port}</div>
+      <div class="tab-date">${day.date}</div>
+      <textarea class="note-textarea" placeholder="Write your notes, plans, or reminders for this day…">${saved}</textarea>
+      <div class="note-save-status" id="status-${idx}"></div>`;
+    const ta = panel.querySelector("textarea");
+    ta.addEventListener("input", () => {
+      localStorage.setItem(key, ta.value);
+      const st = document.getElementById(`status-${idx}`);
+      st.textContent = "✓ Saved";
+      setTimeout(() => st.textContent="", 1500);
+    });
+    tabPanels.appendChild(panel);
+  });
+}
+function switchTab(idx) {
+  activeTab = idx;
+  document.querySelectorAll(".tab-btn").forEach((b,i) => b.classList.toggle("active", i===idx));
+  document.querySelectorAll(".tab-panel").forEach((p,i) => p.classList.toggle("active", i===idx));
+}
 </script>
 </body>
 </html>
