@@ -96,18 +96,21 @@
     nav {
       background: var(--navy2);
       position: sticky; top: 0; z-index: 100;
-      display: flex; justify-content: center; gap: 4px;
-      padding: 0 16px;
+      display: flex; justify-content: center; gap: 2px;
+      padding: 0 8px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      overflow-x: auto;
     }
+    nav::-webkit-scrollbar { display: none; }
     nav a {
       color: rgba(255,255,255,0.7);
       text-decoration: none;
-      padding: 13px 18px;
-      font-size: .88rem;
+      padding: 13px 14px;
+      font-size: .85rem;
       font-weight: 600;
       border-bottom: 3px solid transparent;
       transition: color .2s, border-color .2s;
+      white-space: nowrap;
     }
     nav a:hover { color: white; border-bottom-color: var(--gold2); }
 
@@ -238,6 +241,125 @@
     }
     .passenger-name { font-weight: 600; font-size: .9rem; color: var(--navy); }
 
+    /* ── Checklist ─────────────────────────────────────── */
+    .cl-who-bar {
+      display: flex; align-items: center; gap: 12px;
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 18px;
+      margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .cl-who-bar label { font-weight: 700; font-size: .9rem; color: var(--navy); white-space: nowrap; }
+    .cl-select {
+      border: 2px solid var(--border); border-radius: 8px;
+      padding: 8px 14px; font-size: .9rem; color: var(--navy);
+      background: white; cursor: pointer; outline: none; flex: 1; min-width: 180px;
+    }
+    .cl-select:focus { border-color: var(--blue); }
+    .cl-progress-wrap {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 18px;
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px;
+    }
+    .cl-progress-bar-bg { flex: 1; background: #e8f0f8; border-radius: 100px; height: 10px; }
+    .cl-progress-bar { height: 10px; background: var(--teal); border-radius: 100px; transition: width .4s; min-width: 0; }
+    .cl-progress-label { font-size: .88rem; font-weight: 800; color: var(--navy); white-space: nowrap; }
+    .cl-body { display: none; }
+    .cl-body.visible { display: block; }
+    .cl-category { margin-bottom: 28px; }
+    .cl-cat-title {
+      font-size: .78rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--navy); margin-bottom: 12px;
+    }
+    .cl-items { display: flex; flex-direction: column; gap: 8px; }
+    .cl-item {
+      display: flex; align-items: center; gap: 12px;
+      background: white; border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 12px 16px;
+      cursor: pointer; transition: border-color .15s, background .15s;
+      user-select: none;
+    }
+    .cl-item:hover { border-color: #9bc3e0; }
+    .cl-item.checked { background: #f0faf7; border-color: var(--teal); }
+    .cl-checkbox {
+      width: 22px; height: 22px; border-radius: 6px;
+      border: 2px solid #c5d9ec; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s; font-size: .8rem; color: transparent;
+    }
+    .cl-item.checked .cl-checkbox { background: var(--teal); border-color: var(--teal); color: white; }
+    .cl-item-text { font-size: .9rem; color: var(--text); flex: 1; line-height: 1.4; }
+    .cl-item.checked .cl-item-text { text-decoration: line-through; color: var(--muted); }
+    .cl-item-del {
+      font-size: 1.1rem; color: #ccc; cursor: pointer;
+      padding: 0 2px; display: none; line-height: 1; flex-shrink: 0;
+    }
+    .cl-item:hover .cl-item-del { display: block; }
+    .cl-item-del:hover { color: #e74c3c; }
+    .cl-add-row {
+      display: flex; gap: 10px; margin-top: 8px;
+    }
+    .cl-add-input {
+      flex: 1; border: 2px solid var(--border); border-radius: 8px;
+      padding: 10px 14px; font-size: .9rem; color: var(--text);
+      outline: none; font-family: inherit;
+    }
+    .cl-add-input:focus { border-color: var(--blue); }
+    .cl-add-btn {
+      background: var(--navy); color: white;
+      border: none; border-radius: 8px;
+      padding: 10px 20px; font-size: .88rem; font-weight: 700;
+      cursor: pointer; white-space: nowrap; transition: background .15s;
+    }
+    .cl-add-btn:hover { background: var(--blue); }
+    .cl-pick-prompt {
+      text-align: center; color: var(--muted);
+      padding: 40px 20px; font-size: .95rem;
+    }
+
+    /* ── My Notes ──────────────────────────────────────── */
+    .notes-who-bar {
+      display: flex; align-items: center; gap: 12px;
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 18px;
+      margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .notes-who-bar label { font-weight: 700; font-size: .9rem; color: var(--navy); white-space: nowrap; }
+    .notes-select {
+      border: 2px solid var(--border); border-radius: 8px;
+      padding: 8px 14px; font-size: .9rem; color: var(--navy);
+      background: white; cursor: pointer; outline: none; flex: 1; min-width: 180px;
+    }
+    .notes-select:focus { border-color: var(--blue); }
+    .notes-body { display: none; }
+    .notes-body.visible { display: block; }
+    .notes-textarea {
+      width: 100%; min-height: 220px;
+      border: 2px solid var(--border); border-radius: 10px;
+      padding: 16px; font-size: .93rem;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: var(--text); resize: vertical; outline: none; line-height: 1.7;
+      background: white;
+    }
+    .notes-textarea:focus { border-color: var(--blue); }
+    .notes-actions { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+    .notes-save-btn {
+      background: var(--navy); color: white;
+      border: none; border-radius: 8px;
+      padding: 10px 28px; font-size: .9rem; font-weight: 700;
+      cursor: pointer; transition: background .15s;
+    }
+    .notes-save-btn:hover { background: var(--blue); }
+    .notes-saved-msg {
+      font-size: .85rem; color: var(--teal); font-weight: 700;
+      opacity: 0; transition: opacity .3s;
+    }
+    .notes-saved-msg.show { opacity: 1; }
+    .notes-pick-prompt {
+      text-align: center; color: var(--muted);
+      padding: 40px 20px; font-size: .95rem;
+    }
+
     /* ── Footer ────────────────────────────────────────── */
     footer {
       background: var(--navy); color: rgba(255,255,255,0.5);
@@ -250,10 +372,11 @@
       .day-card-header { flex-direction: column; }
       .day-badge { flex-direction: row; gap: 14px; padding: 14px 18px; min-width: unset; }
       .day-badge .icon { margin-bottom: 0; }
-      nav a { padding: 11px 10px; font-size: .8rem; }
+      nav a { padding: 11px 10px; font-size: .78rem; }
       .countdown-num { font-size: 1.5rem; min-width: 50px; padding: 8px 12px; }
       section { padding: 36px 16px; }
       .ship-banner { height: 260px; }
+      .cl-add-row { flex-direction: column; }
     }
   </style>
 </head>
@@ -286,6 +409,8 @@
 <nav>
   <a href="#itinerary">📅 Itinerary</a>
   <a href="#who-coming">👥 Who's Coming</a>
+  <a href="#checklist">📋 Checklist</a>
+  <a href="#my-notes">📝 My Notes</a>
 </nav>
 
 <!-- Itinerary -->
@@ -304,6 +429,56 @@
   <div class="stateroom-grid" id="stateroom-grid"></div>
 </section>
 
+<!-- Checklist -->
+<section id="checklist">
+  <div class="section-title">Packing Checklist</div>
+  <p class="section-subtitle">Suggested items based on your itinerary — beach days, sea day, and Caribbean ports. Each passenger tracks their own list.</p>
+  <div class="divider"></div>
+
+  <div class="cl-who-bar">
+    <label for="cl-select">Packing for:</label>
+    <select id="cl-select" class="cl-select">
+      <option value="">— Select your name —</option>
+    </select>
+  </div>
+
+  <div id="cl-pick-prompt" class="cl-pick-prompt">Select your name above to view and track your packing list.</div>
+
+  <div id="cl-body" class="cl-body">
+    <div class="cl-progress-wrap">
+      <div class="cl-progress-bar-bg">
+        <div class="cl-progress-bar" id="cl-progress-bar" style="width:0%"></div>
+      </div>
+      <div class="cl-progress-label" id="cl-progress-label">0 packed</div>
+    </div>
+    <div id="cl-categories"></div>
+  </div>
+</section>
+
+<!-- My Notes -->
+<section id="my-notes">
+  <div class="section-title">My Notes</div>
+  <p class="section-subtitle">Personal reminders, ideas, or anything you want to remember for the trip. Saved privately per person on this device.</p>
+  <div class="divider"></div>
+
+  <div class="notes-who-bar">
+    <label for="notes-select">Notes for:</label>
+    <select id="notes-select" class="notes-select">
+      <option value="">— Select your name —</option>
+    </select>
+  </div>
+
+  <div id="notes-pick-prompt" class="notes-pick-prompt">Select your name above to open your notes.</div>
+
+  <div id="notes-body" class="notes-body">
+    <textarea id="notes-textarea" class="notes-textarea" placeholder="Type your notes here…"></textarea>
+    <div class="notes-actions">
+      <button class="notes-save-btn" id="notes-save-btn">Save Notes</button>
+      <span class="notes-saved-msg" id="notes-saved-msg">✓ Saved!</span>
+    </div>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer>
   <p><strong id="footer-title"></strong></p>
@@ -312,7 +487,7 @@
 
 <script src="data.js"></script>
 <script>
-  // ── Populate static content ─────────────────────────────
+  // ── Static content ──────────────────────────────────────
   document.title = cruiseData.title + " · " + cruiseData.ship;
   document.getElementById("ship-img").src = cruiseData.shipImage;
   document.getElementById("ship-name-tag").textContent = "⚓ " + cruiseData.ship;
@@ -413,6 +588,280 @@
       </div>
       <div class="stateroom-passengers">${passengers}</div>`;
     grid.appendChild(box);
+  });
+
+  // ── Passenger list ──────────────────────────────────────
+  const allPassengers = cruiseData.staterooms.flatMap(sr => sr.passengers);
+
+  // ── Packing list data ───────────────────────────────────
+  const packingList = [
+    {
+      cat: "Documents & Essentials", icon: "📄",
+      items: [
+        { id: "passport",      text: "Passport (valid 6+ months beyond return date)" },
+        { id: "boarding-pass", text: "Boarding pass / e-docs printed or downloaded" },
+        { id: "luggage-tags",  text: "Luggage tags printed & attached to bags" },
+        { id: "photo-id",      text: "Photo ID (driver's license or state ID)" },
+        { id: "travel-ins",    text: "Travel insurance info & emergency contacts" },
+        { id: "hub-app",       text: "Carnival HUB app downloaded & account linked" },
+        { id: "credit-card",   text: "Credit card for onboard account setup" },
+        { id: "cash",          text: "Cash for local vendors, tips & port excursions" },
+      ]
+    },
+    {
+      cat: "Clothing", icon: "👕",
+      items: [
+        { id: "swimwear",      text: "Swimwear — 2 to 3 suits" },
+        { id: "coverup",       text: "Cover-ups or sarongs" },
+        { id: "resort-casual", text: "Casual resort wear (shorts, sundresses, t-shirts)" },
+        { id: "jacket",        text: "Light jacket or cardigan (ship AC gets cold)" },
+        { id: "walk-shoes",    text: "Comfortable walking shoes for port days" },
+        { id: "sandals",       text: "Sandals or flip-flops" },
+        { id: "dressy",        text: "One dressy outfit for optional formal night" },
+        { id: "pajamas",       text: "Pajamas" },
+        { id: "underwear",     text: "Enough underwear & socks for 5 days" },
+      ]
+    },
+    {
+      cat: "Beach & Sun", icon: "🏖️",
+      items: [
+        { id: "sunscreen",     text: "Sunscreen SPF 50+" },
+        { id: "reef-safe",     text: "Reef-safe sunscreen (required at Half Moon Cay)" },
+        { id: "sunglasses",    text: "Sunglasses with UV protection" },
+        { id: "sun-hat",       text: "Wide-brim hat" },
+        { id: "beach-bag",     text: "Beach bag or tote" },
+        { id: "water-shoes",   text: "Water shoes (stingray encounter at Half Moon Cay)" },
+        { id: "wp-case",       text: "Waterproof phone case or dry bag" },
+        { id: "snorkel",       text: "Snorkel gear (or plan to rent on island)" },
+      ]
+    },
+    {
+      cat: "Health & Comfort", icon: "💊",
+      items: [
+        { id: "seasick",       text: "Seasickness medication — Dramamine or Sea-Bands" },
+        { id: "rx-meds",       text: "All prescription medications (bring extra supply)" },
+        { id: "otc-meds",      text: "Pain relievers, antacids, antihistamines" },
+        { id: "hand-sani",     text: "Hand sanitizer" },
+        { id: "lip-balm",      text: "Lip balm with SPF" },
+        { id: "bug-spray",     text: "Insect repellent for port days" },
+        { id: "aloe",          text: "After-sun lotion or aloe vera" },
+        { id: "first-aid",     text: "Small first aid kit — bandages, antiseptic wipes" },
+      ]
+    },
+    {
+      cat: "Tech & Entertainment", icon: "📱",
+      items: [
+        { id: "charger",       text: "Phone charger & USB cables" },
+        { id: "power-bank",    text: "Portable battery pack" },
+        { id: "camera",        text: "Camera or GoPro" },
+        { id: "earbuds",       text: "Earbuds or headphones" },
+        { id: "ereader",       text: "Book or e-reader — perfect for the sea day" },
+      ]
+    },
+    {
+      cat: "Cruise Essentials", icon: "⚓",
+      items: [
+        { id: "water-bottle",  text: "Reusable water bottle" },
+        { id: "daypack",       text: "Small backpack for port days" },
+        { id: "lanyard",       text: "Lanyard for your cruise key card" },
+        { id: "laundry-bag",   text: "Laundry or dirty clothes bag" },
+        { id: "ziplock",       text: "Ziplock bags for wet swimwear & sandy items" },
+        { id: "umbrella",      text: "Compact umbrella or rain poncho" },
+        { id: "power-strip",   text: "Power strip — no surge protector (banned on ships)" },
+      ]
+    }
+  ];
+
+  // ── Checklist logic ─────────────────────────────────────
+  const clSelect      = document.getElementById("cl-select");
+  const clBody        = document.getElementById("cl-body");
+  const clPickPrompt  = document.getElementById("cl-pick-prompt");
+  const clCatsEl      = document.getElementById("cl-categories");
+  const clProgressBar = document.getElementById("cl-progress-bar");
+  const clProgressLbl = document.getElementById("cl-progress-label");
+
+  let clPassenger = "";
+
+  function clStorageKey(passenger)       { return "cl_checked_" + passenger; }
+  function clCustomKey(passenger)        { return "cl_custom_"  + passenger; }
+
+  function getChecked(passenger) {
+    try { return JSON.parse(localStorage.getItem(clStorageKey(passenger))) || {}; } catch { return {}; }
+  }
+  function saveChecked(passenger, obj)   { localStorage.setItem(clStorageKey(passenger), JSON.stringify(obj)); }
+  function getCustom(passenger) {
+    try { return JSON.parse(localStorage.getItem(clCustomKey(passenger))) || []; } catch { return []; }
+  }
+  function saveCustom(passenger, arr)    { localStorage.setItem(clCustomKey(passenger), JSON.stringify(arr)); }
+
+  function countTotals(passenger) {
+    const checked = getChecked(passenger);
+    const custom  = getCustom(passenger);
+    const total   = packingList.reduce((s, c) => s + c.items.length, 0) + custom.length;
+    const done    = Object.values(checked).filter(Boolean).length;
+    return { total, done };
+  }
+
+  function updateProgress(passenger) {
+    const { total, done } = countTotals(passenger);
+    const pct = total ? Math.round(done / total * 100) : 0;
+    clProgressBar.style.width = pct + "%";
+    clProgressLbl.textContent = done + " / " + total + " packed";
+  }
+
+  function renderChecklist(passenger) {
+    const checked = getChecked(passenger);
+    const custom  = getCustom(passenger);
+    clCatsEl.innerHTML = "";
+
+    packingList.forEach(cat => {
+      const div = document.createElement("div");
+      div.className = "cl-category";
+      div.innerHTML = `<div class="cl-cat-title">${cat.icon} ${cat.cat}</div><div class="cl-items" id="items-${cat.items[0].id}"></div>`;
+      const itemsEl = div.querySelector(".cl-items");
+
+      cat.items.forEach(item => {
+        const isChecked = !!checked[item.id];
+        const el = document.createElement("div");
+        el.className = "cl-item" + (isChecked ? " checked" : "");
+        el.innerHTML = `<div class="cl-checkbox">${isChecked ? "✓" : ""}</div><div class="cl-item-text">${item.text}</div>`;
+        el.addEventListener("click", () => {
+          const c = getChecked(passenger);
+          c[item.id] = !c[item.id];
+          saveChecked(passenger, c);
+          el.classList.toggle("checked", !!c[item.id]);
+          el.querySelector(".cl-checkbox").textContent = c[item.id] ? "✓" : "";
+          updateProgress(passenger);
+        });
+        itemsEl.appendChild(el);
+      });
+
+      clCatsEl.appendChild(div);
+    });
+
+    // Custom items category
+    const customDiv = document.createElement("div");
+    customDiv.className = "cl-category";
+    customDiv.innerHTML = `<div class="cl-cat-title">➕ My Custom Items</div><div class="cl-items" id="cl-custom-items"></div>`;
+    const customItemsEl = customDiv.querySelector("#cl-custom-items");
+
+    function renderCustomItem(item) {
+      const isChecked = !!checked[item.id];
+      const el = document.createElement("div");
+      el.className = "cl-item" + (isChecked ? " checked" : "");
+      el.dataset.id = item.id;
+      el.innerHTML = `<div class="cl-checkbox">${isChecked ? "✓" : ""}</div><div class="cl-item-text">${item.text}</div><span class="cl-item-del" title="Remove">✕</span>`;
+
+      el.addEventListener("click", e => {
+        if (e.target.classList.contains("cl-item-del")) return;
+        const c = getChecked(passenger);
+        c[item.id] = !c[item.id];
+        saveChecked(passenger, c);
+        el.classList.toggle("checked", !!c[item.id]);
+        el.querySelector(".cl-checkbox").textContent = c[item.id] ? "✓" : "";
+        updateProgress(passenger);
+      });
+
+      el.querySelector(".cl-item-del").addEventListener("click", e => {
+        e.stopPropagation();
+        const cur = getCustom(passenger).filter(i => i.id !== item.id);
+        saveCustom(passenger, cur);
+        const c = getChecked(passenger);
+        delete c[item.id];
+        saveChecked(passenger, c);
+        el.remove();
+        updateProgress(passenger);
+      });
+
+      return el;
+    }
+
+    custom.forEach(item => customItemsEl.appendChild(renderCustomItem(item)));
+
+    // Add item row
+    const addRow = document.createElement("div");
+    addRow.className = "cl-add-row";
+    addRow.innerHTML = `<input class="cl-add-input" type="text" placeholder="Add your own item…" maxlength="120"><button class="cl-add-btn">+ Add</button>`;
+    const input = addRow.querySelector(".cl-add-input");
+    const btn   = addRow.querySelector(".cl-add-btn");
+
+    function addItem() {
+      const text = input.value.trim();
+      if (!text) return;
+      const id   = "custom_" + Date.now();
+      const item = { id, text };
+      const cur  = getCustom(passenger);
+      cur.push(item);
+      saveCustom(passenger, cur);
+      customItemsEl.appendChild(renderCustomItem(item));
+      input.value = "";
+      updateProgress(passenger);
+    }
+
+    btn.addEventListener("click", addItem);
+    input.addEventListener("keydown", e => { if (e.key === "Enter") addItem(); });
+
+    customDiv.appendChild(addRow);
+    clCatsEl.appendChild(customDiv);
+
+    updateProgress(passenger);
+  }
+
+  // Populate passenger dropdowns
+  allPassengers.forEach(name => {
+    [document.getElementById("cl-select"), document.getElementById("notes-select")].forEach(sel => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      sel.appendChild(opt);
+    });
+  });
+
+  clSelect.addEventListener("change", function () {
+    clPassenger = this.value;
+    if (!clPassenger) {
+      clBody.classList.remove("visible");
+      clPickPrompt.style.display = "block";
+      return;
+    }
+    clPickPrompt.style.display = "none";
+    clBody.classList.add("visible");
+    renderChecklist(clPassenger);
+  });
+
+  // ── Notes logic ─────────────────────────────────────────
+  const notesSelect    = document.getElementById("notes-select");
+  const notesBody      = document.getElementById("notes-body");
+  const notesPickPrompt= document.getElementById("notes-pick-prompt");
+  const notesTextarea  = document.getElementById("notes-textarea");
+  const notesSaveBtn   = document.getElementById("notes-save-btn");
+  const notesSavedMsg  = document.getElementById("notes-saved-msg");
+
+  let notesPassenger = "";
+  let savedMsgTimer  = null;
+
+  function notesKey(passenger) { return "notes_" + passenger; }
+
+  notesSelect.addEventListener("change", function () {
+    notesPassenger = this.value;
+    if (!notesPassenger) {
+      notesBody.classList.remove("visible");
+      notesPickPrompt.style.display = "block";
+      return;
+    }
+    // Load saved notes for this passenger
+    notesTextarea.value = localStorage.getItem(notesKey(notesPassenger)) || "";
+    notesPickPrompt.style.display = "none";
+    notesBody.classList.add("visible");
+    notesSavedMsg.classList.remove("show");
+  });
+
+  notesSaveBtn.addEventListener("click", () => {
+    if (!notesPassenger) return;
+    localStorage.setItem(notesKey(notesPassenger), notesTextarea.value);
+    notesSavedMsg.classList.add("show");
+    clearTimeout(savedMsgTimer);
+    savedMsgTimer = setTimeout(() => notesSavedMsg.classList.remove("show"), 2500);
   });
 </script>
 </body>
