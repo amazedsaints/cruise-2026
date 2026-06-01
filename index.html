@@ -83,6 +83,14 @@
     .sec-sub   { color:var(--muted); margin-bottom:10px; font-size:.93rem; }
     .divider   { width:48px; height:4px; background:var(--gold); border-radius:4px; margin-bottom:28px; }
 
+    /* ── Day 0 road trip card ── */
+    .day-card.road .day-badge { background:linear-gradient(180deg,#2c3e50,#4a6741); }
+    .day-card.road { border-left:4px solid #4a6741; }
+    .road-stops { display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+    .road-stop  { display:flex; align-items:center; gap:10px; font-size:.85rem; color:var(--text); }
+    .road-stop .rs-icon { font-size:1.1rem; flex-shrink:0; }
+    .road-stop .rs-line { flex:1; border-top:2px dashed var(--border); margin:0 4px; }
+
     /* ── Day cards ── */
     .timeline { display:flex; flex-direction:column; gap:14px; }
     .day-card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:box-shadow .2s,transform .15s; }
@@ -353,6 +361,8 @@ const stops = [
   {day:4,label:"Day 4",port:"Celebration Key", date:"2026-06-11",lat:26.27,  lon:-78.90,  icon:"🎉"},
   {day:5,label:"Day 5",port:"Miami, FL",       date:"2026-06-12",lat:25.7817,lon:-80.2018,icon:"🏠"},
 ];
+// Weather for Day 0 (Fort Lauderdale) fetched separately
+const day0Wx = {};
 async function fetchWx(i,lat,lon,date){
   const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America%2FNew_York&start_date=${date}&end_date=${date}&temperature_unit=fahrenheit`);
   const j=await r.json();
@@ -387,43 +397,68 @@ tick(); setInterval(tick,1000);
 
 // ── Fetch weather then render ────────────────────────────
 (async()=>{
-  try{ await Promise.all(stops.map(async(s,i)=>{ wxData[i]=await fetchWx(i,s.lat,s.lon,s.date); })); }
-  catch(e){ console.warn("Weather fetch failed",e); }
+  try{
+    await Promise.all([
+      ...stops.map(async(s,i)=>{ wxData[i]=await fetchWx(i,s.lat,s.lon,s.date); }),
+      fetchWx(0,26.1224,-80.1373,"2026-06-07").then(w=>{ day0Wx.data=w; })
+    ]);
+  } catch(e){ console.warn("Weather fetch failed",e); }
   renderWx(); renderTimeline(); renderMap();
 })();
 
 // ── Weather strip ────────────────────────────────────────
+function wxCardHtml(label, dayName, dateStr, port, w) {
+  const info = wmo(w.code), rc = rainClr(w.rain);
+  return `<div class="wx-card">
+    <div class="wx-day">${label} · ${dayName}</div>
+    <div class="wx-date">${dateStr}</div>
+    <div class="wx-port" title="${port}">${port}</div>
+    <span class="wx-icon">${info.i}</span>
+    <div class="wx-desc">${info.d}</div>
+    <div class="wx-temps"><span class="hi">${w.hi}°F</span><span class="lo">/ ${w.lo}°F</span></div>
+    <div class="rain-wrap">
+      <div class="rain-lbl">Rain chance</div>
+      <div class="rain-bar"><div class="rain-fill" style="width:${w.rain}%;background:${rc}"></div></div>
+      <div class="rain-pct" style="color:${rc}">${w.rain}%</div>
+    </div></div>`;
+}
+
 function renderWx(){
   const c=document.getElementById("wx-cards");
-  if(!Object.keys(wxData).length){ c.innerHTML=`<div class="wx-loading">Weather unavailable — check nearer to departure.</div>`; return; }
-  c.innerHTML=stops.map((s,i)=>{
+  const hasData = Object.keys(wxData).length || day0Wx.data;
+  if(!hasData){ c.innerHTML=`<div class="wx-loading">Weather unavailable — check nearer to departure.</div>`; return; }
+
+  let html = "";
+
+  // Day 0 card first
+  if(day0Wx.data){
+    const d = new Date("2026-06-07T12:00:00");
+    html += wxCardHtml("Day 0 · Sunday","Sunday","Jun 7","Fort Lauderdale, FL", day0Wx.data);
+  }
+
+  // Days 1–5
+  html += stops.map((s,i)=>{
     const w=wxData[i]; if(!w)return"";
-    const info=wmo(w.code);
     const d=new Date(s.date+"T12:00:00");
     const dayName=d.toLocaleDateString("en-US",{weekday:"long"});
     const dateStr=d.toLocaleDateString("en-US",{month:"short",day:"numeric"});
-    const rc=rainClr(w.rain);
-    return`<div class="wx-card">
-      <div class="wx-day">${s.label} · ${dayName}</div>
-      <div class="wx-date">${dateStr}</div>
-      <div class="wx-port" title="${s.port}">${s.port}</div>
-      <span class="wx-icon">${info.i}</span>
-      <div class="wx-desc">${info.d}</div>
-      <div class="wx-temps"><span class="hi">${w.hi}°F</span><span class="lo">/ ${w.lo}°F</span></div>
-      <div class="rain-wrap">
-        <div class="rain-lbl">Rain chance</div>
-        <div class="rain-bar"><div class="rain-fill" style="width:${w.rain}%;background:${rc}"></div></div>
-        <div class="rain-pct" style="color:${rc}">${w.rain}%</div>
-      </div></div>`;
+    return wxCardHtml(s.label+" · "+dayName, dayName, dateStr, s.port, w);
   }).join("");
+
+  c.innerHTML = html;
 }
 
 // ── Timeline ─────────────────────────────────────────────
 function renderTimeline(){
   const tl=document.getElementById("timeline"); tl.innerHTML="";
   cruiseData.days.forEach((day,idx)=>{
-    const card=document.createElement("div"); card.className="day-card"; card.id=`day-${day.day}`;
-    const w=wxData[idx]; const info=w?wmo(w.code):null;
+    const isDay0 = day.day === 0;
+    // Day 0 weather uses Fort Lauderdale data; days 1-5 map to stops index 0-4
+    const wxIdx  = isDay0 ? null : idx - 1;
+    const card=document.createElement("div");
+    card.className="day-card"+(isDay0?" road":""); card.id=`day-${day.day}`;
+    const w    = isDay0 ? day0Wx.data : wxData[wxIdx];
+    const info = w ? wmo(w.code) : null;
     const wxPill=info?`<div class="wx-pill"><span class="wpi">${info.i}</span><span class="wpt">${w.hi}°F</span><span class="wpr">· ${w.rain}%</span></div>`:"";
     const wxBox=info?`<div class="wx-box"><div class="wxico">${info.i}</div><div class="wxd"><b>${info.d}</b><div class="wxt">High ${w.hi}°F · Low ${w.lo}°F</div><div class="wxr" style="color:${rainClr(w.rain)}">🌧 Rain: ${w.rain}%</div></div></div>`:`<div class="tip">Weather unavailable — check nearer to departure.</div>`;
     const tags=day.highlights.map(h=>`<span class="tag">${h}</span>`).join("");

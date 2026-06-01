@@ -51,13 +51,39 @@ const cruiseData = {
   // ── Itinerary ────────────────────────────────────────────
   days: [
     {
+      day: 0,
+      date: "Sunday, June 7, 2026",
+      port: "Cumming, GA → Fort Lauderdale, FL",
+      label: "Road Trip Day",
+      icon: "🚗",
+      description: "Hit the road at <strong>7:00 AM</strong> from Cumming, GA heading south. It's a long drive — about 700 miles and 9–10 hours. Destination: <strong>Hilton Fort Lauderdale</strong>, 720 East Cypress Creek Road. Check-in around 8:00 PM and rest up for embarkation day tomorrow.",
+      highlights: ["🕖 Depart Cumming 7:00 AM", "~700 miles · ~10 hrs", "🏨 Hilton Fort Lauderdale", "Check-in ~8:00 PM"],
+      details: {
+        about: "The adventure starts here — a full day road trip from Cumming, GA down to Fort Lauderdale, FL. The route takes you through Atlanta, south on I-75, and through the heart of Florida. Plan fuel and food stops every 2–3 hours to keep everyone comfortable.",
+        thingsToDo: [
+          { name: "Depart 7:00 AM sharp", desc: "Early start is key — hitting Atlanta before morning rush hour saves significant time. Aim to be on I-75 South by 7:30 AM." },
+          { name: "Valdosta, GA — Fuel & Lunch stop", desc: "Around the 3-hour mark. Valdosta has plenty of fast food and sit-down options off I-75. Good midway point through Georgia." },
+          { name: "Gainesville, FL — Afternoon break", desc: "About 5–6 hours in. Stretch your legs, fuel up, and grab snacks for the final push to Fort Lauderdale." },
+          { name: "Florida Turnpike south", desc: "From I-75 south of Gainesville, take the Florida Turnpike (toll road) for the fastest route to Fort Lauderdale. Keep loose change or use SunPass." },
+          { name: "Hilton Fort Lauderdale check-in", desc: "720 East Cypress Creek Road, Fort Lauderdale, FL 33334. Check-in from 3:00 PM — call ahead if arriving late. Pool and restaurant on-site for a relaxing evening." }
+        ],
+        food: [
+          { name: "Pack a cooler for the car", tag: "Recommended · Save time & money", emoji: "🧊", desc: "Drinks, fruit, snacks for the road — saves multiple stops and keeps kids happy. Top up at a gas station in Valdosta if needed." },
+          { name: "Cracker Barrel — Valdosta or Lake City", tag: "Free · Road stop", emoji: "🥘", desc: "A road trip classic. Multiple locations off I-75 in Georgia and North Florida — sit-down Southern comfort food and a quick break from driving." },
+          { name: "Hilton Hotel Restaurant", tag: "Hotel · Dinner", emoji: "🍽", desc: "After a long drive, the easiest option is dinner at the hotel. Unwind, order in, and get an early night ahead of embarkation day." }
+        ],
+        tips: "Use Google Maps or Waze and download offline maps for the route before you leave. Tolls on the Florida Turnpike — keep SunPass or cash handy. The drive is roughly: Cumming → Atlanta → Macon → Valdosta → Lake City → Gainesville → Orlando → Fort Lauderdale.",
+        weather: "🌡 June 7 in Fort Lauderdale: 88°F / 31°C · Warm and humid, possible afternoon thunderstorms en route through Florida"
+      }
+    },
+    {
       day: 1,
       date: "Monday, June 8, 2026",
       port: "Miami, Florida",
       label: "Embarkation Day",
       icon: "🚢",
-      description: "Welcome aboard! Our arrival appointment is <strong>11:00–11:30 AM</strong> — all guests in each stateroom must arrive together. Get your boarding passes and luggage tags ready in advance.",
-      highlights: ["⏰ Arrival: 11:00–11:30 AM", "All guests board together", "Muster safety drill", "Sail-away party on deck"],
+      description: "Check out of the Hilton Fort Lauderdale by <strong>10:00 AM</strong> and drive 35 miles south to PortMiami. Our arrival appointment is <strong>11:00–11:30 AM</strong> — all guests in each stateroom must arrive together. Get boarding passes and luggage tags ready the night before.",
+      highlights: ["🏨 Hotel checkout 10:00 AM", "~35 min drive to PortMiami", "⏰ Arrival: 11:00–11:30 AM", "Muster drill · Sail-away party"],
       details: {
         about: "Miami is the cruise capital of the world and one of the most vibrant cities in the US. Known for its Art Deco architecture, stunning beaches, and incredible food scene, Miami is the perfect launchpad for your Caribbean adventure.",
         thingsToDo: [
@@ -73,7 +99,7 @@ const cruiseData = {
           { name: "Pizzeria del Capitano", tag: "Free · 24 hrs", emoji: "🍕", desc: "Fresh pizza around the clock. Margherita and Quattro Formaggi are passenger favourites — great for late-night snacking after boarding." },
           { name: "Sea Day Brunch", tag: "Free · Main Dining Room", emoji: "🥞", desc: "Served the first full day at sea — worth checking if it starts on embarkation evening. Eggs Benedict is the crowd favourite." }
         ],
-        tips: "The cruise terminal is at PortMiami. Arrive early — the 11:00 AM window is your assigned slot and boarding goes smoothly when everyone arrives together.",
+        tips: "Check out of the Hilton by 10 AM — it's about 35 miles (30–40 min) to PortMiami via I-95 South. Drop luggage with the porters at the terminal, then park in the PortMiami garage. Have boarding passes and passport ready before you leave the hotel.",
         weather: "🌡 June average: 89°F / 32°C · Sunny with occasional afternoon showers"
       }
     },
