@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Setting Sail 2026 · Carnival Conquest</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -315,6 +317,20 @@
   </div>
 </section>
 
+<!-- Route Map -->
+<section id="route-map" style="background:var(--navy); padding:0;">
+  <div class="section-wrap" style="padding-bottom:0;">
+    <div class="section-title" style="color:white;">🗺 Cruise Route</div>
+    <p class="section-subtitle" style="color:rgba(255,255,255,0.6); margin-bottom:10px;">Your path across the Caribbean — click any stop for details.</p>
+    <div class="divider"></div>
+  </div>
+  <div id="cruise-map" style="height:420px; width:100%;"></div>
+  <div class="section-wrap" style="padding-top:0; padding-bottom:0;">
+    <div style="display:flex; flex-wrap:wrap; gap:10px; padding:18px 0 32px;">
+    </div>
+  </div>
+</section>
+
 <!-- Who's Coming -->
 <section id="who-coming" style="background:white; border-top:1px solid var(--border);">
   <div class="section-wrap">
@@ -451,7 +467,7 @@
       </div>`;
     }).join("");
     box.innerHTML = `
-      <div class="stateroom-header" style="${srGradients[i]}">
+      <div class="stateroom-header" style="background:${srGradients[i]}">
         <div class="sr-num">${sr.number}</div>
         <div class="sr-code">${sr.code}</div>
         <div class="sr-arrival">⏰ ${sr.arrival}</div>
@@ -524,6 +540,52 @@
       tabPanels.appendChild(panel);
     });
   }
+
+  // ── Route Map ───────────────────────────────────────────
+  const stops = [
+    { name: "Miami, Florida",            label: "Day 1 · Embarkation",              lat: 25.7617, lng: -80.1918, icon: "🚢", day: 1 },
+    { name: "At Sea",                    label: "Day 2 · Fun Day at Sea",            lat: 24.00,  lng: -78.60,  icon: "🌊", day: 2 },
+    { name: "Half Moon Cay™",            label: "Day 3 · RelaxAway, Bahamas",        lat: 24.7744, lng: -77.3294, icon: "🏝️", day: 3 },
+    { name: "Celebration Key™",          label: "Day 4 · Grand Bahama Island",       lat: 26.27,  lng: -78.90,  icon: "🎉", day: 4 },
+    { name: "Miami, Florida",            label: "Day 5 · Return Home",              lat: 25.7817, lng: -80.2018, icon: "🏠", day: 5 },
+  ];
+
+  const map = L.map("cruise-map", { zoomControl: true, scrollWheelZoom: false })
+    .setView([25.2, -78.8], 6);
+
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  // Draw route line
+  const coords = stops.map(s => [s.lat, s.lng]);
+  L.polyline(coords, {
+    color: "#f0c040", weight: 3, opacity: 0.85,
+    dashArray: "8, 6"
+  }).addTo(map);
+
+  // Add markers
+  stops.forEach((stop, i) => {
+    const isAtSea = stop.day === 2;
+    const html = `<div style="
+      background:${isAtSea ? "#1a5276" : "#0d2b4e"};
+      border:2.5px solid #f0c040;
+      border-radius:50%;
+      width:36px; height:36px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:16px; box-shadow:0 2px 8px rgba(0,0,0,0.5);
+      cursor:pointer;">${stop.icon}</div>`;
+    const icon = L.divIcon({ html, className: "", iconSize: [36,36], iconAnchor: [18,18] });
+    const marker = L.marker([stop.lat, stop.lng], { icon }).addTo(map);
+    marker.bindPopup(`
+      <div style="font-family:'Segoe UI',sans-serif; min-width:160px;">
+        <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#d4a017;margin-bottom:3px;">Day ${stop.day}</div>
+        <div style="font-size:1rem;font-weight:800;color:#0d2b4e;">${stop.name}</div>
+        <div style="font-size:.82rem;color:#566573;margin-top:2px;">${stop.label}</div>
+      </div>`, { maxWidth: 220 });
+    if (!isAtSea) marker.openPopup();
+  });
 
   function switchTab(idx) {
     activeTab = idx;
