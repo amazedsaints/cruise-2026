@@ -511,8 +511,31 @@ function renderMap(){
   L.polyline(roadCoords,{color:"#e67e22",weight:3,opacity:.85,dashArray:"8 6"}).addTo(map);
   // Drive back (same road, slightly offset visually — same line is fine)
   L.polyline([...roadCoords].reverse(),{color:"#27ae60",weight:3,opacity:.75,dashArray:"4 8"}).addTo(map);
-  // Cruise route — gold
-  L.polyline(stops.map(s=>[s.lat,s.lon]),{color:"#f0c040",weight:3.5,opacity:.9,dashArray:"10 7"}).addTo(map);
+  // Cruise route — gold, sea-lane waypoints through NW/NE Providence Channel
+  const shipRoute=[
+    [25.775,-80.170],  // PortMiami
+    [25.760,-80.095],  // Government Cut east exit
+    [25.850,-79.500],  // Florida Straits NE
+    [25.980,-79.000],  // NW Providence Channel approach
+    [26.080,-78.300],  // NE Providence Channel (deep water)
+    [25.800,-77.700],  // south, Berry Islands west
+    [25.400,-77.350],  // south past Berry Islands, east of Nassau
+    [25.100,-77.100],  // open Atlantic east of Nassau
+    [24.900,-77.150],  // approaching Half Moon Cay from north
+    [24.774,-77.329],  // Half Moon Cay (Day 3)
+    [24.900,-77.150],  // depart north
+    [25.100,-77.100],
+    [25.400,-77.350],
+    [25.800,-77.700],
+    [26.080,-78.300],  // NE Providence Channel
+    [26.200,-78.600],  // heading west
+    [26.270,-78.900],  // Celebration Key (Day 4)
+    [26.350,-79.400],  // heading west back to Florida
+    [26.150,-79.850],  // approaching Florida Straits
+    [25.950,-80.050],  // south along Florida coast
+    [25.782,-80.202],  // PortMiami return
+  ];
+  L.polyline(shipRoute,{color:"#f0c040",weight:3.5,opacity:.9,dashArray:"10 7"}).addTo(map);
 
   // Fit map to show everything
   const allCoords=[...roadCoords,...stops.map(s=>[s.lat,s.lon])];
@@ -593,7 +616,7 @@ allPax.forEach(name=>{
 });
 
 // Restore saved selection
-const savedPerson = localStorage.getItem("cruise_notes_person") || "";
+const savedPerson = (()=>{ try{ return localStorage.getItem("cruise_notes_person")||""; } catch(e){ return ""; } })();
 if(savedPerson && allPax.includes(savedPerson)){
   notesSel.value = savedPerson;
   buildNotes(savedPerson);
@@ -601,7 +624,7 @@ if(savedPerson && allPax.includes(savedPerson)){
 
 notesSel.addEventListener("change",()=>{
   const p=notesSel.value;
-  localStorage.setItem("cruise_notes_person", p);
+  try{ localStorage.setItem("cruise_notes_person", p); } catch(e){}
   if(p) buildNotes(p);
   else { notesNoSel.style.display="block"; notesUI.classList.remove("show"); ntabList.innerHTML=""; npanels.innerHTML=""; }
 });
@@ -628,12 +651,12 @@ function buildNotes(person){
     const dateEl=document.createElement("div"); dateEl.className="np-date"; dateEl.textContent=day.date;
     const ta    =document.createElement("textarea"); ta.className="ntextarea";
     ta.placeholder="Write your plans, reminders, or thoughts for this day…";
-    const savedText=localStorage.getItem(`note__${person}__${day.day}`)||"";
+    const savedText=(()=>{ try{ return localStorage.getItem(`note__${person}__${day.day}`)||""; } catch(e){ return ""; } })();
     ta.value=savedText;   // set value directly — avoids HTML encoding issues
 
     const status=document.createElement("div"); status.className="nsaved";
     ta.addEventListener("input",()=>{
-      localStorage.setItem(`note__${person}__${day.day}`,ta.value);
+      try{ localStorage.setItem(`note__${person}__${day.day}`,ta.value); } catch(e){}
       status.textContent="✓ Saved"; clearTimeout(ta._t);
       ta._t=setTimeout(()=>{ status.textContent=""; },1600);
     });
@@ -662,7 +685,7 @@ const DEFAULT_ITEMS=[
 function loadCL(){
   try{ return JSON.parse(localStorage.getItem(CL_KEY)||"null"); } catch{ return null; }
 }
-function saveCL(data){ localStorage.setItem(CL_KEY,JSON.stringify(data)); }
+function saveCL(data){ try{ localStorage.setItem(CL_KEY,JSON.stringify(data)); } catch(e){} }
 
 function initCL(){
   let data=loadCL();
