@@ -70,7 +70,8 @@ const cruiseData = {
           { name: "Guy's Burger Joint", tag: "Free · Lido Deck", emoji: "🍔", desc: "Guy Fieri's hand-crafted burgers — consistently the #1 rated free food on the ship. Go as soon as you board to beat the line." },
           { name: "BlueIguana Cantina", tag: "Free · Lido Deck", emoji: "🌮", desc: "Fresh burritos and tacos. Passengers rave about the chicken burrito — great for a quick lunch on embarkation day." },
           { name: "Monet Main Dining Room", tag: "Free · Dinner", emoji: "🍽", desc: "First night dinner in the main dining room is a treat. The lobster gets outstanding reviews — don't miss it if it's on the menu." },
-          { name: "Pizzeria del Capitano", tag: "Free · 24 hrs", emoji: "🍕", desc: "Fresh pizza around the clock. Margherita and Quattro Formaggi are passenger favourites — great for late-night snacking after boarding." }
+          { name: "Pizzeria del Capitano", tag: "Free · 24 hrs", emoji: "🍕", desc: "Fresh pizza around the clock. Margherita and Quattro Formaggi are passenger favourites — great for late-night snacking after boarding." },
+          { name: "Sea Day Brunch", tag: "Free · Main Dining Room", emoji: "🥞", desc: "Served the first full day at sea — worth checking if it starts on embarkation evening. Eggs Benedict is the crowd favourite." }
         ],
         tips: "The cruise terminal is at PortMiami. Arrive early — the 11:00 AM window is your assigned slot and boarding goes smoothly when everyone arrives together.",
         weather: "🌡 June average: 89°F / 32°C · Sunny with occasional afternoon showers"
@@ -99,7 +100,6 @@ const cruiseData = {
           { name: "Sea Day Brunch", tag: "Free · Main Dining Room", emoji: "🥞", desc: "The Sea Day Brunch is a Carnival tradition — passengers love the eggs Benedict and French toast. Opens late morning so you can sleep in." },
           { name: "Guy's Burger Joint", tag: "Free · Lido Deck", emoji: "🍔", desc: "If you missed it on Day 1, today's the day. The Pig Patty and Ringer burger are passenger favourites. Lines form early — go at 11 AM." },
           { name: "BlueIguana Cantina", tag: "Free · Lido Deck", emoji: "🌯", desc: "Great build-your-own burritos. Many passengers say this is their go-to lunch on sea days." },
-          { name: "The Point Steakhouse", tag: "Paid · Premium", emoji: "🥩", desc: "Worth every penny for a special dinner. Passengers consistently rate it the best meal on the ship — reserve in advance via the HUB app." },
           { name: "Pizzeria del Capitano", tag: "Free · 24 hrs", emoji: "🍕", desc: "Perfect for a midnight snack after the evening show. Always fresh, always hot." }
         ],
         tips: "Sea days fill up fast — book specialty dining early via the Carnival HUB app. The lido deck pool gets crowded by 10 AM.",
@@ -126,7 +126,6 @@ const cruiseData = {
         ],
         food: [
           { name: "Island BBQ Buffet", tag: "Free · 11:30 AM – 1:30 PM", emoji: "🍖", desc: "The complimentary island lunch is a highlight — jerk chicken, BBQ ribs, hot dogs, hamburgers, potato salad, and chips. Passengers say the jerk chicken is excellent. Don't miss it!" },
-          { name: "Coconut & Tropical Drinks", tag: "Paid · Beach Bars", emoji: "🥥", desc: "Fresh coconut drinks and frozen cocktails from the island bars are a must-try. New in 2026 — try the new island-themed signature cocktails at the relaunched RelaxAway bars." },
           { name: "Back on Ship — Guy's or Pizza", tag: "Free · On Board", emoji: "🍔", desc: "After a long beach day, passengers recommend grabbing a Guy's burger or pizza slice the moment you're back on board — quick, satisfying, and free." }
         ],
         tips: "Get off the ship early to claim the best beach spots. The most secluded areas are a short walk from the main beach. The lagoon water is incredibly clear and warm — bring snorkel gear if you have it.",
@@ -160,8 +159,7 @@ const cruiseData = {
         food: [
           { name: "Grand Bahama Taco", tag: "Free meal voucher · Celebration Key", emoji: "🌮", desc: "Passengers highly recommend the Jerk Chicken Taco and Fried Fish Taco. Each guest gets one complimentary 'Island Eats' meal — use it here!" },
           { name: "Mingo's Tropical Bar & Kitchen", tag: "Free meal voucher · Celebration Key", emoji: "🦞", desc: "A fan favourite — the conch fritters are a genuine Bahamian classic and passengers say they're delicious. Also try the fried fish and BBQ burger." },
-          { name: "Captain's Galley Food Hall", tag: "Free meal voucher · Celebration Key", emoji: "🥙", desc: "Build-your-own Mexican and Mediterranean bowls, pizza, and American classics. Great for picky eaters — the kids love the chicken tenders." },
-          { name: "Island Bars — Calypso & Pearl Cove", tag: "Paid · Drinks", emoji: "🍹", desc: "Swim-up bar cocktails and tropical drinks at Calypso Lagoon are a highlight. Try a Bahama Mama or a local rum punch while floating in the lagoon." }
+          { name: "Captain's Galley Food Hall", tag: "Free meal voucher · Celebration Key", emoji: "🥙", desc: "Build-your-own Mexican and Mediterranean bowls, pizza, and American classics. Great for picky eaters — the kids love the chicken tenders." }
         ],
         tips: "Everything is brand new at this destination — arrive early to explore all five portals. Lokono Cove is a great spot to pick up authentic Bahamian souvenirs to remember the trip.",
         weather: "🌡 Grand Bahama in June: 87°F / 31°C · Warm and sunny, light tropical breeze"
@@ -185,8 +183,7 @@ const cruiseData = {
           { name: "Collect Luggage in Terminal", desc: "Luggage is organized by color-coded tags in the terminal. Have your ID and travel docs ready." }
         ],
         food: [
-          { name: "Final Lido Buffet Breakfast", tag: "Free · Early morning", emoji: "🍳", desc: "The Lido buffet opens early on disembarkation day. Passengers recommend grabbing a full cooked breakfast — scrambled eggs, bacon, pastries — before heading off the ship." },
-          { name: "Versailles Restaurant, Miami", tag: "Miami · Cuban classic", emoji: "☕", desc: "If you have time before your flight, Versailles in Little Havana is a Miami institution. Cuban coffee (cafecito), pressed sandwiches, and rice dishes. Passengers who've been say it's unmissable." }
+          { name: "Final Lido Buffet Breakfast", tag: "Free · Early morning", emoji: "🍳", desc: "The Lido buffet opens early on disembarkation day. Passengers recommend grabbing a full cooked breakfast — scrambled eggs, bacon, pastries — before heading off the ship." }
         ],
         tips: "If you have a late flight, consider heading to South Beach for a few hours — it's only 20 minutes from the port. The earliest groups typically disembark around 7:30–8:00 AM.",
         weather: "🌡 Miami in June: 89°F / 32°C · Warm and sunny"

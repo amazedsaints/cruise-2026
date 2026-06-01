@@ -66,7 +66,8 @@
       cursor:default;
     }
     .weather-card:hover { background:rgba(255,255,255,0.13); transform:translateY(-2px); }
-    .weather-card .wc-day { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; opacity:.55; margin-bottom:5px; }
+    .weather-card .wc-day { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; opacity:.55; margin-bottom:2px; }
+    .weather-card .wc-date-line { font-size:.8rem; font-weight:800; color:var(--gold2); margin-bottom:5px; }
     .weather-card .wc-port { font-size:.78rem; font-weight:700; opacity:.85; margin-bottom:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px; }
     .weather-card .wc-icon { font-size:2rem; margin-bottom:6px; display:block; }
     .weather-card .wc-desc { font-size:.75rem; opacity:.7; margin-bottom:6px; }
@@ -288,10 +289,10 @@
 <!-- Nav -->
 <nav>
   <a href="#itinerary">📅 Itinerary</a>
+  <a href="#chat-section">💬 Group Chat</a>
   <a href="#map-section">🗺 Route Map</a>
   <a href="#who-coming">👥 Who's Coming</a>
   <a href="#my-notes">📝 My Notes</a>
-  <a href="#chat-section">💬 Group Chat</a>
 </nav>
 
 <!-- Itinerary -->
@@ -301,6 +302,33 @@
     <div class="section-subtitle" id="itinerary-sub"></div>
     <div class="divider"></div>
     <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- Group Chat -->
+<section id="chat-section" style="padding:0;">
+  <div class="chat-wrap">
+    <div class="section-title">💬 Group Chat</div>
+    <p class="section-subtitle" style="color:rgba(255,255,255,0.55); margin-bottom:10px;">Leave messages for the group. Everyone on the trip can read and reply.</p>
+    <div class="divider"></div>
+    <div class="chat-name-row">
+      <label for="chat-name-select">I am:</label>
+      <select class="chat-select" id="chat-name-select"><option value="">— Select your name —</option></select>
+    </div>
+    <div class="chat-prompt" id="chat-prompt">
+      <div style="font-size:2rem;margin-bottom:8px;">💬</div>
+      Select your name above to join the group chat.
+    </div>
+    <div id="chat-ui" style="display:none;">
+      <div class="chat-box">
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-row">
+          <input class="chat-input" id="chat-input" type="text" placeholder="Type a message…" maxlength="500" />
+          <button class="chat-send" id="chat-send" title="Send">➤</button>
+        </div>
+      </div>
+      <div class="chat-notice">Messages are stored on this device. Share the site with the group so everyone can read along!</div>
+    </div>
   </div>
 </section>
 
@@ -342,33 +370,6 @@
     <div class="day-tabs" id="notes-tabs">
       <div class="tab-list" id="notes-tab-list"></div>
       <div id="notes-tab-panels"></div>
-    </div>
-  </div>
-</section>
-
-<!-- Group Chat -->
-<section id="chat-section" style="padding:0;">
-  <div class="chat-wrap">
-    <div class="section-title">💬 Group Chat</div>
-    <p class="section-subtitle" style="color:rgba(255,255,255,0.55); margin-bottom:10px;">Leave messages for the group. Everyone on the trip can read and reply.</p>
-    <div class="divider"></div>
-    <div class="chat-name-row">
-      <label for="chat-name-select">I am:</label>
-      <select class="chat-select" id="chat-name-select"><option value="">— Select your name —</option></select>
-    </div>
-    <div class="chat-prompt" id="chat-prompt">
-      <div style="font-size:2rem;margin-bottom:8px;">💬</div>
-      Select your name above to join the group chat.
-    </div>
-    <div id="chat-ui" style="display:none;">
-      <div class="chat-box">
-        <div class="chat-messages" id="chat-messages"></div>
-        <div class="chat-input-row">
-          <input class="chat-input" id="chat-input" type="text" placeholder="Type a message…" maxlength="500" />
-          <button class="chat-send" id="chat-send" title="Send">➤</button>
-        </div>
-      </div>
-      <div class="chat-notice">Messages are stored on this device. Share the site with the group so everyone can read along!</div>
     </div>
   </div>
 </section>
@@ -496,8 +497,12 @@ function renderWeatherStrip() {
     if (!w) return "";
     const info = wmoInfo(w.code);
     const rc = rainColor(w.rain);
+    const dateObj  = new Date(s.date + "T12:00:00");
+    const dayName  = dateObj.toLocaleDateString("en-US", { weekday:"long" });
+    const dateStr  = dateObj.toLocaleDateString("en-US", { month:"short", day:"numeric" });
     return `<div class="weather-card">
-      <div class="wc-day">${s.label}</div>
+      <div class="wc-day">${s.label} · ${dayName}</div>
+      <div class="wc-date-line">${dateStr}</div>
       <div class="wc-port" title="${s.port}">${s.port}</div>
       <span class="wc-icon">${info.icon}</span>
       <div class="wc-desc">${info.desc}</div>
