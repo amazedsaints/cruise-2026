@@ -490,10 +490,49 @@ function renderTimeline(){
 
 // ── Map ──────────────────────────────────────────────────
 function renderMap(){
-  const map=L.map("cruise-map",{zoomControl:true,scrollWheelZoom:false}).setView([25.5,-78.8],6);
+  const map=L.map("cruise-map",{zoomControl:true,scrollWheelZoom:false});
   L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",{attribution:"Tiles © Esri",maxZoom:13}).addTo(map);
   L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}",{attribution:"",maxZoom:13,opacity:.7}).addTo(map);
+
+  // Road trip waypoints (approximate I-75/I-95 corridor)
+  const cummingGA   = [34.2072, -84.1400];
+  const atlantaGA   = [33.7490, -84.3880];
+  const maconGA     = [32.8407, -83.6324];
+  const valdostaGA  = [30.8327, -83.2785];
+  const lakeCityFL  = [30.1897, -82.6393];
+  const gainesvilleFL=[29.6516,-82.3248];
+  const orlandoFL   = [28.5383, -81.3792];
+  const ftLauderdale= [26.1898, -80.1286]; // Hilton on Cypress Creek
+  const miamiPort   = [25.7748, -80.1698];
+
+  const roadCoords  = [cummingGA,atlantaGA,maconGA,valdostaGA,lakeCityFL,gainesvilleFL,orlandoFL,ftLauderdale,miamiPort];
+
+  // Drive down — orange dashed
+  L.polyline(roadCoords,{color:"#e67e22",weight:3,opacity:.85,dashArray:"8 6"}).addTo(map);
+  // Drive back (same road, slightly offset visually — same line is fine)
+  L.polyline([...roadCoords].reverse(),{color:"#27ae60",weight:3,opacity:.75,dashArray:"4 8"}).addTo(map);
+  // Cruise route — gold
   L.polyline(stops.map(s=>[s.lat,s.lon]),{color:"#f0c040",weight:3.5,opacity:.9,dashArray:"10 7"}).addTo(map);
+
+  // Fit map to show everything
+  const allCoords=[...roadCoords,...stops.map(s=>[s.lat,s.lon])];
+  map.fitBounds(L.latLngBounds(allCoords).pad(0.08));
+
+  // Road markers
+  function roadMarker(latlng,emoji,label,dayNum,sublabel){
+    const html=`<div style="background:#c0392b;border:2.5px solid #e67e22;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.5);">${emoji}</div>`;
+    const icon=L.divIcon({html,className:"",iconSize:[36,36],iconAnchor:[18,18]});
+    const mk=L.marker(latlng,{icon}).addTo(map);
+    mk.bindPopup(`<div style="font-family:'Segoe UI',sans-serif;min-width:150px;padding:2px 0"><div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#e67e22">${label}</div><div style="font-size:.95rem;font-weight:800;color:#0d2b4e;margin-top:2px">${sublabel}</div>${dayNum!=null?`<div style="margin-top:7px"><a href="#day-${dayNum}" style="font-size:.78rem;color:#1a5276;font-weight:700">View details ↓</a></div>`:""}</div>`,{maxWidth:200});
+    if(dayNum!=null) mk.on("popupopen",()=>{
+      const a=document.querySelector(`.leaflet-popup a[href="#day-${dayNum}"]`);
+      if(a) a.addEventListener("click",e=>{e.preventDefault();map.closePopup();document.getElementById(`day-${dayNum}`)?.scrollIntoView({behavior:"smooth",block:"start"});});
+    });
+  }
+  roadMarker(cummingGA,  "🏠","Day 0 · Start","0","Cumming, GA — 7:00 AM");
+  roadMarker(ftLauderdale,"🏨","Day 0 · Hotel","0","Hilton Fort Lauderdale · ~8:00 PM");
+
+  // Cruise markers
   const legend=document.getElementById("map-legend");
   stops.forEach((s,i)=>{
     const w=wxData[i]; const info=w?wmo(w.code):null;
@@ -508,6 +547,18 @@ function renderMap(){
       if(a) a.addEventListener("click",e=>{e.preventDefault();map.closePopup();document.getElementById(`day-${s.day}`)?.scrollIntoView({behavior:"smooth",block:"start"});});
     });
     const li=document.createElement("div"); li.className="leg-item"; li.innerHTML=`${s.icon} <span>${s.label} — ${s.port}</span>`; legend.appendChild(li);
+  });
+
+  // Legend entries for road trip
+  const roadLegend=[
+    {emoji:"🏠",text:"Day 0 — Cumming, GA (depart 7 AM)"},
+    {emoji:"🏨",text:"Day 0 — Hilton Fort Lauderdale (arrive 8 PM)"},
+    {emoji:"🏡",text:"Day 6 — Drive home to Cumming, GA"},
+  ];
+  roadLegend.forEach(r=>{
+    const li=document.createElement("div"); li.className="leg-item";
+    li.style.borderColor="rgba(230,126,34,0.4)";
+    li.innerHTML=`${r.emoji} <span>${r.text}</span>`; legend.appendChild(li);
   });
 }
 

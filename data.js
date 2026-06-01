@@ -68,9 +68,10 @@ const cruiseData = {
           { name: "Hilton Fort Lauderdale check-in", desc: "720 East Cypress Creek Road, Fort Lauderdale, FL 33334. Check-in from 3:00 PM — call ahead if arriving late. Pool and restaurant on-site for a relaxing evening." }
         ],
         food: [
-          { name: "Pack a cooler for the car", tag: "Recommended · Save time & money", emoji: "🧊", desc: "Drinks, fruit, snacks for the road — saves multiple stops and keeps kids happy. Top up at a gas station in Valdosta if needed." },
-          { name: "Cracker Barrel — Valdosta or Lake City", tag: "Free · Road stop", emoji: "🥘", desc: "A road trip classic. Multiple locations off I-75 in Georgia and North Florida — sit-down Southern comfort food and a quick break from driving." },
-          { name: "Hilton Hotel Restaurant", tag: "Hotel · Dinner", emoji: "🍽", desc: "After a long drive, the easiest option is dinner at the hotel. Unwind, order in, and get an early night ahead of embarkation day." }
+          { name: "McDonald's / Taco Bell — Valdosta, GA", tag: "🍔 Lunch · ~3 hrs in", emoji: "🌮", desc: "Plenty of fast food off I-75 in Valdosta — quick pit stop, fuel up the car, and keep moving. Taco Bell and McDonald's both off Exit 18 or 22." },
+          { name: "Bawarchi Biryanis — Orlando, FL", tag: "🍛 Dinner option 1 · ~7 hrs in", emoji: "🍛", desc: "Highly rated South Indian restaurant in Orlando, famous for Hyderabadi chicken and goat biryani. Perfect dinner stop if you're hungry around 4–5 PM before the final stretch." },
+          { name: "Tabla Indian Restaurant — Orlando, FL", tag: "🍛 Dinner option 2 · ~7 hrs in", emoji: "🫕", desc: "Well-known Orlando Indian restaurant on Grand National Dr. Chicken tikka masala, butter chicken, and lamb biryani are crowd favourites. Open evenings daily." },
+          { name: "Dasara Indian Cuisine — Fort Lauderdale", tag: "🍛 Dinner at hotel · Cypress Creek Rd", emoji: "⭐", desc: "Dasara Indian Cuisine is on East Cypress Creek Road — the same street as the Hilton! Authentic Indian food highly rated on TripAdvisor. Perfect arrival-night dinner without going out of your way." }
         ],
         tips: "Use Google Maps or Waze and download offline maps for the route before you leave. Tolls on the Florida Turnpike — keep SunPass or cash handy. The drive is roughly: Cumming → Atlanta → Macon → Valdosta → Lake City → Gainesville → Orlando → Fort Lauderdale.",
         weather: "🌡 June 7 in Fort Lauderdale: 88°F / 31°C · Warm and humid, possible afternoon thunderstorms en route through Florida"
@@ -211,8 +212,35 @@ const cruiseData = {
         food: [
           { name: "Final Lido Buffet Breakfast", tag: "Free · Early morning", emoji: "🍳", desc: "The Lido buffet opens early on disembarkation day. Passengers recommend grabbing a full cooked breakfast — scrambled eggs, bacon, pastries — before heading off the ship." }
         ],
-        tips: "If you have a late flight, consider heading to South Beach for a few hours — it's only 20 minutes from the port. The earliest groups typically disembark around 7:30–8:00 AM.",
+        tips: "The earliest groups typically disembark around 7:30–8:00 AM. Head straight to your car once you have your luggage — the goal is to be on I-95 North by 9:00 AM for the drive home.",
         weather: "🌡 Miami in June: 89°F / 32°C · Warm and sunny"
+      }
+    },
+    {
+      day: 6,
+      date: "Friday, June 12, 2026",
+      port: "Miami, FL → Cumming, GA",
+      label: "Drive Home",
+      icon: "🏡",
+      description: "After disembarking, hit the road by <strong>9:00 AM</strong> from PortMiami headed north. It's the same ~700-mile journey home — you'll be back in Cumming by evening. Relive the highlights on the way!",
+      highlights: ["🕘 Depart Miami 9:00 AM", "~700 miles · ~10 hrs", "🛣 I-95 N to I-75 N", "🏡 Arrive Cumming ~7 PM"],
+      details: {
+        about: "The final leg — a 700-mile drive back to Cumming, GA. After an early disembarkation, you can be on the road by 9 AM. The route is essentially the reverse: I-95 North through Florida, then I-75 North through Georgia all the way home. Aim to be in Cumming by 7–8 PM.",
+        thingsToDo: [
+          { name: "Depart PortMiami by 9:00 AM", desc: "Load up the car right after collecting luggage at the terminal. Beat the morning rush out of Miami on I-95 North." },
+          { name: "Fort Lauderdale — optional quick stop", desc: "Just 30 min north of Miami. Good place for a coffee or gas fill-up before the long drive." },
+          { name: "Orlando — lunch break (~4 hrs in)", desc: "Perfect halfway point for lunch, fuel, and a stretch. Plenty of options off I-75 / Florida Turnpike." },
+          { name: "Gainesville / Lake City, FL — rest stop", desc: "Around 5–6 hours in. Good place to refuel and take a break before crossing into Georgia." },
+          { name: "Valdosta, GA — almost home", desc: "Around 7–8 hours in. Final fuel stop before the last stretch up to Cumming." },
+          { name: "Arrive Cumming, GA ~7:00 PM", desc: "Home sweet home! Expect to be back around 7 PM if you leave Miami at 9 AM with normal stops." }
+        ],
+        food: [
+          { name: "McDonald's / Taco Bell — Fort Lauderdale or Boca Raton", tag: "🍔 Breakfast / early stop", emoji: "🌮", desc: "Quick drive-through right after leaving Miami — grab coffee and something to eat before the highway opens up." },
+          { name: "Bawarchi Biryanis or Tabla — Orlando", tag: "🍛 Lunch · ~4 hrs in", emoji: "🍛", desc: "Stop in Orlando for a proper Indian lunch on the way back. Same restaurants as the drive down — a familiar and satisfying mid-trip meal." },
+          { name: "McDonald's / Taco Bell — Valdosta, GA", tag: "🍔 Snack stop · ~8 hrs in", emoji: "🍟", desc: "Quick refuel near the Georgia–Florida border. Just a bite to power through the last stretch to Cumming." }
+        ],
+        tips: "The drive from Miami to Cumming is about 10 hours with normal stops. Use Waze for real-time traffic — I-95 through Miami and I-75 through Atlanta can have slowdowns. Leave PortMiami by 9 AM to avoid Atlanta rush hour (aim to hit Atlanta before 5 PM or after 7 PM).",
+        weather: "🌡 Miami to Georgia in June: 89°F → 85°F · Partly cloudy, possible afternoon storms in Florida"
       }
     }
   ]
