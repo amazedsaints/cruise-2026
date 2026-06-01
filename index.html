@@ -167,15 +167,23 @@
     .passenger-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:.82rem; flex-shrink:0; }
     .passenger-name { font-weight:600; font-size:.88rem; color:var(--navy); }
 
+    /* ── Food ───────────────────────────────────────────── */
+    .food-grid { display:flex; flex-direction:column; gap:9px; margin-bottom:18px; }
+    .food-item { display:flex; gap:12px; background:white; border:1px solid var(--border); border-radius:10px; padding:12px 15px; align-items:flex-start; }
+    .food-emoji { font-size:1.5rem; flex-shrink:0; margin-top:1px; }
+    .food-name { font-weight:700; font-size:.88rem; color:var(--navy); }
+    .food-tag { display:inline-block; background:#fff3cd; border:1px solid #ffe08a; color:#856404; font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:100px; margin:3px 0 4px; }
+    .food-desc { font-size:.83rem; color:var(--muted); line-height:1.55; }
+
     /* ── Notes ─────────────────────────────────────────── */
-    .notes-picker { display:flex; align-items:center; gap:14px; margin-bottom:28px; flex-wrap:wrap; }
-    .notes-picker label { font-weight:700; color:var(--navy); font-size:.95rem; white-space:nowrap; }
-    .notes-picker select { flex:1; min-width:200px; max-width:320px; padding:10px 14px; border-radius:8px; border:1px solid var(--border); font-size:.95rem; color:var(--navy); background:var(--offwhite); outline:none; cursor:pointer; }
-    .notes-picker select:focus { border-color:var(--blue); }
-    .notes-prompt { text-align:center; padding:48px 24px; color:var(--muted); font-size:.95rem; }
-    .notes-prompt .notes-icon { font-size:2.5rem; margin-bottom:10px; }
-    .notes-tabs { display:none; }
-    .notes-tabs.visible { display:block; }
+    .person-picker { display:flex; align-items:center; gap:14px; margin-bottom:28px; flex-wrap:wrap; }
+    .person-picker label { font-weight:700; color:var(--navy); font-size:.95rem; white-space:nowrap; }
+    .person-picker select { flex:1; min-width:200px; max-width:320px; padding:10px 14px; border-radius:8px; border:1px solid var(--border); font-size:.95rem; color:var(--navy); background:var(--offwhite); outline:none; cursor:pointer; }
+    .person-picker select:focus { border-color:var(--blue); }
+    .section-prompt { text-align:center; padding:40px 24px; color:var(--muted); font-size:.95rem; }
+    .section-prompt .prompt-icon { font-size:2.5rem; margin-bottom:10px; }
+    .day-tabs { display:none; }
+    .day-tabs.visible { display:block; }
     .tab-list { display:flex; gap:4px; flex-wrap:wrap; border-bottom:2px solid var(--border); margin-bottom:22px; }
     .tab-btn { padding:10px 14px; font-size:.84rem; font-weight:700; color:var(--muted); background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; cursor:pointer; border-radius:6px 6px 0 0; transition:color .2s,border-color .2s,background .2s; }
     .tab-btn:hover { color:var(--navy); background:var(--offwhite); }
@@ -186,7 +194,41 @@
     .tab-date { font-size:.82rem; color:var(--muted); margin-bottom:14px; }
     .note-textarea { width:100%; min-height:140px; padding:14px 16px; border-radius:10px; border:1px solid var(--border); font-size:.93rem; font-family:inherit; color:var(--text); resize:vertical; outline:none; background:var(--offwhite); transition:border-color .2s; }
     .note-textarea:focus { border-color:var(--blue); background:white; }
-    .note-save-status { font-size:.78rem; color:var(--teal); font-weight:600; margin-top:7px; min-height:1em; }
+    .save-status { font-size:.78rem; color:var(--teal); font-weight:600; margin-top:7px; min-height:1em; }
+
+    /* ── Chat ───────────────────────────────────────────── */
+    #chat-section { background:var(--navy); padding:0; }
+    .chat-wrap { max-width:920px; margin:0 auto; padding:48px 24px; }
+    .chat-wrap .section-title { color:white; }
+    .chat-wrap .section-subtitle { color:rgba(255,255,255,0.55); }
+    .chat-name-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:24px; }
+    .chat-name-row label { color:rgba(255,255,255,0.7); font-size:.9rem; font-weight:700; white-space:nowrap; }
+    .chat-select { padding:9px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:white; font-size:.9rem; outline:none; cursor:pointer; min-width:200px; }
+    .chat-select option { background:var(--navy); }
+    .chat-select:focus { border-color:var(--gold2); }
+    .chat-box { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:12px; overflow:hidden; }
+    .chat-messages { height:320px; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; }
+    .chat-messages::-webkit-scrollbar { width:4px; }
+    .chat-messages::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.15); border-radius:4px; }
+    .chat-empty { text-align:center; color:rgba(255,255,255,0.3); font-size:.88rem; padding:40px 0; flex:1; display:flex; align-items:center; justify-content:center; }
+    .chat-bubble-row { display:flex; gap:8px; align-items:flex-end; }
+    .chat-bubble-row.mine { flex-direction:row-reverse; }
+    .bubble-avatar { width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.7rem; font-weight:800; color:white; flex-shrink:0; }
+    .bubble { max-width:70%; padding:10px 14px; border-radius:16px; font-size:.88rem; line-height:1.5; }
+    .bubble-row { display:flex; flex-direction:column; }
+    .bubble-sender { font-size:.68rem; font-weight:700; margin-bottom:3px; opacity:.7; }
+    .bubble.theirs { background:rgba(255,255,255,0.12); color:white; border-bottom-left-radius:4px; }
+    .bubble.mine { background:var(--gold); color:var(--navy); border-bottom-right-radius:4px; font-weight:500; }
+    .bubble-time { font-size:.65rem; opacity:.5; margin-top:3px; }
+    .chat-bubble-row.mine .bubble-time { text-align:right; }
+    .chat-input-row { display:flex; gap:10px; padding:12px 14px; border-top:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.15); }
+    .chat-input { flex:1; padding:10px 14px; border-radius:24px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:white; font-size:.9rem; font-family:inherit; outline:none; }
+    .chat-input::placeholder { color:rgba(255,255,255,0.35); }
+    .chat-input:focus { border-color:var(--gold2); background:rgba(255,255,255,0.12); }
+    .chat-send { background:var(--gold); color:var(--navy); border:none; border-radius:50%; width:40px; height:40px; font-size:1.1rem; cursor:pointer; flex-shrink:0; transition:background .2s,transform .1s; display:flex; align-items:center; justify-content:center; }
+    .chat-send:hover { background:var(--gold2); transform:scale(1.05); }
+    .chat-notice { font-size:.75rem; color:rgba(255,255,255,0.3); text-align:center; padding:8px 14px 14px; }
+    .chat-prompt { text-align:center; padding:40px 24px; color:rgba(255,255,255,0.35); font-size:.9rem; }
 
     /* ── Footer ────────────────────────────────────────── */
     footer { background:var(--navy); color:rgba(255,255,255,0.5); text-align:center; padding:30px 24px; font-size:.84rem; }
@@ -249,6 +291,7 @@
   <a href="#map-section">🗺 Route Map</a>
   <a href="#who-coming">👥 Who's Coming</a>
   <a href="#my-notes">📝 My Notes</a>
+  <a href="#chat-section">💬 Group Chat</a>
 </nav>
 
 <!-- Itinerary -->
@@ -288,17 +331,44 @@
     <div class="section-title">📝 My Notes</div>
     <p class="section-subtitle">Pick your name to add personal notes for each day. Saved privately on this device.</p>
     <div class="divider"></div>
-    <div class="notes-picker">
-      <label for="name-select">I am:</label>
-      <select id="name-select"><option value="">— Select your name —</option></select>
+    <div class="person-picker">
+      <label for="notes-name-select">I am:</label>
+      <select id="notes-name-select"><option value="">— Select your name —</option></select>
     </div>
-    <div class="notes-prompt" id="notes-prompt">
-      <div class="notes-icon">✍️</div>
+    <div class="section-prompt" id="notes-prompt">
+      <div class="prompt-icon">✍️</div>
       <div>Select your name above to start adding notes.</div>
     </div>
-    <div class="notes-tabs" id="notes-tabs">
-      <div class="tab-list" id="tab-list"></div>
-      <div id="tab-panels"></div>
+    <div class="day-tabs" id="notes-tabs">
+      <div class="tab-list" id="notes-tab-list"></div>
+      <div id="notes-tab-panels"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Group Chat -->
+<section id="chat-section" style="padding:0;">
+  <div class="chat-wrap">
+    <div class="section-title">💬 Group Chat</div>
+    <p class="section-subtitle" style="color:rgba(255,255,255,0.55); margin-bottom:10px;">Leave messages for the group. Everyone on the trip can read and reply.</p>
+    <div class="divider"></div>
+    <div class="chat-name-row">
+      <label for="chat-name-select">I am:</label>
+      <select class="chat-select" id="chat-name-select"><option value="">— Select your name —</option></select>
+    </div>
+    <div class="chat-prompt" id="chat-prompt">
+      <div style="font-size:2rem;margin-bottom:8px;">💬</div>
+      Select your name above to join the group chat.
+    </div>
+    <div id="chat-ui" style="display:none;">
+      <div class="chat-box">
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-row">
+          <input class="chat-input" id="chat-input" type="text" placeholder="Type a message…" maxlength="500" />
+          <button class="chat-send" id="chat-send" title="Send">➤</button>
+        </div>
+      </div>
+      <div class="chat-notice">Messages are stored on this device. Share the site with the group so everyone can read along!</div>
     </div>
   </div>
 </section>
@@ -450,8 +520,9 @@ function renderTimeline() {
     card.className = "day-card";
     card.id = `day-card-${day.day}`;
 
-    const w = weatherData[idx];
+    const w    = weatherData[idx];
     const info = w ? wmoInfo(w.code) : null;
+
     const weatherPill = info ? `
       <div class="day-weather-pill">
         <span class="pw-icon">${info.icon}</span>
@@ -474,6 +545,16 @@ function renderTimeline() {
       <div class="thing-item">
         <div class="thing-dot"></div>
         <div><div class="thing-name">${t.name}</div><div class="thing-desc">${t.desc}</div></div>
+      </div>`).join("");
+
+    const foods = (day.details.food || []).map(f=>`
+      <div class="food-item">
+        <div class="food-emoji">${f.emoji}</div>
+        <div>
+          <div class="food-name">${f.name}</div>
+          <span class="food-tag">${f.tag}</span>
+          <div class="food-desc">${f.desc}</div>
+        </div>
       </div>`).join("");
 
     card.innerHTML = `
@@ -499,7 +580,9 @@ function renderTimeline() {
         <div class="detail-about">${day.details.about}</div>
         <div class="detail-sec">🌤 Weather Forecast</div>
         ${detailWeather}
-        <div class="detail-sec" style="margin-top:16px;">🗺 Things To Do</div>
+        <div class="detail-sec" style="margin-top:18px;">🍽 What to Eat</div>
+        <div class="food-grid">${foods}</div>
+        <div class="detail-sec">🗺 Things To Do</div>
         <div class="things-grid">${things}</div>
         <div class="detail-tip"><strong>💡 Tip:</strong> ${day.details.tips}</div>
       </div>`;
@@ -617,63 +700,195 @@ cruiseData.staterooms.forEach((sr, i) => {
 
 // ── Notes ───────────────────────────────────────────────
 const allPassengers = cruiseData.staterooms.flatMap(sr => sr.passengers);
-const nameSelect    = document.getElementById("name-select");
-const notesPrompt   = document.getElementById("notes-prompt");
-const notesTabs     = document.getElementById("notes-tabs");
-const tabList       = document.getElementById("tab-list");
-const tabPanels     = document.getElementById("tab-panels");
 
-allPassengers.forEach(name => {
-  const opt = document.createElement("option");
-  opt.value = name; opt.textContent = name;
-  nameSelect.appendChild(opt);
-});
+function populateSelect(selectEl) {
+  allPassengers.forEach(name => {
+    const opt = document.createElement("option");
+    opt.value = name; opt.textContent = name;
+    selectEl.appendChild(opt);
+  });
+}
 
-const savedName = localStorage.getItem("cruise_selected_name");
-if (savedName && allPassengers.includes(savedName)) { nameSelect.value = savedName; showNotes(savedName); }
+// Notes select
+const notesSelect  = document.getElementById("notes-name-select");
+const notesPrompt  = document.getElementById("notes-prompt");
+const notesTabs    = document.getElementById("notes-tabs");
+const notesTabList = document.getElementById("notes-tab-list");
+const notesTabPanels = document.getElementById("notes-tab-panels");
+populateSelect(notesSelect);
 
-nameSelect.addEventListener("change", () => {
-  const name = nameSelect.value;
-  localStorage.setItem("cruise_selected_name", name);
+const savedNotesName = localStorage.getItem("cruise_notes_name");
+if (savedNotesName && allPassengers.includes(savedNotesName)) {
+  notesSelect.value = savedNotesName;
+  showNotes(savedNotesName);
+}
+notesSelect.addEventListener("change", () => {
+  const name = notesSelect.value;
+  localStorage.setItem("cruise_notes_name", name);
   if (name) showNotes(name);
-  else { notesPrompt.style.display="block"; notesTabs.classList.remove("visible"); }
+  else { notesPrompt.style.display = "block"; notesTabs.classList.remove("visible"); }
 });
 
-let activeTab = 0;
+let activeNoteTab = 0;
 function showNotes(personName) {
   notesPrompt.style.display = "none";
   notesTabs.classList.add("visible");
-  tabList.innerHTML = ""; tabPanels.innerHTML = "";
+  notesTabList.innerHTML = "";
+  notesTabPanels.innerHTML = "";
   cruiseData.days.forEach((day, idx) => {
+    // Tab button
     const btn = document.createElement("button");
-    btn.className = "tab-btn" + (idx===activeTab?" active":"");
+    btn.className = "tab-btn" + (idx === activeNoteTab ? " active" : "");
     btn.textContent = `Day ${day.day} ${day.icon}`;
-    btn.addEventListener("click", () => switchTab(idx));
-    tabList.appendChild(btn);
+    btn.addEventListener("click", () => {
+      activeNoteTab = idx;
+      notesTabList.querySelectorAll(".tab-btn").forEach((b,i) => b.classList.toggle("active", i===idx));
+      notesTabPanels.querySelectorAll(".tab-panel").forEach((p,i) => p.classList.toggle("active", i===idx));
+    });
+    notesTabList.appendChild(btn);
+
+    // Panel — build elements, set textarea.value directly to avoid HTML-encoding issues
     const key   = `notes__${personName}__day${day.day}`;
     const saved = localStorage.getItem(key) || "";
     const panel = document.createElement("div");
-    panel.className = "tab-panel" + (idx===activeTab?" active":"");
-    panel.innerHTML = `
-      <div class="tab-port">${day.port}</div>
-      <div class="tab-date">${day.date}</div>
-      <textarea class="note-textarea" placeholder="Write your notes, plans, or reminders for this day…">${saved}</textarea>
-      <div class="note-save-status" id="status-${idx}"></div>`;
-    const ta = panel.querySelector("textarea");
+    panel.className = "tab-panel" + (idx === activeNoteTab ? " active" : "");
+
+    const portDiv = document.createElement("div");
+    portDiv.className = "tab-port"; portDiv.textContent = day.port;
+    const dateDiv = document.createElement("div");
+    dateDiv.className = "tab-date"; dateDiv.textContent = day.date;
+    const ta = document.createElement("textarea");
+    ta.className = "note-textarea";
+    ta.placeholder = "Write your notes, plans, or reminders for this day…";
+    ta.value = saved;                   // ← set value directly, not via innerHTML
+    const statusDiv = document.createElement("div");
+    statusDiv.className = "save-status";
+
     ta.addEventListener("input", () => {
       localStorage.setItem(key, ta.value);
-      const st = document.getElementById(`status-${idx}`);
-      st.textContent = "✓ Saved";
-      setTimeout(() => st.textContent="", 1500);
+      statusDiv.textContent = "✓ Saved";
+      setTimeout(() => { statusDiv.textContent = ""; }, 1500);
     });
-    tabPanels.appendChild(panel);
+
+    panel.appendChild(portDiv);
+    panel.appendChild(dateDiv);
+    panel.appendChild(ta);
+    panel.appendChild(statusDiv);
+    notesTabPanels.appendChild(panel);
   });
 }
-function switchTab(idx) {
-  activeTab = idx;
-  document.querySelectorAll(".tab-btn").forEach((b,i) => b.classList.toggle("active", i===idx));
-  document.querySelectorAll(".tab-panel").forEach((p,i) => p.classList.toggle("active", i===idx));
+
+// ── Chat ─────────────────────────────────────────────────
+const CHAT_KEY   = "cruise_chat_messages";
+const CHAT_LIMIT = 200;
+const chatSelect = document.getElementById("chat-name-select");
+const chatPrompt = document.getElementById("chat-prompt");
+const chatUI     = document.getElementById("chat-ui");
+const chatInput  = document.getElementById("chat-input");
+const chatSend   = document.getElementById("chat-send");
+const chatMsgs   = document.getElementById("chat-messages");
+
+populateSelect(chatSelect);
+
+const savedChatName = localStorage.getItem("cruise_chat_name");
+if (savedChatName && allPassengers.includes(savedChatName)) {
+  chatSelect.value = savedChatName; openChat(savedChatName);
 }
+chatSelect.addEventListener("change", () => {
+  const name = chatSelect.value;
+  localStorage.setItem("cruise_chat_name", name);
+  if (name) openChat(name);
+  else { chatPrompt.style.display = "block"; chatUI.style.display = "none"; }
+});
+
+const passengerColors = {};
+const palette = ["#1abc9c","#e67e22","#9b59b6","#e74c3c","#3498db","#f39c12","#2ecc71","#e91e63","#00bcd4","#ff5722","#8e44ad","#16a085"];
+allPassengers.forEach((p, i) => { passengerColors[p] = palette[i % palette.length]; });
+
+function getMessages() {
+  try { return JSON.parse(localStorage.getItem(CHAT_KEY) || "[]"); } catch { return []; }
+}
+function saveMessages(msgs) {
+  localStorage.setItem(CHAT_KEY, JSON.stringify(msgs.slice(-CHAT_LIMIT)));
+}
+function formatTime(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-US",{month:"short",day:"numeric"}) + " " +
+         d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
+}
+function renderMessages(myName) {
+  const msgs = getMessages();
+  chatMsgs.innerHTML = "";
+  if (!msgs.length) {
+    const empty = document.createElement("div");
+    empty.className = "chat-empty"; empty.textContent = "No messages yet — say hello! 👋";
+    chatMsgs.appendChild(empty);
+    return;
+  }
+  msgs.forEach(m => {
+    const isMine = m.sender === myName;
+    const color  = passengerColors[m.sender] || "#888";
+    const initials = m.sender.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
+
+    const row = document.createElement("div");
+    row.className = "chat-bubble-row" + (isMine ? " mine" : "");
+
+    const avatar = document.createElement("div");
+    avatar.className = "bubble-avatar";
+    avatar.style.background = color;
+    avatar.textContent = initials;
+
+    const col = document.createElement("div");
+    col.className = "bubble-row";
+
+    if (!isMine) {
+      const sender = document.createElement("div");
+      sender.className = "bubble-sender"; sender.style.color = color;
+      sender.textContent = m.sender;
+      col.appendChild(sender);
+    }
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble " + (isMine ? "mine" : "theirs");
+    bubble.textContent = m.text;
+
+    const time = document.createElement("div");
+    time.className = "bubble-time"; time.textContent = formatTime(m.ts);
+
+    col.appendChild(bubble);
+    col.appendChild(time);
+    row.appendChild(avatar);
+    row.appendChild(col);
+    chatMsgs.appendChild(row);
+  });
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+function openChat(name) {
+  chatPrompt.style.display = "none";
+  chatUI.style.display = "block";
+  renderMessages(name);
+}
+
+function sendMessage() {
+  const name = chatSelect.value;
+  const text = chatInput.value.trim();
+  if (!name || !text) return;
+  const msgs = getMessages();
+  msgs.push({ sender: name, text, ts: new Date().toISOString() });
+  saveMessages(msgs);
+  chatInput.value = "";
+  renderMessages(name);
+}
+
+chatSend.addEventListener("click", sendMessage);
+chatInput.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+
+// Poll for new messages every 5s (picks up messages from other browser tabs)
+setInterval(() => {
+  const name = chatSelect.value;
+  if (name && chatUI.style.display !== "none") renderMessages(name);
+}, 5000);
 </script>
 </body>
 </html>
