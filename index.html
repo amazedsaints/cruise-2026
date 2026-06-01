@@ -15,7 +15,6 @@
       --teal:     #1abc9c;
       --gold:     #d4a017;
       --gold2:    #f0c040;
-      --white:    #ffffff;
       --offwhite: #f4f8fb;
       --text:     #1c2833;
       --muted:    #566573;
@@ -26,225 +25,197 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--offwhite); color: var(--text); line-height: 1.6; }
 
-    /* ── Ship Banner ───────────────────────────────────── */
-    .ship-banner { position: relative; height: 380px; overflow: hidden; background: var(--navy); }
+    /* ── Ship Banner ── */
+    .ship-banner { position:relative; height:380px; overflow:hidden; background:var(--navy); }
     .ship-banner img { width:100%; height:100%; object-fit:cover; object-position:center 55%; opacity:.5; display:block; }
-    .ship-banner-fallback { display:none; width:100%; height:100%; background:linear-gradient(160deg,#0a1f38 0%,#1a5276 50%,#0d6b8e 100%); position:absolute; inset:0; }
-    .ship-banner-overlay {
+    .ship-fallback { display:none; position:absolute; inset:0; background:linear-gradient(160deg,#0a1f38,#1a5276,#0d6b8e); }
+    .ship-overlay {
       position:absolute; inset:0;
-      background:linear-gradient(to bottom,rgba(10,30,60,0.25) 0%,rgba(10,30,60,0.78) 100%);
+      background:linear-gradient(to bottom,rgba(10,30,60,.25),rgba(10,30,60,.78));
       display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
-      padding-bottom:48px; text-align:center; color:white;
+      padding-bottom:48px; text-align:center; color:#fff;
     }
-    .ship-name-tag { background:var(--gold); color:var(--navy); font-size:.72rem; font-weight:900; letter-spacing:2.5px; text-transform:uppercase; padding:5px 18px; border-radius:100px; margin-bottom:12px; }
-    .ship-banner-overlay h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:900; letter-spacing:-1px; text-shadow:0 2px 12px rgba(0,0,0,0.4); }
-    .ship-banner-overlay .subtitle { font-size:1rem; opacity:.82; margin-top:6px; }
-    .ship-banner-overlay .dates { margin-top:16px; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28); border-radius:100px; padding:8px 24px; font-size:.9rem; }
+    .ship-tag { background:var(--gold); color:var(--navy); font-size:.72rem; font-weight:900; letter-spacing:2.5px; text-transform:uppercase; padding:5px 18px; border-radius:100px; margin-bottom:12px; }
+    .ship-overlay h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:900; letter-spacing:-1px; text-shadow:0 2px 12px rgba(0,0,0,.4); }
+    .ship-overlay .sub { font-size:1rem; opacity:.82; margin-top:6px; }
+    .ship-overlay .dates { margin-top:16px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); border-radius:100px; padding:8px 24px; font-size:.9rem; }
 
-    /* ── Countdown ─────────────────────────────────────── */
-    .countdown-bar { background:linear-gradient(135deg,#08192e 0%,var(--navy) 100%); color:white; text-align:center; padding:22px 16px 26px; }
-    .countdown-label { font-size:.75rem; letter-spacing:2.5px; text-transform:uppercase; opacity:.55; margin-bottom:12px; }
-    .countdown-units { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
-    .countdown-unit { display:flex; flex-direction:column; align-items:center; }
-    .countdown-num { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:10px 16px; font-size:2.2rem; font-weight:900; line-height:1; min-width:68px; font-variant-numeric:tabular-nums; letter-spacing:-1px; }
-    .countdown-unit span { font-size:.68rem; letter-spacing:1.5px; text-transform:uppercase; opacity:.5; margin-top:6px; }
-    .countdown-sailed { font-size:1.2rem; font-weight:700; color:var(--gold2); padding:12px 0; }
+    /* ── Countdown ── */
+    .cd-bar { background:linear-gradient(135deg,#08192e,var(--navy)); color:#fff; text-align:center; padding:22px 16px 26px; }
+    .cd-label { font-size:.75rem; letter-spacing:2.5px; text-transform:uppercase; opacity:.55; margin-bottom:12px; }
+    .cd-units { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .cd-unit { display:flex; flex-direction:column; align-items:center; }
+    .cd-num { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:10px 16px; font-size:2.2rem; font-weight:900; line-height:1; min-width:68px; font-variant-numeric:tabular-nums; }
+    .cd-unit span { font-size:.68rem; letter-spacing:1.5px; text-transform:uppercase; opacity:.5; margin-top:6px; }
+    .cd-sailed { font-size:1.2rem; font-weight:700; color:var(--gold2); padding:12px 0; }
 
-    /* ── Weather Strip ─────────────────────────────────── */
-    #weather-strip { background:linear-gradient(135deg,#0a2540 0%,#0e3d6e 100%); border-bottom:1px solid rgba(255,255,255,0.08); }
-    .weather-strip-inner { max-width:920px; margin:0 auto; padding:24px 24px 28px; }
-    .weather-strip-title { font-size:.72rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:16px; }
-    .weather-cards { display:flex; gap:10px; overflow-x:auto; padding-bottom:4px; }
-    .weather-cards::-webkit-scrollbar { height:3px; }
-    .weather-cards::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.2); border-radius:3px; }
-    .weather-card {
-      flex:0 0 auto; min-width:130px;
-      background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12);
-      border-radius:12px; padding:14px 14px 12px;
-      text-align:center; color:white;
-      transition:background .2s, transform .15s;
-      cursor:default;
-    }
-    .weather-card:hover { background:rgba(255,255,255,0.13); transform:translateY(-2px); }
-    .weather-card .wc-day { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; opacity:.55; margin-bottom:2px; }
-    .weather-card .wc-date-line { font-size:.8rem; font-weight:800; color:var(--gold2); margin-bottom:5px; }
-    .weather-card .wc-port { font-size:.78rem; font-weight:700; opacity:.85; margin-bottom:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px; }
-    .weather-card .wc-icon { font-size:2rem; margin-bottom:6px; display:block; }
-    .weather-card .wc-desc { font-size:.75rem; opacity:.7; margin-bottom:6px; }
-    .weather-card .wc-temps { font-size:.88rem; font-weight:800; }
-    .weather-card .wc-temps .hi { color:#f9ca74; }
-    .weather-card .wc-temps .lo { color:rgba(255,255,255,0.5); margin-left:5px; }
-    .rain-bar-wrap { margin-top:8px; }
-    .rain-bar-label { font-size:.65rem; opacity:.5; margin-bottom:3px; }
-    .rain-bar { height:4px; border-radius:4px; background:rgba(255,255,255,0.1); overflow:hidden; }
-    .rain-bar-fill { height:100%; border-radius:4px; transition:width .6s ease; }
-    .rain-pct { font-size:.68rem; margin-top:3px; font-weight:700; }
-    .weather-loading { color:rgba(255,255,255,0.4); font-size:.88rem; padding:20px 0; text-align:center; }
+    /* ── Weather Strip ── */
+    #weather-strip { background:linear-gradient(135deg,#0a2540,#0e3d6e); border-bottom:1px solid rgba(255,255,255,.08); }
+    .wx-inner { max-width:920px; margin:0 auto; padding:24px 24px 28px; }
+    .wx-title { font-size:.72rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:16px; }
+    .wx-cards { display:flex; gap:10px; overflow-x:auto; padding-bottom:4px; }
+    .wx-cards::-webkit-scrollbar { height:3px; }
+    .wx-cards::-webkit-scrollbar-thumb { background:rgba(255,255,255,.2); border-radius:3px; }
+    .wx-card { flex:0 0 auto; min-width:138px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:14px 14px 12px; text-align:center; color:#fff; transition:background .2s,transform .15s; }
+    .wx-card:hover { background:rgba(255,255,255,.13); transform:translateY(-2px); }
+    .wx-day  { font-size:.66rem; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; opacity:.5; margin-bottom:2px; }
+    .wx-date { font-size:.8rem; font-weight:800; color:var(--gold2); margin-bottom:4px; }
+    .wx-port { font-size:.78rem; font-weight:700; opacity:.85; margin-bottom:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .wx-icon { font-size:2rem; display:block; margin-bottom:5px; }
+    .wx-desc { font-size:.74rem; opacity:.68; margin-bottom:5px; }
+    .wx-temps .hi { color:#f9ca74; font-weight:800; font-size:.88rem; }
+    .wx-temps .lo { color:rgba(255,255,255,.45); font-size:.82rem; margin-left:4px; }
+    .rain-wrap { margin-top:8px; }
+    .rain-lbl  { font-size:.65rem; opacity:.45; margin-bottom:3px; }
+    .rain-bar  { height:4px; border-radius:4px; background:rgba(255,255,255,.1); overflow:hidden; }
+    .rain-fill { height:100%; border-radius:4px; }
+    .rain-pct  { font-size:.68rem; font-weight:700; margin-top:3px; }
+    .wx-loading { color:rgba(255,255,255,.4); font-size:.88rem; padding:20px 0; }
 
-    /* ── Nav ───────────────────────────────────────────── */
-    nav { background:var(--navy2); position:sticky; top:0; z-index:200; display:flex; justify-content:center; flex-wrap:wrap; gap:2px; padding:0 12px; box-shadow:0 2px 16px rgba(0,0,0,0.35); }
-    nav a { color:rgba(255,255,255,0.68); text-decoration:none; padding:13px 14px; font-size:.86rem; font-weight:600; border-bottom:3px solid transparent; transition:color .2s,border-color .2s; white-space:nowrap; }
-    nav a:hover { color:white; border-bottom-color:var(--gold2); }
+    /* ── Nav ── */
+    nav { background:var(--navy2); position:sticky; top:0; z-index:200; display:flex; justify-content:center; flex-wrap:wrap; gap:2px; padding:0 12px; box-shadow:0 2px 16px rgba(0,0,0,.35); }
+    nav a { color:rgba(255,255,255,.68); text-decoration:none; padding:13px 14px; font-size:.86rem; font-weight:600; border-bottom:3px solid transparent; transition:color .2s,border-color .2s; white-space:nowrap; }
+    nav a:hover { color:#fff; border-bottom-color:var(--gold2); }
 
-    /* ── Section ───────────────────────────────────────── */
-    .section-wrap { padding:52px 24px; max-width:920px; margin:0 auto; }
-    .section-title { font-size:1.65rem; font-weight:800; color:var(--navy); margin-bottom:6px; }
-    .section-subtitle { color:var(--muted); margin-bottom:10px; font-size:.93rem; }
-    .divider { width:48px; height:4px; background:var(--gold); border-radius:4px; margin-bottom:28px; }
+    /* ── Section wrapper ── */
+    .sw { padding:52px 24px; max-width:920px; margin:0 auto; }
+    .sec-title { font-size:1.65rem; font-weight:800; color:var(--navy); margin-bottom:6px; }
+    .sec-sub   { color:var(--muted); margin-bottom:10px; font-size:.93rem; }
+    .divider   { width:48px; height:4px; background:var(--gold); border-radius:4px; margin-bottom:28px; }
 
-    /* ── Map ───────────────────────────────────────────── */
+    /* ── Day cards ── */
+    .timeline { display:flex; flex-direction:column; gap:14px; }
+    .day-card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:box-shadow .2s,transform .15s; }
+    .day-card:hover { box-shadow:0 8px 32px rgba(13,43,78,.16); transform:translateY(-1px); }
+    .card-head { display:flex; }
+    .day-badge { background:linear-gradient(180deg,var(--navy),var(--blue)); color:#fff; min-width:86px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 10px; text-align:center; flex-shrink:0; }
+    .day-badge .ico { font-size:1.7rem; margin-bottom:5px; }
+    .day-badge .lbl { font-size:.62rem; text-transform:uppercase; letter-spacing:1px; opacity:.6; }
+    .day-badge .num { font-size:1.9rem; font-weight:900; line-height:1; }
+    .day-body  { padding:18px 20px; flex:1; min-width:0; }
+    .top-row   { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+    .port-name { font-size:1.1rem; font-weight:800; color:var(--navy); }
+    .wx-pill   { display:flex; align-items:center; gap:4px; background:var(--offwhite); border:1px solid var(--border); border-radius:100px; padding:4px 10px; font-size:.77rem; white-space:nowrap; flex-shrink:0; }
+    .wx-pill .wpi { font-size:1rem; }
+    .wx-pill .wpt { font-weight:700; color:var(--navy); }
+    .wx-pill .wpr { color:var(--muted); }
+    .chip  { display:inline-block; background:#e8f4fd; color:var(--blue); font-size:.73rem; font-weight:700; padding:3px 10px; border-radius:100px; margin:4px 0 8px; }
+    .ddate { font-size:.82rem; color:var(--muted); margin-bottom:9px; }
+    .ddesc { font-size:.92rem; color:#3d4f60; margin-bottom:12px; line-height:1.62; }
+    .tags  { display:flex; flex-wrap:wrap; gap:6px; }
+    .tag   { background:var(--offwhite); border:1px solid var(--border); color:var(--navy2); font-size:.77rem; padding:4px 11px; border-radius:100px; font-weight:600; }
+    .expand-hint { display:flex; align-items:center; gap:5px; font-size:.78rem; color:var(--gold); font-weight:700; margin-top:11px; }
+    .arrow { transition:transform .3s; display:inline-block; }
+    .day-card.open .arrow { transform:rotate(180deg); }
+    .card-detail { display:none; border-top:1px solid var(--border); padding:24px 20px 20px; background:#f8fbff; }
+    .day-card.open .card-detail { display:block; }
+    .about { font-size:.94rem; color:#3a4a5c; line-height:1.72; margin-bottom:18px; }
+    .wx-box { display:flex; gap:12px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:16px; align-items:center; }
+    .wx-box .wxico { font-size:2.2rem; }
+    .wx-box .wxd  { }
+    .wx-box .wxd b { font-weight:700; color:var(--navy); font-size:.94rem; }
+    .wx-box .wxd .wxt { font-size:.86rem; color:var(--muted); margin-top:2px; }
+    .wx-box .wxd .wxr { font-size:.84rem; margin-top:3px; }
+    .sec-hd { font-size:.76rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:var(--navy); margin:16px 0 10px; }
+    .things { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+    .thing  { display:flex; gap:11px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:11px 14px; }
+    .dot    { width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:6px; }
+    .tname  { font-weight:700; font-size:.87rem; color:var(--navy); }
+    .tdesc  { font-size:.82rem; color:var(--muted); margin-top:2px; }
+    .foods  { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+    .food   { display:flex; gap:11px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:11px 14px; align-items:flex-start; }
+    .femo   { font-size:1.4rem; flex-shrink:0; margin-top:1px; }
+    .fname  { font-weight:700; font-size:.87rem; color:var(--navy); }
+    .ftag   { display:inline-block; background:#fff3cd; border:1px solid #ffe08a; color:#856404; font-size:.69rem; font-weight:700; padding:2px 8px; border-radius:100px; margin:3px 0 4px; }
+    .fdesc  { font-size:.82rem; color:var(--muted); line-height:1.55; }
+    .tip    { background:#fffbea; border:1px solid #f5d97a; border-radius:10px; padding:12px 15px; font-size:.85rem; color:#7a5c00; }
+    .tip strong { color:#5a4200; }
+
+    /* ── Map ── */
     #map-section { background:var(--navy); padding:0; }
-    .map-header { max-width:920px; margin:0 auto; padding:36px 24px 18px; }
-    .map-header .section-title { color:white; }
-    .map-header .section-subtitle { color:rgba(255,255,255,0.55); }
+    .map-hd { max-width:920px; margin:0 auto; padding:36px 24px 18px; }
+    .map-hd .sec-title { color:#fff; }
+    .map-hd .sec-sub   { color:rgba(255,255,255,.55); }
     #cruise-map { height:440px; width:100%; }
     .map-legend { max-width:920px; margin:0 auto; padding:14px 24px 28px; display:flex; flex-wrap:wrap; gap:10px; }
-    .legend-item { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:100px; padding:6px 14px; color:rgba(255,255,255,0.75); font-size:.78rem; font-weight:600; }
-
-    /* Leaflet popup override */
-    .leaflet-popup-content-wrapper { border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+    .leg-item { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:100px; padding:6px 14px; color:rgba(255,255,255,.75); font-size:.78rem; font-weight:600; }
+    .leaflet-popup-content-wrapper { border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,.3); }
     .leaflet-popup-content { margin:12px 14px; }
+    @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(240,192,64,.7)} 70%{box-shadow:0 0 0 10px rgba(240,192,64,0)} 100%{box-shadow:0 0 0 0 rgba(240,192,64,0)} }
 
-    /* Pulsing marker animation */
-    @keyframes pulse {
-      0%   { box-shadow:0 0 0 0 rgba(240,192,64,0.7); }
-      70%  { box-shadow:0 0 0 10px rgba(240,192,64,0); }
-      100% { box-shadow:0 0 0 0 rgba(240,192,64,0); }
-    }
-    .marker-pulse { animation:pulse 2s infinite; }
+    /* ── Staterooms ── */
+    .sr-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+    .sr-box  { background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
+    .sr-head { padding:16px 20px; color:#fff; }
+    .sr-head .srn { font-size:1rem; font-weight:800; }
+    .sr-head .src { font-size:.79rem; opacity:.7; margin-top:1px; }
+    .sr-head .sra { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25); border-radius:100px; padding:4px 12px; font-size:.73rem; margin-top:9px; }
+    .sr-body { padding:12px 16px; display:flex; flex-direction:column; gap:9px; }
+    .pax-row { display:flex; align-items:center; gap:11px; }
+    .pax-av  { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:.82rem; flex-shrink:0; }
+    .pax-name { font-weight:600; font-size:.88rem; color:var(--navy); }
 
-    /* ── Day Cards ─────────────────────────────────────── */
-    .timeline { display:flex; flex-direction:column; gap:14px; }
-    .day-card { background:white; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:box-shadow .2s,transform .15s; }
-    .day-card:hover { box-shadow:0 8px 32px rgba(13,43,78,0.16); transform:translateY(-1px); }
-    .day-card-header { display:flex; }
-    .day-badge { background:linear-gradient(180deg,var(--navy) 0%,var(--blue) 100%); color:white; min-width:86px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 10px; text-align:center; flex-shrink:0; }
-    .day-badge .icon { font-size:1.7rem; margin-bottom:5px; }
-    .day-badge .day-lbl { font-size:.62rem; text-transform:uppercase; letter-spacing:1px; opacity:.6; }
-    .day-badge .day-n { font-size:1.9rem; font-weight:900; line-height:1; }
-    .day-summary { padding:18px 20px; flex:1; min-width:0; }
-    .day-top-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
-    .day-port-name { font-size:1.1rem; font-weight:800; color:var(--navy); }
-    .day-weather-pill { display:flex; align-items:center; gap:5px; background:var(--offwhite); border:1px solid var(--border); border-radius:100px; padding:4px 10px; font-size:.78rem; white-space:nowrap; flex-shrink:0; }
-    .day-weather-pill .pw-icon { font-size:1rem; }
-    .day-weather-pill .pw-temp { font-weight:700; color:var(--navy); }
-    .day-weather-pill .pw-rain { color:var(--muted); margin-left:2px; }
-    .day-label-chip { display:inline-block; background:#e8f4fd; color:var(--blue); font-size:.73rem; font-weight:700; padding:3px 10px; border-radius:100px; margin:4px 0 8px; }
-    .day-date { font-size:.82rem; color:var(--muted); margin-bottom:9px; }
-    .day-desc { font-size:.92rem; color:#3d4f60; margin-bottom:12px; line-height:1.62; }
-    .highlights { display:flex; flex-wrap:wrap; gap:6px; }
-    .highlight-chip { background:var(--offwhite); border:1px solid var(--border); color:var(--navy2); font-size:.77rem; padding:4px 11px; border-radius:100px; font-weight:600; }
-    .expand-hint { display:flex; align-items:center; gap:5px; font-size:.78rem; color:var(--gold); font-weight:700; margin-top:11px; }
-    .expand-arrow { transition:transform .3s; display:inline-block; }
-    .day-card.open .expand-arrow { transform:rotate(180deg); }
+    /* ── Notes ── */
+    #notes-section { background:var(--offwhite); border-top:3px solid var(--gold); padding:0; }
+    .name-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:24px; }
+    .name-row label { font-weight:700; color:var(--navy); font-size:.95rem; white-space:nowrap; }
+    .name-sel { flex:1; min-width:200px; max-width:320px; padding:10px 14px; border-radius:8px; border:1px solid var(--border); font-size:.95rem; color:var(--navy); background:#fff; outline:none; cursor:pointer; }
+    .name-sel:focus { border-color:var(--blue); }
+    .no-sel { text-align:center; padding:40px 16px; color:var(--muted); }
+    .no-sel .nsi { font-size:2.5rem; margin-bottom:8px; }
+    .notes-ui { display:none; }
+    .notes-ui.show { display:block; }
+    .ntab-list { display:flex; gap:4px; flex-wrap:wrap; border-bottom:2px solid var(--border); margin-bottom:20px; }
+    .ntab { padding:10px 14px; font-size:.84rem; font-weight:700; color:var(--muted); background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; cursor:pointer; border-radius:6px 6px 0 0; transition:color .2s,background .2s,border-color .2s; }
+    .ntab:hover { color:var(--navy); background:var(--offwhite); }
+    .ntab.on { color:var(--navy); border-bottom-color:var(--gold); background:var(--offwhite); }
+    .npanel { display:none; }
+    .npanel.on { display:block; }
+    .np-port { font-size:1rem; font-weight:800; color:var(--navy); }
+    .np-date { font-size:.82rem; color:var(--muted); margin-top:3px; margin-bottom:14px; }
+    .ntextarea { width:100%; min-height:150px; padding:14px 16px; border-radius:10px; border:1px solid var(--border); font-size:.93rem; font-family:inherit; color:var(--text); resize:vertical; outline:none; background:#fff; transition:border-color .2s; }
+    .ntextarea:focus { border-color:var(--blue); background:#fff; }
+    .nsaved { font-size:.78rem; color:var(--teal); font-weight:600; margin-top:6px; min-height:1.2em; }
 
-    /* ── Expanded Detail ───────────────────────────────── */
-    .day-details { display:none; border-top:1px solid var(--border); padding:26px 22px 22px; background:#f8fbff; }
-    .day-card.open .day-details { display:block; }
-    .detail-about { font-size:.94rem; color:#3a4a5c; line-height:1.72; margin-bottom:20px; }
-    .detail-weather-box { display:flex; gap:12px; flex-wrap:wrap; background:white; border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:18px; align-items:center; }
-    .dwb-icon { font-size:2.2rem; }
-    .dwb-info .dwb-desc { font-weight:700; color:var(--navy); font-size:.95rem; }
-    .dwb-info .dwb-temps { font-size:.88rem; color:var(--muted); margin-top:2px; }
-    .dwb-info .dwb-rain { font-size:.85rem; margin-top:4px; }
-    .detail-sec { font-size:.76rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:var(--navy); margin-bottom:11px; }
-    .things-grid { display:flex; flex-direction:column; gap:9px; margin-bottom:18px; }
-    .thing-item { display:flex; gap:12px; background:white; border:1px solid var(--border); border-radius:10px; padding:12px 15px; }
-    .thing-dot { width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:6px; }
-    .thing-name { font-weight:700; font-size:.88rem; color:var(--navy); }
-    .thing-desc { font-size:.83rem; color:var(--muted); margin-top:2px; }
-    .detail-tip { background:#fffbea; border:1px solid #f5d97a; border-radius:10px; padding:12px 16px; font-size:.86rem; color:#7a5c00; margin-bottom:12px; }
-    .detail-tip strong { color:#5a4200; }
+    /* ── Checklist ── */
+    #checklist-section { background:#fff; border-top:1px solid var(--border); padding:0; }
+    .cl-add-row { display:flex; gap:10px; margin-bottom:28px; }
+    .cl-add-input { flex:1; padding:11px 16px; border-radius:8px; border:1px solid var(--border); font-size:.95rem; color:var(--text); outline:none; background:var(--offwhite); }
+    .cl-add-input:focus { border-color:var(--blue); background:#fff; }
+    .cl-add-btn { padding:11px 20px; background:var(--navy); color:#fff; border:none; border-radius:8px; font-size:.9rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .2s; }
+    .cl-add-btn:hover { background:var(--blue); }
+    .cl-progress { display:flex; align-items:center; gap:14px; margin-bottom:28px; }
+    .cl-prog-bar { flex:1; height:8px; background:var(--border); border-radius:8px; overflow:hidden; }
+    .cl-prog-fill { height:100%; background:linear-gradient(90deg,var(--teal),#16a085); border-radius:8px; transition:width .4s ease; }
+    .cl-prog-text { font-size:.85rem; font-weight:700; color:var(--navy); white-space:nowrap; }
+    .cl-category { margin-bottom:28px; }
+    .cl-cat-title { font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+    .cl-items { display:flex; flex-direction:column; gap:6px; }
+    .cl-item { display:flex; align-items:center; gap:12px; background:var(--offwhite); border:1px solid var(--border); border-radius:10px; padding:11px 14px; transition:background .15s; }
+    .cl-item.done { background:#f0faf7; border-color:#a8e6d3; }
+    .cl-item.done .cl-text { text-decoration:line-through; color:var(--muted); }
+    .cl-cb { width:20px; height:20px; border-radius:6px; border:2px solid var(--border); appearance:none; cursor:pointer; flex-shrink:0; position:relative; transition:border-color .15s,background .15s; }
+    .cl-cb:checked { background:var(--teal); border-color:var(--teal); }
+    .cl-cb:checked::after { content:"✓"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; font-size:.75rem; font-weight:900; }
+    .cl-text { flex:1; font-size:.92rem; color:var(--text); }
+    .cl-del { background:none; border:none; color:var(--muted); cursor:pointer; font-size:1rem; padding:0 4px; opacity:.5; transition:opacity .15s; flex-shrink:0; }
+    .cl-del:hover { opacity:1; color:#e74c3c; }
+    .cl-custom-tag { font-size:.68rem; font-weight:700; background:#e8f4fd; color:var(--blue); padding:2px 7px; border-radius:100px; flex-shrink:0; }
 
-    /* ── Staterooms ────────────────────────────────────── */
-    .stateroom-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
-    .stateroom-box { background:white; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
-    .stateroom-header { padding:16px 20px; color:white; }
-    .stateroom-header .sr-num { font-size:1rem; font-weight:800; }
-    .stateroom-header .sr-code { font-size:.79rem; opacity:.7; margin-top:1px; }
-    .stateroom-header .sr-arrival { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); border-radius:100px; padding:4px 12px; font-size:.73rem; margin-top:9px; }
-    .stateroom-passengers { padding:12px 16px; display:flex; flex-direction:column; gap:9px; }
-    .passenger-row { display:flex; align-items:center; gap:11px; }
-    .passenger-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:.82rem; flex-shrink:0; }
-    .passenger-name { font-weight:600; font-size:.88rem; color:var(--navy); }
+    /* ── Footer ── */
+    footer { background:var(--navy); color:rgba(255,255,255,.5); text-align:center; padding:30px 24px; font-size:.84rem; }
+    footer strong { color:rgba(255,255,255,.85); }
 
-    /* ── Food ───────────────────────────────────────────── */
-    .food-grid { display:flex; flex-direction:column; gap:9px; margin-bottom:18px; }
-    .food-item { display:flex; gap:12px; background:white; border:1px solid var(--border); border-radius:10px; padding:12px 15px; align-items:flex-start; }
-    .food-emoji { font-size:1.5rem; flex-shrink:0; margin-top:1px; }
-    .food-name { font-weight:700; font-size:.88rem; color:var(--navy); }
-    .food-tag { display:inline-block; background:#fff3cd; border:1px solid #ffe08a; color:#856404; font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:100px; margin:3px 0 4px; }
-    .food-desc { font-size:.83rem; color:var(--muted); line-height:1.55; }
-
-    /* ── Notes ─────────────────────────────────────────── */
-    .person-picker { display:flex; align-items:center; gap:14px; margin-bottom:28px; flex-wrap:wrap; }
-    .person-picker label { font-weight:700; color:var(--navy); font-size:.95rem; white-space:nowrap; }
-    .person-picker select { flex:1; min-width:200px; max-width:320px; padding:10px 14px; border-radius:8px; border:1px solid var(--border); font-size:.95rem; color:var(--navy); background:var(--offwhite); outline:none; cursor:pointer; }
-    .person-picker select:focus { border-color:var(--blue); }
-    .section-prompt { text-align:center; padding:40px 24px; color:var(--muted); font-size:.95rem; }
-    .section-prompt .prompt-icon { font-size:2.5rem; margin-bottom:10px; }
-    .day-tabs { display:none; }
-    .day-tabs.visible { display:block; }
-    .tab-list { display:flex; gap:4px; flex-wrap:wrap; border-bottom:2px solid var(--border); margin-bottom:22px; }
-    .tab-btn { padding:10px 14px; font-size:.84rem; font-weight:700; color:var(--muted); background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; cursor:pointer; border-radius:6px 6px 0 0; transition:color .2s,border-color .2s,background .2s; }
-    .tab-btn:hover { color:var(--navy); background:var(--offwhite); }
-    .tab-btn.active { color:var(--navy); border-bottom-color:var(--gold); background:var(--offwhite); }
-    .tab-panel { display:none; }
-    .tab-panel.active { display:block; }
-    .tab-port { font-size:1rem; font-weight:800; color:var(--navy); margin-bottom:4px; }
-    .tab-date { font-size:.82rem; color:var(--muted); margin-bottom:14px; }
-    .note-textarea { width:100%; min-height:140px; padding:14px 16px; border-radius:10px; border:1px solid var(--border); font-size:.93rem; font-family:inherit; color:var(--text); resize:vertical; outline:none; background:var(--offwhite); transition:border-color .2s; }
-    .note-textarea:focus { border-color:var(--blue); background:white; }
-    .save-status { font-size:.78rem; color:var(--teal); font-weight:600; margin-top:7px; min-height:1em; }
-
-    /* ── Chat ───────────────────────────────────────────── */
-    #chat-section { background:var(--navy); padding:0; }
-    .chat-wrap { max-width:920px; margin:0 auto; padding:48px 24px; }
-    .chat-wrap .section-title { color:white; }
-    .chat-wrap .section-subtitle { color:rgba(255,255,255,0.55); }
-    .chat-name-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:24px; }
-    .chat-name-row label { color:rgba(255,255,255,0.7); font-size:.9rem; font-weight:700; white-space:nowrap; }
-    .chat-select { padding:9px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:white; font-size:.9rem; outline:none; cursor:pointer; min-width:200px; }
-    .chat-select option { background:var(--navy); }
-    .chat-select:focus { border-color:var(--gold2); }
-    .chat-box { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:12px; overflow:hidden; }
-    .chat-messages { height:320px; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; }
-    .chat-messages::-webkit-scrollbar { width:4px; }
-    .chat-messages::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.15); border-radius:4px; }
-    .chat-empty { text-align:center; color:rgba(255,255,255,0.3); font-size:.88rem; padding:40px 0; flex:1; display:flex; align-items:center; justify-content:center; }
-    .chat-bubble-row { display:flex; gap:8px; align-items:flex-end; }
-    .chat-bubble-row.mine { flex-direction:row-reverse; }
-    .bubble-avatar { width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.7rem; font-weight:800; color:white; flex-shrink:0; }
-    .bubble { max-width:70%; padding:10px 14px; border-radius:16px; font-size:.88rem; line-height:1.5; }
-    .bubble-row { display:flex; flex-direction:column; }
-    .bubble-sender { font-size:.68rem; font-weight:700; margin-bottom:3px; opacity:.7; }
-    .bubble.theirs { background:rgba(255,255,255,0.12); color:white; border-bottom-left-radius:4px; }
-    .bubble.mine { background:var(--gold); color:var(--navy); border-bottom-right-radius:4px; font-weight:500; }
-    .bubble-time { font-size:.65rem; opacity:.5; margin-top:3px; }
-    .chat-bubble-row.mine .bubble-time { text-align:right; }
-    .chat-input-row { display:flex; gap:10px; padding:12px 14px; border-top:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.15); }
-    .chat-input { flex:1; padding:10px 14px; border-radius:24px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:white; font-size:.9rem; font-family:inherit; outline:none; }
-    .chat-input::placeholder { color:rgba(255,255,255,0.35); }
-    .chat-input:focus { border-color:var(--gold2); background:rgba(255,255,255,0.12); }
-    .chat-send { background:var(--gold); color:var(--navy); border:none; border-radius:50%; width:40px; height:40px; font-size:1.1rem; cursor:pointer; flex-shrink:0; transition:background .2s,transform .1s; display:flex; align-items:center; justify-content:center; }
-    .chat-send:hover { background:var(--gold2); transform:scale(1.05); }
-    .chat-notice { font-size:.75rem; color:rgba(255,255,255,0.3); text-align:center; padding:8px 14px 14px; }
-    .chat-prompt { text-align:center; padding:40px 24px; color:rgba(255,255,255,0.35); font-size:.9rem; }
-
-    /* ── Footer ────────────────────────────────────────── */
-    footer { background:var(--navy); color:rgba(255,255,255,0.5); text-align:center; padding:30px 24px; font-size:.84rem; }
-    footer strong { color:rgba(255,255,255,0.85); }
-
-    /* ── Responsive ────────────────────────────────────── */
-    @media (max-width:600px) {
-      .day-card-header { flex-direction:column; }
+    /* ── Responsive ── */
+    @media(max-width:600px) {
+      .card-head { flex-direction:column; }
       .day-badge { flex-direction:row; gap:14px; padding:14px 18px; min-width:unset; justify-content:flex-start; }
-      .day-badge .icon { margin-bottom:0; font-size:1.4rem; }
-      nav a { padding:11px 10px; font-size:.78rem; }
-      .section-wrap { padding:36px 16px; }
+      .day-badge .ico { margin-bottom:0; font-size:1.4rem; }
+      nav a { padding:11px 9px; font-size:.78rem; }
+      .sw { padding:36px 16px; }
       .ship-banner { height:280px; }
-      .countdown-num { font-size:1.6rem; min-width:54px; }
-      .day-weather-pill { display:none; }
+      .cd-num { font-size:1.6rem; min-width:54px; }
+      .wx-pill { display:none; }
     }
   </style>
 </head>
@@ -252,91 +223,62 @@
 
 <!-- Ship Banner -->
 <header class="ship-banner">
-  <div class="ship-banner-fallback" id="img-fallback"></div>
+  <div class="ship-fallback" id="ship-fallback"></div>
   <img id="ship-img" src="" alt="Carnival Conquest"
-    onload="document.getElementById('img-fallback').style.display='none'"
-    onerror="this.style.display='none';document.getElementById('img-fallback').style.display='block'" />
-  <div class="ship-banner-overlay">
-    <div class="ship-name-tag" id="ship-name-tag"></div>
+    onload="document.getElementById('ship-fallback').style.display='none'"
+    onerror="this.style.display='none';document.getElementById('ship-fallback').style.display='block'" />
+  <div class="ship-overlay">
+    <div class="ship-tag" id="ship-tag"></div>
     <h1 id="hero-title"></h1>
-    <p class="subtitle" id="hero-subtitle"></p>
+    <p class="sub" id="hero-sub"></p>
     <span class="dates" id="hero-dates"></span>
   </div>
 </header>
 
 <!-- Countdown -->
-<div class="countdown-bar">
-  <div class="countdown-label">⚓ Countdown to Departure</div>
-  <div class="countdown-units" id="countdown-units">
-    <div class="countdown-unit"><div class="countdown-num" id="cd-days">--</div><span>Days</span></div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-hours">--</div><span>Hours</span></div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-mins">--</div><span>Minutes</span></div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-secs">--</div><span>Seconds</span></div>
+<div class="cd-bar">
+  <div class="cd-label">⚓ Countdown to Departure</div>
+  <div class="cd-units" id="cd-units">
+    <div class="cd-unit"><div class="cd-num" id="cd-d">--</div><span>Days</span></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><span>Hours</span></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><span>Minutes</span></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><span>Seconds</span></div>
   </div>
-  <div class="countdown-sailed" id="countdown-sailed" style="display:none"></div>
+  <div class="cd-sailed" id="cd-sailed" style="display:none"></div>
 </div>
 
 <!-- Weather Strip -->
 <div id="weather-strip">
-  <div class="weather-strip-inner">
-    <div class="weather-strip-title">🌤 5-Day Weather Forecast</div>
-    <div class="weather-cards" id="weather-cards">
-      <div class="weather-loading">Fetching live forecast…</div>
-    </div>
+  <div class="wx-inner">
+    <div class="wx-title">🌤 5-Day Weather Forecast</div>
+    <div class="wx-cards" id="wx-cards"><div class="wx-loading">Fetching live forecast…</div></div>
   </div>
 </div>
 
 <!-- Nav -->
 <nav>
   <a href="#itinerary">📅 Itinerary</a>
-  <a href="#chat-section">💬 Group Chat</a>
   <a href="#map-section">🗺 Route Map</a>
   <a href="#who-coming">👥 Who's Coming</a>
-  <a href="#my-notes">📝 My Notes</a>
+  <a href="#notes-section">📝 My Notes</a>
+  <a href="#checklist-section">✅ Packing List</a>
 </nav>
 
 <!-- Itinerary -->
-<section id="itinerary" style="padding:0;">
-  <div class="section-wrap">
-    <div class="section-title">Your Itinerary</div>
-    <div class="section-subtitle" id="itinerary-sub"></div>
+<section id="itinerary" style="padding:0">
+  <div class="sw">
+    <div class="sec-title">Your Itinerary</div>
+    <div class="sec-sub" id="itin-sub"></div>
     <div class="divider"></div>
     <div class="timeline" id="timeline"></div>
   </div>
 </section>
 
-<!-- Group Chat -->
-<section id="chat-section" style="padding:0;">
-  <div class="chat-wrap">
-    <div class="section-title">💬 Group Chat</div>
-    <p class="section-subtitle" style="color:rgba(255,255,255,0.55); margin-bottom:10px;">Leave messages for the group. Everyone on the trip can read and reply.</p>
-    <div class="divider"></div>
-    <div class="chat-name-row">
-      <label for="chat-name-select">I am:</label>
-      <select class="chat-select" id="chat-name-select"><option value="">— Select your name —</option></select>
-    </div>
-    <div class="chat-prompt" id="chat-prompt">
-      <div style="font-size:2rem;margin-bottom:8px;">💬</div>
-      Select your name above to join the group chat.
-    </div>
-    <div id="chat-ui" style="display:none;">
-      <div class="chat-box">
-        <div class="chat-messages" id="chat-messages"></div>
-        <div class="chat-input-row">
-          <input class="chat-input" id="chat-input" type="text" placeholder="Type a message…" maxlength="500" />
-          <button class="chat-send" id="chat-send" title="Send">➤</button>
-        </div>
-      </div>
-      <div class="chat-notice">Messages are stored on this device. Share the site with the group so everyone can read along!</div>
-    </div>
-  </div>
-</section>
-
 <!-- Route Map -->
-<section id="map-section" style="padding:0;">
-  <div class="map-header">
-    <div class="section-title" style="color:white;">🗺 Cruise Route</div>
-    <p class="section-subtitle" style="color:rgba(255,255,255,0.55);">Click any stop on the map to jump to that day's details.</p>
+<section id="map-section" style="padding:0">
+  <div class="map-hd">
+    <div class="sec-title" style="color:#fff">🗺 Cruise Route</div>
+    <p class="sec-sub" style="color:rgba(255,255,255,.55)">Click any stop to jump to that day's details.</p>
     <div class="divider"></div>
   </div>
   <div id="cruise-map"></div>
@@ -344,32 +286,47 @@
 </section>
 
 <!-- Who's Coming -->
-<section id="who-coming" style="background:white; border-top:1px solid var(--border); padding:0;">
-  <div class="section-wrap">
-    <div class="section-title">Who's Coming</div>
-    <p class="section-subtitle">All 12 guests grouped by stateroom · Arrival: <strong>11:00 – 11:30 AM</strong>, June 8</p>
+<section id="who-coming" style="background:#fff; border-top:1px solid var(--border); padding:0">
+  <div class="sw">
+    <div class="sec-title">Who's Coming</div>
+    <p class="sec-sub">All 12 guests grouped by stateroom · Arrival: <strong>11:00 – 11:30 AM</strong>, June 8</p>
     <div class="divider"></div>
-    <div class="stateroom-grid" id="stateroom-grid"></div>
+    <div class="sr-grid" id="sr-grid"></div>
   </div>
 </section>
 
 <!-- My Notes -->
-<section id="my-notes" style="background:var(--offwhite); border-top:3px solid var(--gold); padding:0;">
-  <div class="section-wrap">
-    <div class="section-title">📝 My Notes</div>
-    <p class="section-subtitle">Pick your name to add personal notes for each day. Saved privately on this device.</p>
+<section id="notes-section">
+  <div class="sw">
+    <div class="sec-title">📝 My Notes</div>
+    <p class="sec-sub">Select your name then tap any day tab to add private notes — saved on this device.</p>
     <div class="divider"></div>
-    <div class="person-picker">
-      <label for="notes-name-select">I am:</label>
-      <select id="notes-name-select"><option value="">— Select your name —</option></select>
+    <div class="name-row">
+      <label for="notes-sel">I am:</label>
+      <select id="notes-sel" class="name-sel"><option value="">— Select your name —</option></select>
     </div>
-    <div class="section-prompt" id="notes-prompt">
-      <div class="prompt-icon">✍️</div>
-      <div>Select your name above to start adding notes.</div>
+    <div id="notes-no-sel" class="no-sel"><div class="nsi">✍️</div>Select your name above to start.</div>
+    <div id="notes-ui" class="notes-ui">
+      <div class="ntab-list" id="ntab-list"></div>
+      <div id="npanels"></div>
     </div>
-    <div class="day-tabs" id="notes-tabs">
-      <div class="tab-list" id="notes-tab-list"></div>
-      <div id="notes-tab-panels"></div>
+  </div>
+</section>
+
+<!-- Packing Checklist -->
+<section id="checklist-section">
+  <div class="sw">
+    <div class="sec-title">✅ Packing Checklist</div>
+    <p class="sec-sub">Shared checklist for the whole group — check items off as you pack. Add your own items at the bottom.</p>
+    <div class="divider"></div>
+    <div class="cl-progress">
+      <div class="cl-prog-bar"><div class="cl-prog-fill" id="cl-fill" style="width:0%"></div></div>
+      <div class="cl-prog-text" id="cl-text">0 / 0 packed</div>
+    </div>
+    <div id="cl-lists"></div>
+    <div class="cl-add-row">
+      <input id="cl-input" class="cl-add-input" type="text" placeholder="Add a custom item… (e.g. Snorkel gear)" maxlength="80" />
+      <button id="cl-add-btn" class="cl-add-btn">+ Add Item</button>
     </div>
   </div>
 </section>
@@ -377,523 +334,326 @@
 <!-- Footer -->
 <footer>
   <p><strong id="footer-title"></strong></p>
-  <p style="margin-top:5px" id="footer-ship"></p>
+  <p style="margin-top:5px" id="footer-sub"></p>
 </footer>
 
 <script src="data.js"></script>
 <script>
-// ── Weather helpers ─────────────────────────────────────
-const WMO = {
-  0:  { icon:"☀️",  desc:"Clear sky" },
-  1:  { icon:"🌤",  desc:"Mainly clear" },
-  2:  { icon:"⛅",  desc:"Partly cloudy" },
-  3:  { icon:"☁️",  desc:"Overcast" },
-  45: { icon:"🌫",  desc:"Foggy" },
-  48: { icon:"🌫",  desc:"Icy fog" },
-  51: { icon:"🌦",  desc:"Light drizzle" },
-  53: { icon:"🌦",  desc:"Drizzle" },
-  55: { icon:"🌧",  desc:"Heavy drizzle" },
-  61: { icon:"🌧",  desc:"Light rain" },
-  63: { icon:"🌧",  desc:"Rain" },
-  65: { icon:"🌧",  desc:"Heavy rain" },
-  80: { icon:"🌦",  desc:"Light showers" },
-  81: { icon:"🌦",  desc:"Showers" },
-  82: { icon:"⛈",  desc:"Heavy showers" },
-  95: { icon:"⛈",  desc:"Thunderstorm" },
-  96: { icon:"⛈",  desc:"Thunderstorm" },
-  99: { icon:"⛈",  desc:"Thunderstorm" },
-};
-function wmoInfo(code) {
-  if (WMO[code]) return WMO[code];
-  // find nearest lower key
-  const keys = Object.keys(WMO).map(Number).sort((a,b)=>b-a);
-  for (const k of keys) if (code >= k) return WMO[k];
-  return { icon:"🌡", desc:"Unknown" };
-}
-function rainColor(pct) {
-  if (pct <= 20) return "#2ecc71";
-  if (pct <= 50) return "#f0c040";
-  return "#e74c3c";
-}
+// ── WMO weather codes ────────────────────────────────────
+const WMO = {0:{i:"☀️",d:"Clear sky"},1:{i:"🌤",d:"Mainly clear"},2:{i:"⛅",d:"Partly cloudy"},3:{i:"☁️",d:"Overcast"},45:{i:"🌫",d:"Foggy"},51:{i:"🌦",d:"Light drizzle"},53:{i:"🌦",d:"Drizzle"},55:{i:"🌧",d:"Heavy drizzle"},61:{i:"🌧",d:"Light rain"},63:{i:"🌧",d:"Rain"},65:{i:"🌧",d:"Heavy rain"},80:{i:"🌦",d:"Light showers"},81:{i:"🌦",d:"Showers"},82:{i:"⛈",d:"Heavy showers"},95:{i:"⛈",d:"Thunderstorm"},96:{i:"⛈",d:"Thunderstorm"},99:{i:"⛈",d:"Thunderstorm"}};
+function wmo(code){if(WMO[code])return WMO[code];const k=Object.keys(WMO).map(Number).sort((a,b)=>b-a);for(const n of k)if(code>=n)return WMO[n];return{i:"🌡",d:"Unknown"};}
+function rainClr(p){return p<=20?"#2ecc71":p<=50?"#f0c040":"#e74c3c";}
 
-// Weather data store keyed by day index
-const weatherData = {};
-
-// Fetch weather for a single stop
-async function fetchWeather(dayIdx, lat, lon, date) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
-    `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
-    `&timezone=America%2FNew_York&start_date=${date}&end_date=${date}&temperature_unit=fahrenheit`;
-  const res = await fetch(url);
-  const j   = await res.json();
-  return {
-    code: j.daily.weather_code[0],
-    hi:   Math.round(j.daily.temperature_2m_max[0]),
-    lo:   Math.round(j.daily.temperature_2m_min[0]),
-    rain: j.daily.precipitation_probability_max[0] ?? 0,
-  };
-}
-
-// ── Route stops ─────────────────────────────────────────
+// ── Weather fetch & store ────────────────────────────────
+const wxData = {};
 const stops = [
-  { day:1, label:"Day 1", port:"Miami, FL",        date:"2026-06-08", lat:25.7617, lon:-80.1918, icon:"🚢" },
-  { day:2, label:"Day 2", port:"At Sea",            date:"2026-06-09", lat:24.00,   lon:-78.60,   icon:"🌊" },
-  { day:3, label:"Day 3", port:"Half Moon Cay",     date:"2026-06-10", lat:24.7744, lon:-77.3294,  icon:"🏝️" },
-  { day:4, label:"Day 4", port:"Celebration Key",   date:"2026-06-11", lat:26.27,   lon:-78.90,   icon:"🎉" },
-  { day:5, label:"Day 5", port:"Miami, FL",         date:"2026-06-12", lat:25.7817, lon:-80.2018,  icon:"🏠" },
+  {day:1,label:"Day 1",port:"Miami, FL",      date:"2026-06-08",lat:25.7617,lon:-80.1918,icon:"🚢"},
+  {day:2,label:"Day 2",port:"At Sea",          date:"2026-06-09",lat:24.00,  lon:-78.60,  icon:"🌊"},
+  {day:3,label:"Day 3",port:"Half Moon Cay",   date:"2026-06-10",lat:24.7744,lon:-77.3294,icon:"🏝️"},
+  {day:4,label:"Day 4",port:"Celebration Key", date:"2026-06-11",lat:26.27,  lon:-78.90,  icon:"🎉"},
+  {day:5,label:"Day 5",port:"Miami, FL",       date:"2026-06-12",lat:25.7817,lon:-80.2018,icon:"🏠"},
 ];
-
-// ── Static content ──────────────────────────────────────
-document.title = cruiseData.title + " · " + cruiseData.ship;
-document.getElementById("ship-img").src = cruiseData.shipImage;
-document.getElementById("ship-name-tag").textContent = "⚓ " + cruiseData.ship;
-document.getElementById("hero-title").textContent = cruiseData.title;
-document.getElementById("hero-subtitle").textContent = cruiseData.subtitle;
-document.getElementById("hero-dates").textContent = "📅 " + cruiseData.departure + " → " + cruiseData.returnDate;
-document.getElementById("itinerary-sub").textContent = cruiseData.ship + " · " + cruiseData.departure + " – " + cruiseData.returnDate;
-document.getElementById("footer-title").textContent = cruiseData.title;
-document.getElementById("footer-ship").textContent = cruiseData.ship + " · " + cruiseData.departure + " – " + cruiseData.returnDate;
-
-// ── Countdown ───────────────────────────────────────────
-function updateCountdown() {
-  const diff = new Date(cruiseData.departureISO).getTime() - Date.now();
-  if (diff <= 0) {
-    document.getElementById("countdown-units").style.display = "none";
-    const el = document.getElementById("countdown-sailed");
-    el.style.display = "block";
-    el.textContent = diff > -5*86400000 ? "🚢 We're sailing! Bon voyage!" : "🏠 What a trip — welcome home!";
-    return;
-  }
-  document.getElementById("cd-days").textContent  = String(Math.floor(diff/86400000)).padStart(2,"0");
-  document.getElementById("cd-hours").textContent = String(Math.floor(diff%86400000/3600000)).padStart(2,"0");
-  document.getElementById("cd-mins").textContent  = String(Math.floor(diff%3600000/60000)).padStart(2,"0");
-  document.getElementById("cd-secs").textContent  = String(Math.floor(diff%60000/1000)).padStart(2,"0");
+async function fetchWx(i,lat,lon,date){
+  const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America%2FNew_York&start_date=${date}&end_date=${date}&temperature_unit=fahrenheit`);
+  const j=await r.json();
+  return{code:j.daily.weather_code[0],hi:Math.round(j.daily.temperature_2m_max[0]),lo:Math.round(j.daily.temperature_2m_min[0]),rain:j.daily.precipitation_probability_max[0]??0};
 }
-updateCountdown(); setInterval(updateCountdown, 1000);
 
-// ── Fetch all weather then render everything ────────────
-(async () => {
-  try {
-    await Promise.all(stops.map(async (s, i) => {
-      weatherData[i] = await fetchWeather(i, s.lat, s.lon, s.date);
-    }));
-  } catch(e) {
-    console.warn("Weather fetch failed:", e);
+// ── Static content ───────────────────────────────────────
+document.title = cruiseData.title+" · "+cruiseData.ship;
+document.getElementById("ship-img").src = cruiseData.shipImage;
+document.getElementById("ship-tag").textContent = "⚓ "+cruiseData.ship;
+document.getElementById("hero-title").textContent = cruiseData.title;
+document.getElementById("hero-sub").textContent = cruiseData.subtitle;
+document.getElementById("hero-dates").textContent = "📅 "+cruiseData.departure+" → "+cruiseData.returnDate;
+document.getElementById("itin-sub").textContent = cruiseData.ship+" · "+cruiseData.departure+" – "+cruiseData.returnDate;
+document.getElementById("footer-title").textContent = cruiseData.title;
+document.getElementById("footer-sub").textContent = cruiseData.ship+" · "+cruiseData.departure+" – "+cruiseData.returnDate;
+
+// ── Countdown ────────────────────────────────────────────
+function tick(){
+  const diff=new Date(cruiseData.departureISO).getTime()-Date.now();
+  if(diff<=0){
+    document.getElementById("cd-units").style.display="none";
+    const el=document.getElementById("cd-sailed"); el.style.display="block";
+    el.textContent=diff>-5*864e5?"🚢 We're sailing! Bon voyage!":"🏠 What a trip — welcome home!"; return;
   }
-  renderWeatherStrip();
-  renderTimeline();
-  renderMap();
+  document.getElementById("cd-d").textContent=String(Math.floor(diff/864e5)).padStart(2,"0");
+  document.getElementById("cd-h").textContent=String(Math.floor(diff%864e5/36e5)).padStart(2,"0");
+  document.getElementById("cd-m").textContent=String(Math.floor(diff%36e5/6e4)).padStart(2,"0");
+  document.getElementById("cd-s").textContent=String(Math.floor(diff%6e4/1e3)).padStart(2,"0");
+}
+tick(); setInterval(tick,1000);
+
+// ── Fetch weather then render ────────────────────────────
+(async()=>{
+  try{ await Promise.all(stops.map(async(s,i)=>{ wxData[i]=await fetchWx(i,s.lat,s.lon,s.date); })); }
+  catch(e){ console.warn("Weather fetch failed",e); }
+  renderWx(); renderTimeline(); renderMap();
 })();
 
-// ── Weather Strip ───────────────────────────────────────
-function renderWeatherStrip() {
-  const container = document.getElementById("weather-cards");
-  if (!Object.keys(weatherData).length) {
-    container.innerHTML = `<div class="weather-loading">Weather unavailable — check closer to departure.</div>`;
-    return;
-  }
-  container.innerHTML = stops.map((s, i) => {
-    const w = weatherData[i];
-    if (!w) return "";
-    const info = wmoInfo(w.code);
-    const rc = rainColor(w.rain);
-    const dateObj  = new Date(s.date + "T12:00:00");
-    const dayName  = dateObj.toLocaleDateString("en-US", { weekday:"long" });
-    const dateStr  = dateObj.toLocaleDateString("en-US", { month:"short", day:"numeric" });
-    return `<div class="weather-card">
-      <div class="wc-day">${s.label} · ${dayName}</div>
-      <div class="wc-date-line">${dateStr}</div>
-      <div class="wc-port" title="${s.port}">${s.port}</div>
-      <span class="wc-icon">${info.icon}</span>
-      <div class="wc-desc">${info.desc}</div>
-      <div class="wc-temps"><span class="hi">${w.hi}°F</span><span class="lo">/ ${w.lo}°F</span></div>
-      <div class="rain-bar-wrap">
-        <div class="rain-bar-label">Rain chance</div>
-        <div class="rain-bar"><div class="rain-bar-fill" style="width:${w.rain}%;background:${rc}"></div></div>
+// ── Weather strip ────────────────────────────────────────
+function renderWx(){
+  const c=document.getElementById("wx-cards");
+  if(!Object.keys(wxData).length){ c.innerHTML=`<div class="wx-loading">Weather unavailable — check nearer to departure.</div>`; return; }
+  c.innerHTML=stops.map((s,i)=>{
+    const w=wxData[i]; if(!w)return"";
+    const info=wmo(w.code);
+    const d=new Date(s.date+"T12:00:00");
+    const dayName=d.toLocaleDateString("en-US",{weekday:"long"});
+    const dateStr=d.toLocaleDateString("en-US",{month:"short",day:"numeric"});
+    const rc=rainClr(w.rain);
+    return`<div class="wx-card">
+      <div class="wx-day">${s.label} · ${dayName}</div>
+      <div class="wx-date">${dateStr}</div>
+      <div class="wx-port" title="${s.port}">${s.port}</div>
+      <span class="wx-icon">${info.i}</span>
+      <div class="wx-desc">${info.d}</div>
+      <div class="wx-temps"><span class="hi">${w.hi}°F</span><span class="lo">/ ${w.lo}°F</span></div>
+      <div class="rain-wrap">
+        <div class="rain-lbl">Rain chance</div>
+        <div class="rain-bar"><div class="rain-fill" style="width:${w.rain}%;background:${rc}"></div></div>
         <div class="rain-pct" style="color:${rc}">${w.rain}%</div>
-      </div>
-    </div>`;
+      </div></div>`;
   }).join("");
 }
 
-// ── Timeline ────────────────────────────────────────────
-function renderTimeline() {
-  const timeline = document.getElementById("timeline");
-  timeline.innerHTML = "";
-  cruiseData.days.forEach((day, idx) => {
-    const card = document.createElement("div");
-    card.className = "day-card";
-    card.id = `day-card-${day.day}`;
-
-    const w    = weatherData[idx];
-    const info = w ? wmoInfo(w.code) : null;
-
-    const weatherPill = info ? `
-      <div class="day-weather-pill">
-        <span class="pw-icon">${info.icon}</span>
-        <span class="pw-temp">${w.hi}°F</span>
-        <span class="pw-rain">· ${w.rain}% rain</span>
-      </div>` : "";
-
-    const detailWeather = info ? `
-      <div class="detail-weather-box">
-        <div class="dwb-icon">${info.icon}</div>
-        <div class="dwb-info">
-          <div class="dwb-desc">${info.desc}</div>
-          <div class="dwb-temps">High ${w.hi}°F · Low ${w.lo}°F</div>
-          <div class="dwb-rain" style="color:${rainColor(w.rain)}">🌧 Rain probability: ${w.rain}%</div>
-        </div>
-      </div>` : `<div class="detail-tip">Weather data unavailable — check closer to departure.</div>`;
-
-    const chips  = day.highlights.map(h=>`<span class="highlight-chip">${h}</span>`).join("");
-    const things = day.details.thingsToDo.map(t=>`
-      <div class="thing-item">
-        <div class="thing-dot"></div>
-        <div><div class="thing-name">${t.name}</div><div class="thing-desc">${t.desc}</div></div>
-      </div>`).join("");
-
-    const foods = (day.details.food || []).map(f=>`
-      <div class="food-item">
-        <div class="food-emoji">${f.emoji}</div>
-        <div>
-          <div class="food-name">${f.name}</div>
-          <span class="food-tag">${f.tag}</span>
-          <div class="food-desc">${f.desc}</div>
-        </div>
-      </div>`).join("");
-
-    card.innerHTML = `
-      <div class="day-card-header">
-        <div class="day-badge">
-          <div class="icon">${day.icon}</div>
-          <div class="day-lbl">Day</div>
-          <div class="day-n">${day.day}</div>
-        </div>
-        <div class="day-summary">
-          <div class="day-top-row">
-            <div class="day-port-name">${day.port}</div>
-            ${weatherPill}
-          </div>
-          <span class="day-label-chip">${day.label}</span>
-          <div class="day-date">📅 ${day.date}</div>
-          <div class="day-desc">${day.description}</div>
-          <div class="highlights">${chips}</div>
-          <div class="expand-hint">Tap to explore <span class="expand-arrow">▼</span></div>
+// ── Timeline ─────────────────────────────────────────────
+function renderTimeline(){
+  const tl=document.getElementById("timeline"); tl.innerHTML="";
+  cruiseData.days.forEach((day,idx)=>{
+    const card=document.createElement("div"); card.className="day-card"; card.id=`day-${day.day}`;
+    const w=wxData[idx]; const info=w?wmo(w.code):null;
+    const wxPill=info?`<div class="wx-pill"><span class="wpi">${info.i}</span><span class="wpt">${w.hi}°F</span><span class="wpr">· ${w.rain}%</span></div>`:"";
+    const wxBox=info?`<div class="wx-box"><div class="wxico">${info.i}</div><div class="wxd"><b>${info.d}</b><div class="wxt">High ${w.hi}°F · Low ${w.lo}°F</div><div class="wxr" style="color:${rainClr(w.rain)}">🌧 Rain: ${w.rain}%</div></div></div>`:`<div class="tip">Weather unavailable — check nearer to departure.</div>`;
+    const tags=day.highlights.map(h=>`<span class="tag">${h}</span>`).join("");
+    const things=day.details.thingsToDo.map(t=>`<div class="thing"><div class="dot"></div><div><div class="tname">${t.name}</div><div class="tdesc">${t.desc}</div></div></div>`).join("");
+    const foods=(day.details.food||[]).map(f=>`<div class="food"><div class="femo">${f.emoji}</div><div><div class="fname">${f.name}</div><span class="ftag">${f.tag}</span><div class="fdesc">${f.desc}</div></div></div>`).join("");
+    card.innerHTML=`
+      <div class="card-head">
+        <div class="day-badge"><div class="ico">${day.icon}</div><div class="lbl">Day</div><div class="num">${day.day}</div></div>
+        <div class="day-body">
+          <div class="top-row"><div class="port-name">${day.port}</div>${wxPill}</div>
+          <span class="chip">${day.label}</span>
+          <div class="ddate">📅 ${day.date}</div>
+          <div class="ddesc">${day.description}</div>
+          <div class="tags">${tags}</div>
+          <div class="expand-hint">Tap to explore <span class="arrow">▼</span></div>
         </div>
       </div>
-      <div class="day-details">
-        <div class="detail-about">${day.details.about}</div>
-        <div class="detail-sec">🌤 Weather Forecast</div>
-        ${detailWeather}
-        <div class="detail-sec" style="margin-top:18px;">🍽 What to Eat</div>
-        <div class="food-grid">${foods}</div>
-        <div class="detail-sec">🗺 Things To Do</div>
-        <div class="things-grid">${things}</div>
-        <div class="detail-tip"><strong>💡 Tip:</strong> ${day.details.tips}</div>
+      <div class="card-detail">
+        <div class="about">${day.details.about}</div>
+        <div class="sec-hd">🌤 Weather Forecast</div>${wxBox}
+        <div class="sec-hd">🍽 What to Eat</div><div class="foods">${foods}</div>
+        <div class="sec-hd">🗺 Things To Do</div><div class="things">${things}</div>
+        <div class="tip"><strong>💡 Tip:</strong> ${day.details.tips}</div>
       </div>`;
-    card.addEventListener("click", () => card.classList.toggle("open"));
-    timeline.appendChild(card);
+    card.addEventListener("click",()=>card.classList.toggle("open"));
+    tl.appendChild(card);
   });
 }
 
-// ── Map ─────────────────────────────────────────────────
-function renderMap() {
-  const map = L.map("cruise-map", { zoomControl:true, scrollWheelZoom:false })
-    .setView([25.5, -78.8], 6);
-
-  // Ocean tile layer — genuine blue ocean
-  L.tileLayer(
-    "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
-    { attribution:"Tiles &copy; Esri", maxZoom:13 }
-  ).addTo(map);
-
-  // Reference layer for place labels
-  L.tileLayer(
-    "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}",
-    { attribution:"", maxZoom:13, opacity:0.7 }
-  ).addTo(map);
-
-  // Animated dashed route line
-  const coords = stops.map(s => [s.lat, s.lon]);
-  L.polyline(coords, { color:"#f0c040", weight:3.5, opacity:.9, dashArray:"10 7" }).addTo(map);
-
-  // Markers
-  stops.forEach((s, i) => {
-    const w = weatherData[i];
-    const info = w ? wmoInfo(w.code) : null;
-    const isAtSea = s.day === 2;
-
-    const markerHtml = `<div style="
-      background:${isAtSea ? "#1a5276" : "#0d2b4e"};
-      border:2.5px solid #f0c040;
-      border-radius:50%; width:40px; height:40px;
-      display:flex; align-items:center; justify-content:center;
-      font-size:18px; box-shadow:0 3px 12px rgba(0,0,0,0.5);
-      cursor:pointer; transition:transform .2s;
-      ${!isAtSea ? 'animation:pulse 2.5s infinite;' : ''}"
-    >${s.icon}</div>`;
-
-    const icon   = L.divIcon({ html:markerHtml, className:"", iconSize:[40,40], iconAnchor:[20,20] });
-    const marker = L.marker([s.lat, s.lon], { icon }).addTo(map);
-
-    const weatherRow = info
-      ? `<div style="margin-top:6px;font-size:.8rem;color:#566573;">${info.icon} ${info.desc} · ${w.hi}°F · 🌧 ${w.rain}%</div>`
-      : "";
-    marker.bindPopup(`
-      <div style="font-family:'Segoe UI',sans-serif;min-width:170px;padding:2px 0;">
-        <div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#d4a017;">${s.label}</div>
-        <div style="font-size:1rem;font-weight:800;color:#0d2b4e;margin-top:2px;">${s.port}</div>
-        ${weatherRow}
-        ${!isAtSea ? `<div style="margin-top:8px;"><a href="#day-card-${s.day}" style="font-size:.78rem;color:#1a5276;font-weight:700;">View details ↓</a></div>` : ""}
-      </div>`, { maxWidth:220, className:"" });
-
-    if (!isAtSea) {
-      marker.on("popupopen", () => {
-        const link = document.querySelector(`.leaflet-popup a[href="#day-card-${s.day}"]`);
-        if (link) link.addEventListener("click", e => {
-          e.preventDefault();
-          map.closePopup();
-          document.getElementById(`day-card-${s.day}`)?.scrollIntoView({ behavior:"smooth", block:"start" });
-        });
-      });
-    }
-  });
-
-  // Legend
-  const legend = document.getElementById("map-legend");
-  stops.forEach(s => {
-    const item = document.createElement("div");
-    item.className = "legend-item";
-    item.innerHTML = `${s.icon} <span>${s.label} — ${s.port}</span>`;
-    legend.appendChild(item);
+// ── Map ──────────────────────────────────────────────────
+function renderMap(){
+  const map=L.map("cruise-map",{zoomControl:true,scrollWheelZoom:false}).setView([25.5,-78.8],6);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",{attribution:"Tiles © Esri",maxZoom:13}).addTo(map);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}",{attribution:"",maxZoom:13,opacity:.7}).addTo(map);
+  L.polyline(stops.map(s=>[s.lat,s.lon]),{color:"#f0c040",weight:3.5,opacity:.9,dashArray:"10 7"}).addTo(map);
+  const legend=document.getElementById("map-legend");
+  stops.forEach((s,i)=>{
+    const w=wxData[i]; const info=w?wmo(w.code):null;
+    const atSea=s.day===2;
+    const mHtml=`<div style="background:${atSea?"#1a5276":"#0d2b4e"};border:2.5px solid #f0c040;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 12px rgba(0,0,0,.5);${!atSea?"animation:pulse 2.5s infinite;":""}">${s.icon}</div>`;
+    const icon=L.divIcon({html:mHtml,className:"",iconSize:[40,40],iconAnchor:[20,20]});
+    const mk=L.marker([s.lat,s.lon],{icon}).addTo(map);
+    const wxRow=info?`<div style="margin-top:5px;font-size:.8rem;color:#566573">${info.i} ${info.d} · ${w.hi}°F · 🌧 ${w.rain}%</div>`:"";
+    mk.bindPopup(`<div style="font-family:'Segoe UI',sans-serif;min-width:170px;padding:2px 0"><div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#d4a017">${s.label}</div><div style="font-size:1rem;font-weight:800;color:#0d2b4e;margin-top:2px">${s.port}</div>${wxRow}${!atSea?`<div style="margin-top:8px"><a href="#day-${s.day}" style="font-size:.78rem;color:#1a5276;font-weight:700">View details ↓</a></div>`:""}</div>`,{maxWidth:220});
+    if(!atSea) mk.on("popupopen",()=>{
+      const a=document.querySelector(`.leaflet-popup a[href="#day-${s.day}"]`);
+      if(a) a.addEventListener("click",e=>{e.preventDefault();map.closePopup();document.getElementById(`day-${s.day}`)?.scrollIntoView({behavior:"smooth",block:"start"});});
+    });
+    const li=document.createElement("div"); li.className="leg-item"; li.innerHTML=`${s.icon} <span>${s.label} — ${s.port}</span>`; legend.appendChild(li);
   });
 }
 
-// ── Staterooms ──────────────────────────────────────────
-const srGradients = [
-  "linear-gradient(135deg,#0d2b4e,#1a5276)",
-  "linear-gradient(135deg,#163a63,#1f6f9f)",
-  "linear-gradient(135deg,#0e3a52,#1a7a8a)"
-];
-const avatarColors = [
-  ["#1abc9c","#16a085"],["#e67e22","#d35400"],["#9b59b6","#8e44ad"],["#e74c3c","#c0392b"],
-  ["#2ecc71","#27ae60"],["#3498db","#2980b9"],["#f39c12","#d68910"],["#1abc9c","#16a085"],
-  ["#e91e63","#c2185b"],["#00bcd4","#0097a7"],["#ff5722","#e64a19"],["#607d8b","#455a64"]
-];
-let avatarIdx = 0;
-const grid = document.getElementById("stateroom-grid");
-cruiseData.staterooms.forEach((sr, i) => {
-  const box = document.createElement("div");
-  box.className = "stateroom-box";
-  const passengers = sr.passengers.map(name => {
-    const initials = name.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
-    const [c1,c2] = avatarColors[avatarIdx++ % avatarColors.length];
-    return `<div class="passenger-row">
-      <div class="passenger-avatar" style="background:linear-gradient(135deg,${c1},${c2})">${initials}</div>
-      <div class="passenger-name">${name}</div>
-    </div>`;
+// ── Staterooms ───────────────────────────────────────────
+const srGrad=["linear-gradient(135deg,#0d2b4e,#1a5276)","linear-gradient(135deg,#163a63,#1f6f9f)","linear-gradient(135deg,#0e3a52,#1a7a8a)"];
+const avColors=[["#1abc9c","#16a085"],["#e67e22","#d35400"],["#9b59b6","#8e44ad"],["#e74c3c","#c0392b"],["#2ecc71","#27ae60"],["#3498db","#2980b9"],["#f39c12","#d68910"],["#1abc9c","#16a085"],["#e91e63","#c2185b"],["#00bcd4","#0097a7"],["#ff5722","#e64a19"],["#607d8b","#455a64"]];
+let avIdx=0;
+const srGrid=document.getElementById("sr-grid");
+cruiseData.staterooms.forEach((sr,i)=>{
+  const box=document.createElement("div"); box.className="sr-box";
+  const pax=sr.passengers.map(name=>{
+    const ini=name.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
+    const [c1,c2]=avColors[avIdx++%avColors.length];
+    return`<div class="pax-row"><div class="pax-av" style="background:linear-gradient(135deg,${c1},${c2})">${ini}</div><div class="pax-name">${name}</div></div>`;
   }).join("");
-  box.innerHTML = `
-    <div class="stateroom-header" style="background:${srGradients[i]}">
-      <div class="sr-num">${sr.number}</div>
-      <div class="sr-code">${sr.code}</div>
-      <div class="sr-arrival">⏰ ${sr.arrival}</div>
-    </div>
-    <div class="stateroom-passengers">${passengers}</div>`;
-  grid.appendChild(box);
+  box.innerHTML=`<div class="sr-head" style="background:${srGrad[i]}"><div class="srn">${sr.number}</div><div class="src">${sr.code}</div><div class="sra">⏰ ${sr.arrival}</div></div><div class="sr-body">${pax}</div>`;
+  srGrid.appendChild(box);
 });
 
-// ── Notes ───────────────────────────────────────────────
-const allPassengers = cruiseData.staterooms.flatMap(sr => sr.passengers);
+// ── Notes (rebuilt — clean implementation) ───────────────
+const allPax = cruiseData.staterooms.flatMap(sr=>sr.passengers);
+const notesSel  = document.getElementById("notes-sel");
+const notesNoSel= document.getElementById("notes-no-sel");
+const notesUI   = document.getElementById("notes-ui");
+const ntabList  = document.getElementById("ntab-list");
+const npanels   = document.getElementById("npanels");
 
-function populateSelect(selectEl) {
-  allPassengers.forEach(name => {
-    const opt = document.createElement("option");
-    opt.value = name; opt.textContent = name;
-    selectEl.appendChild(opt);
-  });
-}
-
-// Notes select
-const notesSelect  = document.getElementById("notes-name-select");
-const notesPrompt  = document.getElementById("notes-prompt");
-const notesTabs    = document.getElementById("notes-tabs");
-const notesTabList = document.getElementById("notes-tab-list");
-const notesTabPanels = document.getElementById("notes-tab-panels");
-populateSelect(notesSelect);
-
-const savedNotesName = localStorage.getItem("cruise_notes_name");
-if (savedNotesName && allPassengers.includes(savedNotesName)) {
-  notesSelect.value = savedNotesName;
-  showNotes(savedNotesName);
-}
-notesSelect.addEventListener("change", () => {
-  const name = notesSelect.value;
-  localStorage.setItem("cruise_notes_name", name);
-  if (name) showNotes(name);
-  else { notesPrompt.style.display = "block"; notesTabs.classList.remove("visible"); }
+// Populate select
+allPax.forEach(name=>{
+  const o=document.createElement("option"); o.value=name; o.textContent=name;
+  notesSel.appendChild(o);
 });
 
-let activeNoteTab = 0;
-function showNotes(personName) {
-  notesPrompt.style.display = "none";
-  notesTabs.classList.add("visible");
-  notesTabList.innerHTML = "";
-  notesTabPanels.innerHTML = "";
-  cruiseData.days.forEach((day, idx) => {
+// Restore saved selection
+const savedPerson = localStorage.getItem("cruise_notes_person") || "";
+if(savedPerson && allPax.includes(savedPerson)){
+  notesSel.value = savedPerson;
+  buildNotes(savedPerson);
+}
+
+notesSel.addEventListener("change",()=>{
+  const p=notesSel.value;
+  localStorage.setItem("cruise_notes_person", p);
+  if(p) buildNotes(p);
+  else { notesNoSel.style.display="block"; notesUI.classList.remove("show"); ntabList.innerHTML=""; npanels.innerHTML=""; }
+});
+
+let activeNote=0;
+function buildNotes(person){
+  notesNoSel.style.display="none";
+  notesUI.classList.add("show");
+  ntabList.innerHTML=""; npanels.innerHTML=""; activeNote=0;
+
+  cruiseData.days.forEach((day,i)=>{
     // Tab button
-    const btn = document.createElement("button");
-    btn.className = "tab-btn" + (idx === activeNoteTab ? " active" : "");
-    btn.textContent = `Day ${day.day} ${day.icon}`;
-    btn.addEventListener("click", () => {
-      activeNoteTab = idx;
-      notesTabList.querySelectorAll(".tab-btn").forEach((b,i) => b.classList.toggle("active", i===idx));
-      notesTabPanels.querySelectorAll(".tab-panel").forEach((p,i) => p.classList.toggle("active", i===idx));
-    });
-    notesTabList.appendChild(btn);
+    const btn=document.createElement("button");
+    btn.className="ntab"+(i===0?" on":"");
+    btn.textContent=`Day ${day.day} ${day.icon}`;
+    btn.addEventListener("click",()=>switchNote(i));
+    ntabList.appendChild(btn);
 
-    // Panel — build elements, set textarea.value directly to avoid HTML-encoding issues
-    const key   = `notes__${personName}__day${day.day}`;
-    const saved = localStorage.getItem(key) || "";
-    const panel = document.createElement("div");
-    panel.className = "tab-panel" + (idx === activeNoteTab ? " active" : "");
+    // Panel
+    const panel=document.createElement("div");
+    panel.className="npanel"+(i===0?" on":"");
 
-    const portDiv = document.createElement("div");
-    portDiv.className = "tab-port"; portDiv.textContent = day.port;
-    const dateDiv = document.createElement("div");
-    dateDiv.className = "tab-date"; dateDiv.textContent = day.date;
-    const ta = document.createElement("textarea");
-    ta.className = "note-textarea";
-    ta.placeholder = "Write your notes, plans, or reminders for this day…";
-    ta.value = saved;                   // ← set value directly, not via innerHTML
-    const statusDiv = document.createElement("div");
-    statusDiv.className = "save-status";
+    const portEl=document.createElement("div"); portEl.className="np-port"; portEl.textContent=day.port;
+    const dateEl=document.createElement("div"); dateEl.className="np-date"; dateEl.textContent=day.date;
+    const ta    =document.createElement("textarea"); ta.className="ntextarea";
+    ta.placeholder="Write your plans, reminders, or thoughts for this day…";
+    const savedText=localStorage.getItem(`note__${person}__${day.day}`)||"";
+    ta.value=savedText;   // set value directly — avoids HTML encoding issues
 
-    ta.addEventListener("input", () => {
-      localStorage.setItem(key, ta.value);
-      statusDiv.textContent = "✓ Saved";
-      setTimeout(() => { statusDiv.textContent = ""; }, 1500);
+    const status=document.createElement("div"); status.className="nsaved";
+    ta.addEventListener("input",()=>{
+      localStorage.setItem(`note__${person}__${day.day}`,ta.value);
+      status.textContent="✓ Saved"; clearTimeout(ta._t);
+      ta._t=setTimeout(()=>{ status.textContent=""; },1600);
     });
 
-    panel.appendChild(portDiv);
-    panel.appendChild(dateDiv);
-    panel.appendChild(ta);
-    panel.appendChild(statusDiv);
-    notesTabPanels.appendChild(panel);
+    panel.appendChild(portEl); panel.appendChild(dateEl); panel.appendChild(ta); panel.appendChild(status);
+    npanels.appendChild(panel);
   });
 }
-
-// ── Chat ─────────────────────────────────────────────────
-const CHAT_KEY   = "cruise_chat_messages";
-const CHAT_LIMIT = 200;
-const chatSelect = document.getElementById("chat-name-select");
-const chatPrompt = document.getElementById("chat-prompt");
-const chatUI     = document.getElementById("chat-ui");
-const chatInput  = document.getElementById("chat-input");
-const chatSend   = document.getElementById("chat-send");
-const chatMsgs   = document.getElementById("chat-messages");
-
-populateSelect(chatSelect);
-
-const savedChatName = localStorage.getItem("cruise_chat_name");
-if (savedChatName && allPassengers.includes(savedChatName)) {
-  chatSelect.value = savedChatName; openChat(savedChatName);
+function switchNote(i){
+  activeNote=i;
+  ntabList.querySelectorAll(".ntab").forEach((b,j)=>b.classList.toggle("on",i===j));
+  npanels.querySelectorAll(".npanel").forEach((p,j)=>p.classList.toggle("on",i===j));
 }
-chatSelect.addEventListener("change", () => {
-  const name = chatSelect.value;
-  localStorage.setItem("cruise_chat_name", name);
-  if (name) openChat(name);
-  else { chatPrompt.style.display = "block"; chatUI.style.display = "none"; }
-});
 
-const passengerColors = {};
-const palette = ["#1abc9c","#e67e22","#9b59b6","#e74c3c","#3498db","#f39c12","#2ecc71","#e91e63","#00bcd4","#ff5722","#8e44ad","#16a085"];
-allPassengers.forEach((p, i) => { passengerColors[p] = palette[i % palette.length]; });
+// ── Packing Checklist ────────────────────────────────────
+const CL_KEY="cruise_checklist_v2";
+const DEFAULT_ITEMS=[
+  {cat:"📄 Documents & ID",    items:["Passport / Government ID","Boarding pass (printed & digital)","Credit & debit cards","Travel insurance documents","Emergency contact list","Carnival HUB app — downloaded & set up"]},
+  {cat:"👔 Clothing",          items:["Swimwear (2+ sets)","Formal night outfit (1–2 evenings)","Casual daywear (4–5 outfits)","Light jacket or cardigan","Comfortable walking shoes","Flip flops / sandals","Sun hat or cap","Pyjamas / sleepwear"]},
+  {cat:"🧴 Toiletries & Health",items:["Sunscreen SPF 50+","After-sun lotion / aloe vera","Motion sickness medication","Prescription medications","Pain relievers (paracetamol / ibuprofen)","Hand sanitiser","Lip balm with SPF","Insect repellent","Face wash & moisturiser"]},
+  {cat:"📱 Electronics",       items:["Phone + charger","Portable power bank","Camera + memory cards","Headphones / earbuds","Multi-plug travel adapter"]},
+  {cat:"🏖 Beach & Pool",      items:["Beach bag","Reusable water bottle","Waterproof phone case","Towel clips (for deck chairs)","Snorkel gear (optional — rentals available)","Dry bag for island days"]},
+  {cat:"🎒 Extras",            items:["Cash — small bills for tips","Luggage locks","Laundry bags","Ziploc bags (for wet items)","Seasickness wristbands","Pen (for forms / customs)"]},
+];
 
-function getMessages() {
-  try { return JSON.parse(localStorage.getItem(CHAT_KEY) || "[]"); } catch { return []; }
+function loadCL(){
+  try{ return JSON.parse(localStorage.getItem(CL_KEY)||"null"); } catch{ return null; }
 }
-function saveMessages(msgs) {
-  localStorage.setItem(CHAT_KEY, JSON.stringify(msgs.slice(-CHAT_LIMIT)));
-}
-function formatTime(iso) {
-  const d = new Date(iso);
-  return d.toLocaleDateString("en-US",{month:"short",day:"numeric"}) + " " +
-         d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
-}
-function renderMessages(myName) {
-  const msgs = getMessages();
-  chatMsgs.innerHTML = "";
-  if (!msgs.length) {
-    const empty = document.createElement("div");
-    empty.className = "chat-empty"; empty.textContent = "No messages yet — say hello! 👋";
-    chatMsgs.appendChild(empty);
-    return;
+function saveCL(data){ localStorage.setItem(CL_KEY,JSON.stringify(data)); }
+
+function initCL(){
+  let data=loadCL();
+  if(!data){
+    data=DEFAULT_ITEMS.map(cat=>({
+      cat:cat.cat,
+      items:cat.items.map(text=>({text,checked:false,custom:false}))
+    }));
+    saveCL(data);
   }
-  msgs.forEach(m => {
-    const isMine = m.sender === myName;
-    const color  = passengerColors[m.sender] || "#888";
-    const initials = m.sender.split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
+  renderCL(data);
+}
 
-    const row = document.createElement("div");
-    row.className = "chat-bubble-row" + (isMine ? " mine" : "");
+function renderCL(data){
+  const container=document.getElementById("cl-lists"); container.innerHTML="";
+  let total=0, done=0;
 
-    const avatar = document.createElement("div");
-    avatar.className = "bubble-avatar";
-    avatar.style.background = color;
-    avatar.textContent = initials;
+  data.forEach((cat,ci)=>{
+    const sec=document.createElement("div"); sec.className="cl-category";
+    const title=document.createElement("div"); title.className="cl-cat-title"; title.textContent=cat.cat;
+    sec.appendChild(title);
+    const list=document.createElement("div"); list.className="cl-items";
 
-    const col = document.createElement("div");
-    col.className = "bubble-row";
+    cat.items.forEach((item,ii)=>{
+      total++; if(item.checked)done++;
+      const row=document.createElement("div"); row.className="cl-item"+(item.checked?" done":"");
 
-    if (!isMine) {
-      const sender = document.createElement("div");
-      sender.className = "bubble-sender"; sender.style.color = color;
-      sender.textContent = m.sender;
-      col.appendChild(sender);
-    }
+      const cb=document.createElement("input"); cb.type="checkbox"; cb.className="cl-cb"; cb.checked=item.checked;
+      cb.addEventListener("change",()=>{
+        const d=loadCL(); d[ci].items[ii].checked=cb.checked; saveCL(d);
+        row.classList.toggle("done",cb.checked);
+        textEl.classList.toggle("done",cb.checked);
+        updateProgress();
+      });
 
-    const bubble = document.createElement("div");
-    bubble.className = "bubble " + (isMine ? "mine" : "theirs");
-    bubble.textContent = m.text;
+      const textEl=document.createElement("span"); textEl.className="cl-text"+(item.checked?" done":""); textEl.textContent=item.text;
 
-    const time = document.createElement("div");
-    time.className = "bubble-time"; time.textContent = formatTime(m.ts);
+      row.appendChild(cb); row.appendChild(textEl);
 
-    col.appendChild(bubble);
-    col.appendChild(time);
-    row.appendChild(avatar);
-    row.appendChild(col);
-    chatMsgs.appendChild(row);
+      if(item.custom){
+        const badge=document.createElement("span"); badge.className="cl-custom-tag"; badge.textContent="custom";
+        const del=document.createElement("button"); del.className="cl-del"; del.innerHTML="✕"; del.title="Remove item";
+        del.addEventListener("click",e=>{ e.stopPropagation(); const d=loadCL(); d[ci].items.splice(ii,1); saveCL(d); renderCL(d); });
+        row.appendChild(badge); row.appendChild(del);
+      }
+      list.appendChild(row);
+    });
+    sec.appendChild(list); container.appendChild(sec);
   });
-  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+
+  document.getElementById("cl-fill").style.width=total?`${Math.round(done/total*100)}%`:"0%";
+  document.getElementById("cl-text").textContent=`${done} / ${total} packed`;
 }
 
-function openChat(name) {
-  chatPrompt.style.display = "none";
-  chatUI.style.display = "block";
-  renderMessages(name);
+function updateProgress(){
+  const d=loadCL(); let t=0,done=0;
+  d.forEach(c=>c.items.forEach(i=>{t++;if(i.checked)done++;}));
+  document.getElementById("cl-fill").style.width=t?`${Math.round(done/t*100)}%`:"0%";
+  document.getElementById("cl-text").textContent=`${done} / ${t} packed`;
 }
 
-function sendMessage() {
-  const name = chatSelect.value;
-  const text = chatInput.value.trim();
-  if (!name || !text) return;
-  const msgs = getMessages();
-  msgs.push({ sender: name, text, ts: new Date().toISOString() });
-  saveMessages(msgs);
-  chatInput.value = "";
-  renderMessages(name);
+// Add custom item — goes into an "Added by you" group (last category)
+document.getElementById("cl-add-btn").addEventListener("click",addCustomItem);
+document.getElementById("cl-input").addEventListener("keydown",e=>{ if(e.key==="Enter")addCustomItem(); });
+
+function addCustomItem(){
+  const inp=document.getElementById("cl-input");
+  const text=inp.value.trim(); if(!text)return;
+  let d=loadCL();
+  // Find or create "⭐ Your Additions" category
+  let custom=d.find(c=>c._custom);
+  if(!custom){ custom={cat:"⭐ Your Additions",_custom:true,items:[]}; d.push(custom); }
+  custom.items.push({text,checked:false,custom:true});
+  saveCL(d); renderCL(d); inp.value="";
 }
 
-chatSend.addEventListener("click", sendMessage);
-chatInput.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
-
-// Poll for new messages every 5s (picks up messages from other browser tabs)
-setInterval(() => {
-  const name = chatSelect.value;
-  if (name && chatUI.style.display !== "none") renderMessages(name);
-}, 5000);
+initCL();
 </script>
 </body>
 </html>
